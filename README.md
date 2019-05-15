@@ -17,7 +17,10 @@
 
 ## Usage
 
-> Some usage instructions
+> Install the necessary dependencies for this module (npm install)
+> Transpile and bundle all the components (webpack)
+> Start the server (npm run sever-dev)
+> The public folder will be available at localhost port 3010
 
 ## Requirements
 
