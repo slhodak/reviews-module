@@ -63,7 +63,7 @@ const Seed = {
       var diner = {};
       diner.firstname = Faker.name.firstName().replace(/\'/g, '');
       diner.lastname = Faker.name.lastName().replace(/\'/g, '');
-      diner.city = Faker.address.city();
+      diner.city = Faker.address.city().replace(/\'/g, '');
       diner.totalreviews = Faker.random.number({min: 0, max: 25});
       diners.push(diner);
     }
@@ -85,13 +85,13 @@ const Seed = {
       review.wouldrecommend = Faker.random.boolean();
       review.tags = '';
       for (var j = 0; j < 2; j++) {
-        if (Math.random > 0.8) {
-          if (reviews.tags.split(',').length > 0) {
+        if (Math.random() > 0.8) {
+          if (review.tags.split(',').length > 0) {
             reviews.tags += ',';
           }
-          reviews.tags += Seed.getRandomFoodWord();
-          if (Math.random > 0.9) {
-            reviews.tags += ',' + Seed.getRandomTagWord();
+          review.tags += Seed.getRandomFoodWord();
+          if (Math.random() > 0.9) {
+            review.tags += ',' + Seed.getRandomTagWord();
           }
         }
       }
