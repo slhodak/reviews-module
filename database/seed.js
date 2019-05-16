@@ -1,6 +1,14 @@
 const Faker = require('faker');
 
 const Seed = {
+  foodWords: ['pot roast', 'chicken', 'sushi', 'marshmallows', 'pumpkin pie', 'wine'],
+  tagWords: ['groups', 'kids', 'gluten free', 'vegan'],
+  getRandomFoodWord: function() {
+    return Seed.foodWords[Math.floor(Math.random() * Seed.foodWords.length)];
+  },
+  getRandomTagWord: function() {
+    return Seed.tagWords[Math.floor(Math.random() * Seed.tagWords.length)];
+  },
   all: function() {
     let restaurants = Seed.createRestaurants();
     Seed.insertRestaurants(restaurants);
@@ -35,6 +43,33 @@ const Seed = {
   },
   createReviews: function() {
     //  create 100 reviews
+    let reviews = [];
+    for (var i = 0; i < 100; i++) {
+      var review = {};
+      review.restaurant = Faker.random.number(1, 5);
+      review.diner = Faker.random.number(1, 50);
+      review.text = Faker.lorem.sentences();
+      review.date = Faker.date.recent();
+      review.overall = Faker.random.number(0, 5);
+      review.food = Faker.random.number(0, 5);
+      review.service = Faker.random.number(0, 5);
+      review.ambience = Faker.random.number(0, 5);
+      review.wouldRecommend = Faker.random.boolean();
+      review.tags = '';
+      for (var i = 0; i < 3; i++) {
+        if (Math.random > 0.8) {
+          if (reviews.tags.split(',').length > 0) {
+            reviews.tags += ',';
+          }
+          reviews.tags += Seed.getRandomFoodWord();
+          if (Math.random > 0.9) {
+            reviews.tags += ',' + Seed.getRandomTagWord();
+          }
+        }
+      }
+      reviews.push(review);
+    }
+    return reviews;
   },
   insertRestaurants: function() {
     //  insert 5 restaurants 
