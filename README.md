@@ -40,16 +40,17 @@ npm install -g webpack
 npm install
 ```
 
-<!-- INCOMPLETE: ### PostgreSQL Setup  -->
+### PostgreSQL Setup 
 
-<!-- 1) Install the postgres server
-  - brew install postgres
-2) Start the postgres server if it did not automatically start:
-  - brew services start postgres
-3) Use psql command-line tool to create a database
-  - createdb reviews
+0) Have Homebrew
+  - https://brew.sh
+1) Install the postgres server
+  - $ brew install postgres
+2) Start the postgres server if it did not automatically start
+  - $ brew services start postgres
+3) Use psql command-line tool (should come installed on all macs) to create a database
+  - $ createdb reviews
 4) Enter the psql shell
-  - psql reviews
+  - $ psql reviews
 5) Run the sql file with psql
-  - \i server/schema.sql
-
+  - reviews=# \i database/schema.sql

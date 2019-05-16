@@ -1,29 +1,31 @@
-CREATE TABLE review (
-  id          serial,
-  restaurant  int,
-  user        int,
-  text        varchar(1000),
-  date        smalldatetime NOT NULL,
-  overall     tinyint,
-  food        tinyint,
-  service     tinyint,
-  ambience    tinyint,
-  wouldRecommend  bit
-)
 
-CREATE TABLE user (
-  id            serial,
+CREATE TABLE restaurants (
+  id                serial primary key unique,
+  location          varchar(30), 
+  noise             varchar(10),
+  recommendPercent  int,
+  valueRating       numeric,
+  averageOverall    numeric
+);
+
+CREATE TABLE diners (
+  id            serial primary key unique,
   firstname     varchar(20),
   lastname      varchar(20),
   totalReviews  int
-)
+);
 
-CREATE TABLE restaurant (
-  id                serial,
-  location          varchar(30), 
-  restaurant        int,
-  noise             varchar(10),
-  recommendPercent  int
-  value             numeric,
-  averageOverall    numeric 
-)
+CREATE TABLE reviews (
+  id              serial primary key unique,
+  restaurant      int,
+  diner           int,
+  text            varchar(1000),
+  date            varchar(30),
+  overall         int,
+  food            int,
+  service         int,
+  ambience        int,
+  wouldRecommend  bit,
+  foreign key (diner) references diners(id),
+  foreign key (restaurant) references restaurants(id)
+);
