@@ -44,16 +44,20 @@ npm install
 
 0) Have Homebrew
   - https://brew.sh
-1) Run the postgres setup
-  - npm run pg-setup
-  - if db already exists and you get an error: $ psql reviews
-2) Connect to the new database
-  - reviews=# \connect reviews
-3) Run the sql file with psql
+1) Install postgres
+  - brew install postgres
+2) Start postgres if it is not already started
+  - brew services start postgres
+1) Run the following commands:
+  - createdb reviews
+  - $ psql reviews
+2) Run the schema file
   - reviews=# \i database/schema.sql
 4) Check out the tables
   - reviews=# \dt
 5) Exit the psql shell
   - reviews=# \q
+6) Important! Go to your database/index.js file
+  - make the 'user' key equal to your local username or whatever is the username of the postgres role that created the database (use 'select * from pg_roles' in the psql shell to see a list of possibilities)
 6) Run the seed script
   - npm run seed

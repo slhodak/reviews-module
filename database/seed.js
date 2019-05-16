@@ -1,7 +1,6 @@
 const Faker = require('faker');
-const knex = require('./index.js').knex;
-const _ = require('lodash');
-const Promise = require('bluebird');
+const db = require('./index.js');
+const squel = require('squel');
 
 const Seed = {
   foodWords: ['pot roast', 'chicken', 'sushi', 'marshmallows', 'pumpkin pie', 'wine'],
@@ -18,11 +17,29 @@ const Seed = {
   },
   all: function() {
     let restaurants = Seed.createRestaurants();
-    Seed.insertRestaurants(restaurants);
     let diners = Seed.createDiners();
-    Seed.insertDiners(diners);
     let reviews = Seed.createReviews();
-    Seed.insertReviews(reviews);
+    db.client.connect();
+    Seed.insertRestaurants(restaurants, (err, res) => {
+      if (err) {
+        console.log(err);
+        db.client.end();
+      } else {
+        Seed.insertDiners(diners, (err, res) => {
+          if (err) {
+            console.log(err);
+            db.client.end();
+          } else {
+            Seed.insertReviews(reviews, (err, res) => {
+              if (err) {
+                console.log(err);
+              }
+              db.client.end();
+            });
+          }
+        });
+      }
+    });
   },
   createRestaurants: function() {
     //  create 5 restaurants
@@ -30,7 +47,7 @@ const Seed = {
     for (var i = 0; i < 5; i++) {
       var restaurant = {};
       restaurant.name = Faker.lorem.word();
-      restaurant.location = Faker.address.city();
+      restaurant.location = Faker.address.city().replace(/\'/g, '');
       restaurant.noise = Seed.getRandomNoiseLevel();
       restaurant.recommendpercent = Faker.random.number(100);
       restaurant.valuerating = Faker.random.number({min: 0, max: 5, precision: 0.1});
@@ -44,8 +61,8 @@ const Seed = {
     let diners = [];
     for (var i = 0; i < 50; i++) {
       var diner = {};
-      diner.firstname = Faker.name.firstName();
-      diner.lastname = Faker.name.lastName();
+      diner.firstname = Faker.name.firstName().replace(/\'/g, '');
+      diner.lastname = Faker.name.lastName().replace(/\'/g, '');
       diner.city = Faker.address.city();
       diner.totalreviews = Faker.random.number({min: 0, max: 25});
       diners.push(diner);
@@ -60,7 +77,7 @@ const Seed = {
       review.restaurant = Faker.random.number({min: 1, max: 5});
       review.diner = Faker.random.number({min: 1, max: 50});
       review.text = Faker.lorem.sentences();
-      review.date = Faker.date.recent();
+      review.date = Faker.random.number({min: 1, max: 31});
       review.overall = Faker.random.number({min: 0, max: 5});
       review.food = Faker.random.number({min: 0, max: 5});
       review.service = Faker.random.number({min: 0, max: 5});
@@ -82,27 +99,47 @@ const Seed = {
     }
     return reviews;
   },
-  insertRestaurants: function(restaurants) {
+  insertRestaurants: function(restaurants, callback) {
     //  insert 5 restaurants
-    restaurants.forEach(restaurant => {
-      console.log(restaurant);
-      knex('restaurants').insert(restaurant)
-        .then(result => {
-          console.log(result);
-        });
+    let sql = squel.insert()
+      .into('restaurants')
+      .setFieldsRows(restaurants)
+      .toString();
+    db.client.query(sql, (err, res) => {
+      if (err) {
+        callback(err.stack);
+      } else {
+        callback(res.rows[0]);
+      }
     });
+    
   },
-  insertDiners: function(diners) {
+  insertDiners: function(diners, callback) {
     //  insert 50 diners 
-    diners.forEach(diner => {
-      knex('diners').insert(diner);
+    let sql = squel.insert()
+      .into('diners')
+      .setFieldsRows(diners)
+      .toString();
+    db.client.query(sql, (err, res) => {
+      if (err) {
+        callback(err.stack);
+      } else {
+        callback(res.rows[0]);
+      }
     });
   },
-  insertReviews: function(reviews) {
+  insertReviews: function(reviews, callback) {
     //  insert 100 reviews
-    reviews.forEach(review => {
-      // console.log(review);
-      knex('reviews').insert(review);
+    let sql = squel.insert()
+      .into('reviews')
+      .setFieldsRows(reviews)
+      .toString();
+    db.client.query(sql, (err, res) => {
+      if (err) {
+        callback(err.stack);
+      } else {
+        callback(res.rows[0]);
+      }
     });
   }
 };
