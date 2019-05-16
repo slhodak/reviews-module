@@ -48,7 +48,7 @@ npm install
   - $ brew install postgres
 2) Start the postgres server if it did not automatically start
   - $ brew services start postgres
-3) Use psql command-line tool (should come installed on all macs) to create a database
+3) Create a database
   - $ createdb reviews
 4) Enter the psql shell
   - $ psql reviews
