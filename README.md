@@ -40,7 +40,7 @@ npm install -g webpack
 npm install
 ```
 
-### PostgreSQL Setup 
+### PostgreSQL Setup
 
 0) Have Homebrew
   - https://brew.sh
@@ -48,9 +48,17 @@ npm install
   - $ brew install postgres
 2) Start the postgres server if it did not automatically start
   - $ brew services start postgres
-3) Create a database
-  - $ createdb reviews
-4) Enter the psql shell
-  - $ psql reviews
-5) Run the sql file with psql
+3) Enter the psql shell through the build-in database 'postgres'
+  - psql postgres
+4) Run the sql setup file
+  - postgres=# \i database/dbsetup.sql
+5) Connect to the new database
+  - postgres=# \connect reviews
+6) Run the sql file with psql
   - reviews=# \i database/schema.sql
+7) Check out the tables
+  - reviews=# \dt
+7) Exit the psql shell
+  - reviews=# \q
+8) Run the seed script
+  - npm run seed

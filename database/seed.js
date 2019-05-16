@@ -56,7 +56,7 @@ const Seed = {
       review.ambience = Faker.random.number(0, 5);
       review.wouldRecommend = Faker.random.boolean();
       review.tags = '';
-      for (var j = 0; j < 3; j++) {
+      for (var j = 0; j < 2; j++) {
         if (Math.random > 0.8) {
           if (reviews.tags.split(',').length > 0) {
             reviews.tags += ',';

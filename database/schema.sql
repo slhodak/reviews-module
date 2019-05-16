@@ -1,5 +1,3 @@
--- create database in this script
-
 CREATE TABLE restaurants (
   id                serial primary key unique,
   name              varchar(20),
