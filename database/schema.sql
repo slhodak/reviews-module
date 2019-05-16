@@ -12,6 +12,7 @@ CREATE TABLE diners (
   id            serial primary key unique,
   firstname     varchar(20),
   lastname      varchar(20),
+  city          varchar(20),
   totalReviews  int
 );
 
@@ -20,7 +21,7 @@ CREATE TABLE reviews (
   restaurant      int,
   diner           int,
   text            varchar(1000),
-  date            varchar(30),
+  date            date,
   overall         int,
   food            int,
   service         int,
