@@ -1,6 +1,7 @@
 
 CREATE TABLE restaurants (
   id                serial primary key unique,
+  name              varchar(20),
   location          varchar(30), 
   noise             varchar(10),
   recommendPercent  int,
@@ -27,6 +28,8 @@ CREATE TABLE reviews (
   service         int,
   ambience        int,
   wouldRecommend  bit,
+  -- a string of csv to filter reviews by, often null
+  tags            varchar(100),
   foreign key (diner) references diners(id),
   foreign key (restaurant) references restaurants(id)
 );
