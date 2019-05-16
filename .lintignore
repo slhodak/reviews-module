@@ -1,0 +1,7 @@
+
+node_modules
+public/
+database/schema.sql
+
+STYLE-GUIDE.md
+README.md

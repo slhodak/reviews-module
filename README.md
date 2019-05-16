@@ -27,7 +27,7 @@
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 - Node 6.13.0
-- etc
+- PostgreSQL 11.2
 
 ## Development
 
@@ -39,4 +39,17 @@ From within the root directory:
 npm install -g webpack
 npm install
 ```
+
+<!-- INCOMPLETE: ### PostgreSQL Setup  -->
+
+<!-- 1) Install the postgres server
+  - brew install postgres
+2) Start the postgres server if it did not automatically start:
+  - brew services start postgres
+3) Use psql command-line tool to create a database
+  - createdb reviews
+4) Enter the psql shell
+  - psql reviews
+5) Run the sql file with psql
+  - \i server/schema.sql
 
