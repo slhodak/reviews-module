@@ -1,21 +1,39 @@
+const faker = require('faker');
+
 const Seed = {
   all: function() {
-    Seed.restaurants();
-    Seed.users();
-    Seed.reviews();
-    Seed.impressions();
+    let restaurants = Seed.createRestaurants();
+    Seed.insertRestaurants(restaurants);
+    let diners = Seed.createDiners();
+    Seed.insertDiners(diners);
+    let reviews = Seed.createReviews();
+    Seed.insertReviews(reviews);
+    let impressions = Seed.createImpressions();
+    Seed.insertImpressions(impressions);
   },
-  restaurants: function() {
-    //  insert 5 restaurants with randomized data into my postgres database's 'restaurants' table
+  createRestaurants: function() {
+    //  create 5 restaurants 
   },
-  users: function() {
-    //  insert 50 users with randomized data into my postgres database's 'restaurants' table
+  createDiners: function() {
+    //  create 50 diners 
   },
-  reviews: function() {
-    //  insert 100 reviews with randomized data into my postgres database's 'reviews' table
+  createReviews: function() {
+    //  create 100 reviews
   },
-  impressions: function() {
-    //  update all the restaurants in my database with data calculated for the impressions fields froms the reviews data
+  createImpressions: function() {
+    //  create impressions info based on reviews data for the same number as existing restaurants
+  },
+  insertRestaurants: function() {
+    //  insert 5 restaurants 
+  },
+  insertDiners: function() {
+    //  insert 50 diners 
+  },
+  insertReviews: function() {
+    //  insert 100 reviews
+  },
+  insertImpressions: function() {
+    //  insert impressions info
   }
 };
 
