@@ -56,7 +56,7 @@ const Seed = {
       review.ambience = Faker.random.number(0, 5);
       review.wouldRecommend = Faker.random.boolean();
       review.tags = '';
-      for (var i = 0; i < 3; i++) {
+      for (var j = 0; j < 3; j++) {
         if (Math.random > 0.8) {
           if (reviews.tags.split(',').length > 0) {
             reviews.tags += ',';
@@ -71,13 +71,13 @@ const Seed = {
     }
     return reviews;
   },
-  insertRestaurants: function() {
-    //  insert 5 restaurants 
+  insertRestaurants: function(restaurants) {
+    //  insert 5 restaurants
   },
-  insertDiners: function() {
+  insertDiners: function(diners) {
     //  insert 50 diners 
   },
-  insertReviews: function() {
+  insertReviews: function(reviews) {
     //  insert 100 reviews
   }
 };
