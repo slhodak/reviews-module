@@ -47,7 +47,7 @@ const Seed = {
       diner.firstname = Faker.name.firstName();
       diner.lastname = Faker.name.lastName();
       diner.city = Faker.address.city();
-      diner.totalreviews = Faker.random.number({min: 0, max:25});
+      diner.totalreviews = Faker.random.number({min: 0, max: 25});
       diners.push(diner);
     }
     return diners;

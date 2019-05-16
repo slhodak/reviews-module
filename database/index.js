@@ -1,15 +1,18 @@
-const Knex = require('knex');
-const pg = require('pg');
+const { Client } = require('pg');
 
-const knex = Knex({
-  client: 'pg',
-  version: '11.2',
-  connection: {
-    host: 'http://127.0.0.1',
-    user: 'postgres',
-    database: 'reviews'
-  },
-  debug: true
+const client = new Client({
+  user: 'admin',
+  host: 'localhost',
+  database: 'reviews',
+  password: '',
+  port: 5432
 });
 
-module.exports.knex = knex;
+client.connect();
+
+client.query('select now()', (err, res) => {
+  console.log(err, res);
+  client.end();
+});
+
+module.exports.client = client;
