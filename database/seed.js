@@ -8,8 +8,6 @@ const Seed = {
     Seed.insertDiners(diners);
     let reviews = Seed.createReviews();
     Seed.insertReviews(reviews);
-    let impressions = Seed.createImpressions();
-    Seed.insertImpressions(impressions);
   },
   createRestaurants: function() {
     //  create 5 restaurants
@@ -20,15 +18,23 @@ const Seed = {
       restaurant.location = Faker.address.city();
       restaurants.push(restaurant);
     }
+    return restaurants;
   },
   createDiners: function() {
     //  create 50 diners
+    let diners = [];
+    for (var i = 0; i < 50; i++) {
+      var diner = {};
+      diner.firstname = Faker.name.firstName();
+      diner.lastname = Faker.name.lastName();
+      diner.city = Faker.address.city();
+      diner.totalReviews = Faker.random.number(0, 25);
+      diners.push(diner);
+    }
+    return diners;
   },
   createReviews: function() {
     //  create 100 reviews
-  },
-  createImpressions: function() {
-    //  create impressions info based on reviews data for the same number as existing restaurants
   },
   insertRestaurants: function() {
     //  insert 5 restaurants 
@@ -38,9 +44,6 @@ const Seed = {
   },
   insertReviews: function() {
     //  insert 100 reviews
-  },
-  insertImpressions: function() {
-    //  insert impressions info
   }
 };
 

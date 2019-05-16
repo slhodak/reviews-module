@@ -4,7 +4,6 @@ CREATE TABLE restaurants (
   id                serial primary key unique,
   name              varchar(20),
   location          varchar(30), 
-  -- Impression info calculated from reviews
   noise             varchar(10),
   recommendPercent  int,
   valueRating       numeric,
