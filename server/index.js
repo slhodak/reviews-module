@@ -11,7 +11,17 @@ app.listen(3010, () => {
 
 app.get('/:id/impression', (req, res) => {
   // respond with relevant data from restaurants table based on restaurant's id
-  
+  db.getImpression(req.params.id, (err, result) => {
+    if (err) {
+      console.log('Error getting restaurant impression: ' + err.stack);
+      res.status(500);
+      res.end();
+    } else {
+      console.log('Fetched restaurant impression: ' + result);
+      res.status(200);
+      res.send(result);
+    }
+  });
 
 });
 
