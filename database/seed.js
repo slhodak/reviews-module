@@ -1,6 +1,7 @@
 const Faker = require('faker');
 const db = require('./index.js');
 const squel = require('squel');
+const moment = require('moment');
 
 const Seed = {
   foodWords: ['pot roast', 'chicken', 'sushi', 'marshmallows', 'pumpkin pie', 'wine'],
@@ -77,7 +78,7 @@ const Seed = {
       review.restaurant = Faker.random.number({min: 1, max: 5});
       review.diner = Faker.random.number({min: 1, max: 50});
       review.text = Faker.lorem.sentences();
-      review.date = Faker.random.number({min: 1, max: 31});
+      review.date = moment().format('YYYY-MM-DD', Faker.date.recent());
       review.overall = Faker.random.number({min: 0, max: 5});
       review.food = Faker.random.number({min: 0, max: 5});
       review.service = Faker.random.number({min: 0, max: 5});

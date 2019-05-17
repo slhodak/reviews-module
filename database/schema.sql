@@ -21,8 +21,7 @@ CREATE TABLE reviews (
   restaurant      int,
   diner           int,
   text            varchar(1000),
--- TODO: get formatted date to postgres spec
-  date            int,
+  date            date,
   overall         int,
   food            int,
   service         int,
