@@ -35,22 +35,31 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 From within the root directory:
 
-```sh
 npm install -g webpack
-npm install
-```
+npm install -g webpack-cli
 
-### PostgreSQL Setup 
+
+### PostgreSQL Setup
 
 0) Have Homebrew
   - https://brew.sh
-1) Install the postgres server
-  - $ brew install postgres
-2) Start the postgres server if it did not automatically start
-  - $ brew services start postgres
-3) Use psql command-line tool (should come installed on all macs) to create a database
-  - $ createdb reviews
-4) Enter the psql shell
+1) Install postgres
+  - brew install postgres
+2) Start postgres if it is not already started
+  - brew services start postgres
+1) Run the following commands:
+  - createdb reviews
   - $ psql reviews
-5) Run the sql file with psql
+2) Run the schema file
   - reviews=# \i database/schema.sql
+4) Check out the tables
+  - reviews=# \dt
+5) Exit the psql shell
+  - reviews=# \q
+6) Important! Go to your database/index.js file
+  - make the 'user' key equal to your local username or whatever is the username of the postgres role that created the database (run 'select * from pg_roles;' in the psql shell [psql reviews to enter the shell again] to see a list of possibilities)
+6) Run the seed script (don't forget npm install)
+  - npm run seed
+7) Check if the tables populated
+  - psql reviews
+  - reviews=# select * from reviews;
