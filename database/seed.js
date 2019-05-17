@@ -20,28 +20,28 @@ const Seed = {
     let restaurants = Seed.createRestaurants();
     let diners = Seed.createDiners();
     let reviews = Seed.createReviews();
-    db.client = new Client({
+    const client = new Client({
       user: 'macuser',
       host: 'localhost',
       database: 'reviews',
       port: 5432
     });
-    db.client.connect();
+    client.connect();
     Seed.insertRestaurants(restaurants, (err, res) => {
       if (err) {
         console.log(err);
-        db.client.end();
+        client.end();
       } else {
         Seed.insertDiners(diners, (err, res) => {
           if (err) {
             console.log(err);
-            db.client.end();
+            client.end();
           } else {
             Seed.insertReviews(reviews, (err, res) => {
               if (err) {
                 console.log(err);
               }
-              db.client.end();
+              client.end();
             });
           }
         });

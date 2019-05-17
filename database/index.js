@@ -1,15 +1,8 @@
 const { Client } = require('pg');
 const squel = require('squel');
 
-let client = new Client({
-  user: 'macuser',
-  host: 'localhost',
-  database: 'reviews',
-  port: 5432
-});
-
 module.exports.getAllReviews = function(restaurantId, callback) {
-  client = new Client({
+  let client = new Client({
     user: 'macuser',
     host: 'localhost',
     database: 'reviews',
@@ -38,5 +31,3 @@ module.exports.getAllReviews = function(restaurantId, callback) {
       client.end();
     });
 };
-
-module.exports.client = client;
