@@ -17,8 +17,8 @@ module.exports.getAllReviews = function(restaurantId, callback) {
   });
   
   let sql = squel.select()
-    .from('restaurants')
-    .where(`id = ${restaurantId}`)
+    .from('reviews')
+    .where(`restaurant = ${restaurantId}`)
     .toString();
 
   client.connect()
@@ -34,7 +34,7 @@ module.exports.getAllReviews = function(restaurantId, callback) {
         });
     })
     .catch(err => {
-      console.log(err);
+      callback(err);
       client.end();
     });
 };
