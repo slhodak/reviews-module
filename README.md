@@ -58,6 +58,6 @@ npm install
 5) Exit the psql shell
   - reviews=# \q
 6) Important! Go to your database/index.js file
-  - make the 'user' key equal to your local username or whatever is the username of the postgres role that created the database (use 'select * from pg_roles' in the psql shell to see a list of possibilities)
+  - make the 'user' key equal to your local username or whatever is the username of the postgres role that created the database (run 'select * from pg_roles;' in the psql shell [psql reviews to enter the shell again] to see a list of possibilities)
 6) Run the seed script
   - npm run seed
