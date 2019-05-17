@@ -47,6 +47,9 @@ module.exports.getImpression = function(restaurantId, callback) {
     .field('restaurants.recommendpercent', 'recommendPercent')
     .field('restaurants.valuerating', 'valueRating')
     .field('restaurants.averageoverall', 'averageOverall')
+    .field('restaurants.averagefood', 'averageFood')
+    .field('restaurants.averageambience', 'averageAmbience')
+    .field('restaurants.averageservice', 'averageService')
     .where(`id = ${restaurantId}`)
     .toString();
 

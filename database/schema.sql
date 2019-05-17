@@ -24,7 +24,7 @@ CREATE TABLE reviews (
   restaurant      int,
   diner           int,
   text            varchar(1000),
-  date            int,
+  date            date,
   overall         int,
   food            int,
   service         int,

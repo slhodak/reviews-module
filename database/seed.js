@@ -60,6 +60,13 @@ const Seed = {
       restaurant.name = Faker.lorem.word();
       restaurant.location = Faker.address.city().replace(/\'/g, '');
       restaurant.noise = Seed.getRandomNoiseLevel();
+      restaurant.location = Faker.address.city().replace(/\'/g, '');
+      restaurant.averageoverall = Faker.random.number({min: 0, max: 5, precision: 0.1});
+      restaurant.averageservice = Faker.random.number({min: 0, max: 5, precision: 0.1});
+      restaurant.averageambience = Faker.random.number({min: 0, max: 5, precision: 0.1});
+      restaurant.averagefood = Faker.random.number({min: 0, max: 5, precision: 0.1});
+      restaurant.valuerating = Faker.random.number({min: 0, max: 5, precision: 0.1});
+      restaurant.recommendpercent = Faker.random.number({min: 0, max: 100});
       restaurants.push(restaurant);
     }
     return restaurants;
