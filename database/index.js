@@ -40,7 +40,6 @@ module.exports.getImpression = function(restaurantId, callback) {
     database: 'reviews',
     port: 5432
   });
-  
   let sql = squel.select()
     .from('restaurants')
     .field('restaurants.location')
