@@ -1,5 +1,6 @@
 const Faker = require('faker');
 const db = require('./index.js');
+const { Client } = require('pg');
 const squel = require('squel');
 
 const Seed = {
@@ -19,6 +20,12 @@ const Seed = {
     let restaurants = Seed.createRestaurants();
     let diners = Seed.createDiners();
     let reviews = Seed.createReviews();
+    db.client = new Client({
+      user: 'macuser',
+      host: 'localhost',
+      database: 'reviews',
+      port: 5432
+    });
     db.client.connect();
     Seed.insertRestaurants(restaurants, (err, res) => {
       if (err) {
