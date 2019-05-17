@@ -1,11 +1,11 @@
-
 CREATE TABLE restaurants (
   id                serial primary key unique,
+  name              varchar(20),
   location          varchar(30), 
   noise             varchar(10),
-  recommendPercent  int,
-  valueRating       numeric,
-  averageOverall    numeric
+  recommendpercent  int,
+  valuerating       numeric,
+  averageoverall    numeric
 );
 
 CREATE TABLE diners (
@@ -13,7 +13,7 @@ CREATE TABLE diners (
   firstname     varchar(20),
   lastname      varchar(20),
   city          varchar(20),
-  totalReviews  int
+  totalreviews  int
 );
 
 CREATE TABLE reviews (
@@ -21,12 +21,15 @@ CREATE TABLE reviews (
   restaurant      int,
   diner           int,
   text            varchar(1000),
-  date            date,
+-- TODO: get formatted date to postgres spec
+  date            int,
   overall         int,
   food            int,
   service         int,
   ambience        int,
-  wouldRecommend  bit,
+  wouldrecommend  boolean,
+  -- a string of csv to filter reviews by, often null
+  tags            varchar(100),
   foreign key (diner) references diners(id),
   foreign key (restaurant) references restaurants(id)
 );
