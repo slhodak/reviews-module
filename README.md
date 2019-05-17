@@ -59,5 +59,8 @@ npm install
   - reviews=# \q
 6) Important! Go to your database/index.js file
   - make the 'user' key equal to your local username or whatever is the username of the postgres role that created the database (run 'select * from pg_roles;' in the psql shell [psql reviews to enter the shell again] to see a list of possibilities)
-6) Run the seed script
+6) Run the seed script (don't forget npm install)
   - npm run seed
+7) Check if the tables populated
+  - psql reviews
+  - reviews=# select * from reviews;
