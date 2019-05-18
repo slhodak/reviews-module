@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A reviews module for restaurant-goers' opinions",
   "author": "Sam Hodak",
+  "repository": {
+    "url": "https://github.com/freeseats/slhodak-reviews-and-impressions"
+  },
   "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
@@ -30,9 +33,15 @@
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
+    "acorn": "^6.1.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.13.0",
     "faker": "^4.1.0",
     "jest": "^24.8.0",
     "nodemon": "^1.19.0",
