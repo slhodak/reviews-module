@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 
-class ReviewModule extends React.Component {
+export default class ReviewModule extends React.Component {
   render() {
     return (
       <div>
@@ -12,4 +12,4 @@ class ReviewModule extends React.Component {
   }
 }
 
-ReactDOM.render(<ReviewModule />, document.getElementById('reviews'));
+// ReactDOM.render(<ReviewModule />, document.getElementById('reviews'));

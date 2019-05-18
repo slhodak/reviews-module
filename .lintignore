@@ -6,3 +6,5 @@ database/dbsetup.sql
 
 STYLE-GUIDE.md
 README.md
+
+**/__snapshots__/*
