@@ -3,6 +3,7 @@ const db = require('./index.js');
 const { Client } = require('pg');
 const squel = require('squel');
 const moment = require('moment');
+const localRole = require('../config/localRole.js');
 
 const Seed = {
   foodWords: ['pot roast', 'chicken', 'sushi', 'marshmallows', 'pumpkin pie', 'wine'],
@@ -22,7 +23,7 @@ const Seed = {
     let diners = Seed.createDiners();
     let reviews = Seed.createReviews();
     let client = new Client({
-      user: 'macuser',
+      user: localRole,
       host: 'localhost',
       database: 'reviews',
       port: 5432
@@ -117,7 +118,7 @@ const Seed = {
   insertRestaurants: function(restaurants, callback) {
     //  insert 5 restaurants
     let client = new Client({
-      user: 'macuser',
+      user: localRole,
       host: 'localhost',
       database: 'reviews',
       port: 5432
@@ -140,7 +141,7 @@ const Seed = {
   insertDiners: function(diners, callback) {
     //  insert 50 diners 
     let client = new Client({
-      user: 'macuser',
+      user: localRole,
       host: 'localhost',
       database: 'reviews',
       port: 5432
@@ -163,7 +164,7 @@ const Seed = {
   insertReviews: function(reviews, callback) {
     //  insert 100 reviews
     const client = new Client({
-      user: 'macuser',
+      user: localRole,
       host: 'localhost',
       database: 'reviews',
       port: 5432

@@ -1,9 +1,10 @@
 const { Client } = require('pg');
 const squel = require('squel');
+const localRole = require('../config/localRole.js');
 
 module.exports.getAllReviews = function(restaurantId, callback) {
   let client = new Client({
-    user: 'macuser',
+    user: localRole,
     host: 'localhost',
     database: 'reviews',
     port: 5432
@@ -35,7 +36,7 @@ module.exports.getAllReviews = function(restaurantId, callback) {
 module.exports.getImpression = function(restaurantId, callback) {
   // get restaurant impression info from restaurant table
   let client = new Client({
-    user: 'macuser',
+    user: localRole,
     host: 'localhost',
     database: 'reviews',
     port: 5432
