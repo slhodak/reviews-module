@@ -1,7 +1,12 @@
 const Faker = require('faker');
 const db = require('./index.js');
+const { Client } = require('pg');
 const squel = require('squel');
 const moment = require('moment');
+<<<<<<< HEAD
+=======
+const localRole = require('../config/localRole.js');
+>>>>>>> 1a431dd1136c5b221896e04224a92093c039a687
 
 const Seed = {
   foodWords: ['pot roast', 'chicken', 'sushi', 'marshmallows', 'pumpkin pie', 'wine'],
@@ -20,22 +25,31 @@ const Seed = {
     let restaurants = Seed.createRestaurants();
     let diners = Seed.createDiners();
     let reviews = Seed.createReviews();
-    db.client.connect();
+    let client = new Client({
+      user: localRole,
+      host: 'localhost',
+      database: 'reviews',
+      port: 5432
+    });
+    client.connect();
     Seed.insertRestaurants(restaurants, (err, res) => {
+      console.log('inserting restaurants...');
       if (err) {
         console.log(err);
-        db.client.end();
+        client.end();
       } else {
         Seed.insertDiners(diners, (err, res) => {
+          console.log('inserting diners...');
           if (err) {
             console.log(err);
-            db.client.end();
+            client.end();
           } else {
             Seed.insertReviews(reviews, (err, res) => {
+              console.log('inserting reviews...');
               if (err) {
                 console.log(err);
               }
-              db.client.end();
+              client.end();
             });
           }
         });
@@ -50,9 +64,13 @@ const Seed = {
       restaurant.name = Faker.lorem.word();
       restaurant.location = Faker.address.city().replace(/\'/g, '');
       restaurant.noise = Seed.getRandomNoiseLevel();
-      restaurant.recommendpercent = Faker.random.number(100);
-      restaurant.valuerating = Faker.random.number({min: 0, max: 5, precision: 0.1});
+      restaurant.location = Faker.address.city().replace(/\'/g, '');
       restaurant.averageoverall = Faker.random.number({min: 0, max: 5, precision: 0.1});
+      restaurant.averageservice = Faker.random.number({min: 0, max: 5, precision: 0.1});
+      restaurant.averageambience = Faker.random.number({min: 0, max: 5, precision: 0.1});
+      restaurant.averagefood = Faker.random.number({min: 0, max: 5, precision: 0.1});
+      restaurant.valuerating = Faker.random.number({min: 0, max: 5, precision: 0.1});
+      restaurant.recommendpercent = Faker.random.number({min: 0, max: 100});
       restaurants.push(restaurant);
     }
     return restaurants;
@@ -102,44 +120,70 @@ const Seed = {
   },
   insertRestaurants: function(restaurants, callback) {
     //  insert 5 restaurants
+    let client = new Client({
+      user: localRole,
+      host: 'localhost',
+      database: 'reviews',
+      port: 5432
+    });
     let sql = squel.insert()
       .into('restaurants')
       .setFieldsRows(restaurants)
       .toString();
-    db.client.query(sql, (err, res) => {
+    client.connect();
+    client.query(sql, (err, res) => {
       if (err) {
         callback(err.stack);
+        client.end();
       } else {
-        callback(res.rows[0]);
+        callback(null, res.rows[0]);
+        client.end();
       }
     });
-    
   },
   insertDiners: function(diners, callback) {
     //  insert 50 diners 
+    let client = new Client({
+      user: localRole,
+      host: 'localhost',
+      database: 'reviews',
+      port: 5432
+    });
     let sql = squel.insert()
       .into('diners')
       .setFieldsRows(diners)
       .toString();
-    db.client.query(sql, (err, res) => {
+    client.connect();
+    client.query(sql, (err, res) => {
       if (err) {
         callback(err.stack);
+        client.end();
       } else {
-        callback(res.rows[0]);
+        callback(null, res.rows[0]);
+        client.end()
       }
     });
   },
   insertReviews: function(reviews, callback) {
     //  insert 100 reviews
+    const client = new Client({
+      user: localRole,
+      host: 'localhost',
+      database: 'reviews',
+      port: 5432
+    });
     let sql = squel.insert()
       .into('reviews')
       .setFieldsRows(reviews)
       .toString();
-    db.client.query(sql, (err, res) => {
+    client.connect();
+    client.query(sql, (err, res) => {
       if (err) {
         callback(err.stack);
+        client.end();
       } else {
-        callback(res.rows[0]);
+        callback(null, res.rows[0]);
+        client.end();
       }
     });
   }

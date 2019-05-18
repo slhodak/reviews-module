@@ -4,8 +4,11 @@ CREATE TABLE restaurants (
   location          varchar(30), 
   noise             varchar(10),
   recommendpercent  int,
-  valuerating       numeric,
-  averageoverall    numeric
+  averageoverall    numeric,
+  averageservice    numeric,
+  averageambience   numeric,
+  averagefood       numeric,
+  valuerating       numeric
 );
 
 CREATE TABLE diners (
@@ -27,7 +30,6 @@ CREATE TABLE reviews (
   service         int,
   ambience        int,
   wouldrecommend  boolean,
-  -- a string of csv to filter reviews by, often null
   tags            varchar(100),
   foreign key (diner) references diners(id),
   foreign key (restaurant) references restaurants(id)
