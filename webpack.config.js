@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
   entry: path.resolve(__dirname, 'client/src/index.jsx'),
@@ -20,4 +20,4 @@ module.exports = {
       }
     ]
   }
-}
+};

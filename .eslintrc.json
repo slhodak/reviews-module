@@ -21,8 +21,9 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+      "react"
     ],
     "rules": {
+      "comma-dangle": ["error", "never"]
     }
 }
