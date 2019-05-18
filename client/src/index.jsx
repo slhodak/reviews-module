@@ -1,15 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReviewsComponent from './components/reviewsComponent.jsx';
 
-
-export default class ReviewModule extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Reviews</h1>
-      </div>
-    );
-  }
-}
-
-// ReactDOM.render(<ReviewModule />, document.getElementById('reviews'));
+ReactDOM.render(<ReviewsComponent />, document.getElementById('reviews'));

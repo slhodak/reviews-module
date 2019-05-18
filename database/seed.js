@@ -157,7 +157,7 @@ const Seed = {
         client.end();
       } else {
         callback(null, res.rows[0]);
-        client.end()
+        client.end();
       }
     });
   },
