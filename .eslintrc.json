@@ -28,6 +28,7 @@
       "comma-dangle": ["error", "never"],
       "import/extensions": ["error", {
         "jsx": "always"
-      }]
+      }],
+      "no-console": 0
     }
 }
