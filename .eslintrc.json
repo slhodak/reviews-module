@@ -13,6 +13,7 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -24,6 +25,9 @@
       "react"
     ],
     "rules": {
-      "comma-dangle": ["error", "never"]
+      "comma-dangle": ["error", "never"],
+      "import/extensions": ["error", {
+        "jsx": "always"
+      }]
     }
 }

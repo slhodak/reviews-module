@@ -1,6 +1,6 @@
 import React from 'react';
-import ReviewsComponent from './reviewsComponent.jsx';
 import renderer from 'react-test-renderer';
+import ReviewsComponent from './reviewsComponent.jsx';
 
 it('renders correctly', () => {
   const tree = renderer
