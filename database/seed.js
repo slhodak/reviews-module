@@ -3,10 +3,7 @@ const db = require('./index.js');
 const { Client } = require('pg');
 const squel = require('squel');
 const moment = require('moment');
-<<<<<<< HEAD
-=======
 const localRole = require('../config/localRole.js');
->>>>>>> 1a431dd1136c5b221896e04224a92093c039a687
 
 const Seed = {
   foodWords: ['pot roast', 'chicken', 'sushi', 'marshmallows', 'pumpkin pie', 'wine'],
