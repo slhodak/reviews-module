@@ -17,14 +17,15 @@ export default function Summary(props) {
           </div>
           <div id="reviews-summary-average-ratings">
             {/* include average ratings with correct borders between */}
+            <span>{summary.averageOverall} based on recent ratings</span>
           </div>
           <div id="reviews-summary-noise">
-            <span id="noise-icon" />
-            <div>Noise · {summary.noise}</div>
+            <div className="noise-icon" />
+            <span> Noise · {summary.noise}</span>
           </div>
           <div id="reviews-summary-recommendation-percent">
-            <span id="thumb-icon" />
-            <div>{summary.recommendPercent}% of people would recommend it to a friend.</div>
+            <div id="thumb-icon" />
+            <span>{summary.recommendPercent}% of people would recommend it to a friend.</span>
           </div>
           {/* use exzerone search api for location href? */}
           <a id="reviews-summary-best-link" href="#">Best Restaurants in {summary.location}</a>
