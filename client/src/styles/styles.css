@@ -1,4 +1,25 @@
-.reviews {
+html {
+  font-family: 'PT Sans', sans-serif;
+}
+
+#reviews {
+  padding: 0 0 4rem;
+  margin: 0px;
+  
+}
+
+#reviews-summary {
   display: flex;
-  flex-direction: column;
+}
+
+.reviews-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.33;
+  color: #2d333f;
+  border-bottom: 1px solid #d8d9db;
+  padding-bottom: 1rem;
+  margin: 0 0 1rem;
+  display: flex;
+  justify-content: space-between;
 }

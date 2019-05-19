@@ -52,7 +52,7 @@ export default class ReviewsModule extends React.Component {
     const { summary } = this.state;
     const { reviews } = this.state;
     return (
-      <div className="reviews">
+      <div id="reviews">
         <Summary summary={summary} totalReviews={reviews.length} />
         <Sorting />
         <ReviewList reviews={reviews} />

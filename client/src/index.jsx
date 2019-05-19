@@ -3,4 +3,4 @@ import ReactDOM from 'react-dom';
 import ReviewsModule from './components/reviewsModule.jsx';
 import './styles/styles.css';
 
-ReactDOM.render(<ReviewsModule />, document.getElementById('reviewsModule'));
+ReactDOM.render(<ReviewsModule />, document.getElementsByTagName('main')[0]);
