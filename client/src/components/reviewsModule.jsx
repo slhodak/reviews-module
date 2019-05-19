@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Summary from './summary.jsx';
 import Sorting from './sorting.jsx';
 import ReviewList from './reviewList.jsx';
@@ -23,7 +24,8 @@ export default class ReviewsModule extends React.Component {
   }
 
   getSummaryData() {
-    fetch('http://localhost:3010/2/impression')
+    const { restaurantId } = this.props;
+    fetch(`http://localhost:3010/${restaurantId}/impression`)
       .then(response => response.json())
       .then(summaryData => (
         this.setState({
@@ -36,7 +38,8 @@ export default class ReviewsModule extends React.Component {
   }
 
   getReviewsData() {
-    fetch('http://localhost:3010/2/reviews')
+    const { restaurantId } = this.props;
+    fetch(`http://localhost:3010/${restaurantId}/reviews`)
       .then(response => response.json())
       .then(reviewsData => (
         this.setState({
@@ -60,3 +63,7 @@ export default class ReviewsModule extends React.Component {
     );
   }
 }
+
+ReviewsModule.propTypes = {
+  restaurantId: PropTypes.number.isRequired
+};
