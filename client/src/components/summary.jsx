@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export default function Summary(props) {
   const { totalReviews } = props;
-  const { restaurantId } = props;
+  const { summary } = props;
   return (
     <div id="reviews-summary">
       <div className="reviews-header">{`What ${totalReviews} People Are Saying`}</div>
@@ -26,7 +26,8 @@ export default function Summary(props) {
             <span id="thumb-icon" />
             <div> % of people would recommend it to a friend.</div>
           </div>
-          <a id="reviews-summary-best-link" href={`}http://localhost:3010/${restaurantId}`}>Best Restaurants in </a>
+          {/* use exzerone search api for location href? */}
+          <a id="reviews-summary-best-link" href="#">{`Best Restaurants in ${summary.location}`}</a>
         </div>
         <div id="reviews-summary-right-column">
           <div id="reviews-rating-bars">Bars go here</div>
@@ -36,7 +37,7 @@ export default function Summary(props) {
   );
 }
 
-Summary.propTypes = {
-  totalReviews: PropTypes.number.isRequired,
-  restaurantId: PropTypes.number.isRequired
-};
+// Summary.propTypes = {
+//   totalReviews: PropTypes.number.isRequired,
+//   summary: PropTypes.object.isRequired
+// };

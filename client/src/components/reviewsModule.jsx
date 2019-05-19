@@ -27,7 +27,7 @@ export default class ReviewsModule extends React.Component {
       .then(response => response.json())
       .then(summaryData => (
         this.setState({
-          summary: summaryData
+          summary: summaryData[0]
         })
       ))
       .catch((err) => {
@@ -53,7 +53,7 @@ export default class ReviewsModule extends React.Component {
     const { reviews } = this.state;
     return (
       <div id="reviews">
-        <Summary summary={summary} totalReviews={reviews.length} />
+        {summary ? <Summary summary={summary} totalReviews={reviews.length} /> : null}
         <Sorting />
         <ReviewList reviews={reviews} />
       </div>
