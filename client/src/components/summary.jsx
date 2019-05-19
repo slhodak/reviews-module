@@ -20,7 +20,7 @@ export default function Summary(props) {
           </div>
           <div id="reviews-summary-noise">
             <span id="noise-icon" />
-            <div>Noise <span className="dot" /> {summary.noise}</div>
+            <div>Noise · {summary.noise}</div>
           </div>
           <div id="reviews-summary-recommendation-percent">
             <span id="thumb-icon" />
