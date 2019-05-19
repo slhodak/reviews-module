@@ -29,6 +29,8 @@
       "import/extensions": ["error", {
         "jsx": "always"
       }],
-      "no-console": 0
+      "no-console": 0,
+      "react/forbid-prop-types": 0,
+      "react/jsx-one-expression-per-line": 0
     }
 }

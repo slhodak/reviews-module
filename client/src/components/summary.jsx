@@ -7,7 +7,7 @@ export default function Summary(props) {
   const { summary } = props;
   return (
     <div id="reviews-summary">
-      <div className="reviews-header">{`What ${totalReviews} People Are Saying`}</div>
+      <div className="reviews-header">What {totalReviews} People Are Saying</div>
       <div id="reviews-summary-main">
         <div id="reviews-summary-left-column">
           <div className="reviews-subheader-bold">Overall ratings and reviews</div>
@@ -20,14 +20,14 @@ export default function Summary(props) {
           </div>
           <div id="reviews-summary-noise">
             <span id="noise-icon" />
-            <div>Noise * </div>
+            <div>Noise <span className="dot" /> {summary.noise}</div>
           </div>
           <div id="reviews-summary-recommendation-percent">
             <span id="thumb-icon" />
-            <div> % of people would recommend it to a friend.</div>
+            <div>{summary.recommendPercent}% of people would recommend it to a friend.</div>
           </div>
           {/* use exzerone search api for location href? */}
-          <a id="reviews-summary-best-link" href="#">{`Best Restaurants in ${summary.location}`}</a>
+          <a id="reviews-summary-best-link" href="#">Best Restaurants in {summary.location}</a>
         </div>
         <div id="reviews-summary-right-column">
           <div id="reviews-rating-bars">Bars go here</div>
@@ -37,7 +37,7 @@ export default function Summary(props) {
   );
 }
 
-// Summary.propTypes = {
-//   totalReviews: PropTypes.number.isRequired,
-//   summary: PropTypes.object.isRequired
-// };
+Summary.propTypes = {
+  totalReviews: PropTypes.number.isRequired,
+  summary: PropTypes.object.isRequired
+};
