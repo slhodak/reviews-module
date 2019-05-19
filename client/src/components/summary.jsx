@@ -11,6 +11,11 @@ export default class Summary extends React.Component {
     return (
       <div id="reviews-summary">
         <div className="reviews-header">{`What ${totalReviews} People Are Saying`}</div>
+        <div className="reviews-subheader-bold">Overall ratings and reviews</div>
+        <div className="reviews-summary-text-large">Reviews can only be made by diners who have eaten at this restaurant</div>
+        <div id="reviews-summary-stars">
+          <div className="review-stars"></div>
+        </div>
       </div>
     );
   }
