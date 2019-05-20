@@ -3,11 +3,13 @@ const server = require('../index.js');
 
 module.exports = {
   runAll() {
+    // refactor for Promise and async calling
     this.testSummaryRoute();
     this.testReviewsRoute();
   },
 
   testSummaryRoute() {
+    console.log('Testing summary GET...');
     request(server)
       .get('/2/impression')
       .expect(200)
@@ -29,6 +31,7 @@ module.exports = {
   },
 
   testReviewsRoute() {
+    console.log('Testing reviews GET...')
     request(server)
       .get('/2/reviews')
       .expect(200)
@@ -39,6 +42,15 @@ module.exports = {
           return true;
         }
         console.log(`Failure: expected "number" to equal ${actual}`);
+        return false;
+      })
+      .expect((res) => {
+        const actual = res.body[0];
+        if (typeof res.body === 'object') {
+          console.log('Success: Body is of type "object"');
+          return true;
+        }
+        console.log(`Failure: expected "object" to equal ${actual}`);
         return false;
       })
       .end((err, res) => {
