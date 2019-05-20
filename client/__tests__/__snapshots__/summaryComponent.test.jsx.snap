@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the summary sub-component 1`] = `
+<div
+  id="reviews-summary"
+>
+  <div
+    className="reviews-header"
+  >
+    What 
+    5
+     People Are Saying
+  </div>
+  <div
+    id="reviews-summary-main"
+  >
+    <div
+      id="reviews-summary-left-column"
+    >
+      <div
+        className="reviews-subheader-bold"
+      >
+        Overall ratings and reviews
+      </div>
+      <div
+        className="reviews-summary-text-large"
+      >
+        Reviews can only be made by diners who have eaten at this restaurant
+      </div>
+      <div
+        id="reviews-summary-stars"
+      >
+        <div
+          className="review-star"
+        />
+      </div>
+      <div
+        id="reviews-summary-average-ratings"
+      >
+        <span>
+          0.4
+           based on recent ratings
+        </span>
+      </div>
+      <div
+        id="reviews-summary-noise"
+      >
+        <div
+          className="noise-icon"
+        />
+        <span>
+           Noise · 
+          Average
+        </span>
+      </div>
+      <div
+        id="reviews-summary-recommendation-percent"
+      >
+        <div
+          id="thumb-icon"
+        />
+        <span>
+          36
+          % of people would recommend it to a friend.
+        </span>
+      </div>
+      <a
+        href="#"
+        id="reviews-summary-best-link"
+      >
+        Best Restaurants in 
+        West Ernieville
+      </a>
+    </div>
+    <div
+      id="reviews-summary-right-column"
+    >
+      <div
+        id="reviews-rating-bars"
+      >
+        Bars go here
+      </div>
+    </div>
+  </div>
+</div>
+`;
