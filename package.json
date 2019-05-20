@@ -16,7 +16,7 @@
     "add": "eslint '*/**' --ignore-path .lintignore && git add -A",
     "pg-setup": "brew install postgres && brew services start postgres && createdb reviews && psql reviews",
     "seed": "node database/seed.js",
-    "test": "jest --config"
+    "test": "jest"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
