@@ -1,0 +1,96 @@
+body {
+  font-family: 'PT Sans', sans-serif;
+}
+
+#reviews {
+  padding: 0 0 4rem;
+  margin: 0px;
+
+}
+
+#reviews-summary {
+  display: block;
+}
+
+.reviews-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.33;
+  color: #2d333f;
+  border-bottom: 1px solid #d8d9db;
+  padding-bottom: 1rem;
+  margin: 0 0 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#reviews-summary-main {
+  display: flex;
+}
+
+#reviews-rating-bars {
+  width : 300px;
+}
+
+.noise-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' style='background:%23fff'%3E%3Ctitle%3Eicon/ic_noise_level%3C/title%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 0h24v24H0z'/%3E%3Crect fill='%23333' x='15' y='4' width='3' height='16' rx='.5'/%3E%3Crect fill='%23333' x='10' y='9' width='3' height='11' rx='.5'/%3E%3Crect fill='%23333' x='5' y='14' width='3' height='6' rx='.5'/%3E%3C/g%3E%3C/svg%3E");
+  height: 1.125rem;
+  width: 1.125rem;
+  display: inline-block;
+}
+
+#reviews-summary-best-link {
+  text-decoration: none;
+  color: #da3743;
+}
+
+#reviews-summary-best-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#reviews-summary-recommendation-percent:hover {
+  color: #da3743;
+}
+
+#reviews-summary-recommendation-percent {
+  color: #6f737b;
+}
+
+#reviews-summary-noise {
+  color: #6f737b;
+}
+#reviews-summary-noise:hover {
+  color: #da3743;
+}
+
+#thumb-icon {
+  height: 1.125rem;
+  width: 1.125rem;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 0h24v24H0z'/%3E%3Cpath stroke='%23333' stroke-width='2' d='M19.997 10.918A1 1 0 0 0 19 10h-4.503l.58-1.386c.568-1.355.568-2.344.09-3.06-.344-.517-.958-.934-1.878-1.234a1 1 0 0 0-1.17.44L8.419 11H5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h12.36a1 1 0 0 0 .981-.804l1.656-8.278z'/%3E%3Cpath fill='%23333' d='M7 11h2v9H7z'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.reviews-subheader-bold {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 1000;
+}
+
+.reviews-summary-text-large {
+  padding-top: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: normal;
+}
+
+#reviews-summary-stars {
+
+}
+
+.review-star {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3EStar_8_%3C/title%3E%3Cpath d='M3.213 15.984c-.063 0-.104-.01-.125-.031-.104-.063-.136-.136-.094-.219l.876-5.516L.083 6.331C0 6.247-.021 6.164.021 6.08c.021-.063.083-.115.188-.157l5.256-.783L7.781.125C7.864.042 7.937 0 8 0c.104 0 .177.042.219.125l2.347 5.015 5.226.784a.282.282 0 0 1 .188.157c.041.083.02.166-.063.25l-3.786 3.886.907 5.516a.297.297 0 0 1-.094.219c-.104.063-.188.063-.25 0L8 13.383l-4.662 2.57c-.021.021-.063.031-.125.031z' fill='%23DA3743'/%3E%3C/svg%3E");
+  width: 16px;
+  height: 16px;
+}

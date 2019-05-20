@@ -1,8 +1,8 @@
-# Project Name
+# Reviews and Impressions Module
 
-> Project description
+> This module is part of the FreeSeats restaurant reservation app. It displays data relevant to the customer experience overall, as well as renders every review for that restaurant.
 
-## Related Projects
+## Related Modules
 
   - https://github.com/freeseats/exzerone-search-bar
   - https://github.com/freeseats/Menu-Related-SideBar
@@ -14,11 +14,13 @@
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
+1. [API](#api)
 
 ## Usage
 
 > Install the necessary dependencies for this module (npm install)
 > Transpile and bundle all the components (webpack)
+> If it's your first time downloading the repo, [seed the database](#postgresql)
 > Start the server (npm run sever-dev)
 > The public folder will be available at localhost port 3010
 
@@ -33,15 +35,18 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 ### Installing Dependencies
 
-From within the root directory:
+ - Globally:
 
 npm install -g webpack
 npm install -g webpack-cli
 
+ - In this repo:
 
-### PostgreSQL Setup
+npm install
 
-0) Have Homebrew
+### PostgreSQL
+
+0) Homebrew is required
   - https://brew.sh
 1) Install postgres
   - brew install postgres
@@ -64,3 +69,62 @@ npm install -g webpack-cli
 7) Check if the tables populated
   - psql reviews
   - reviews=# select * from reviews;
+
+## API
+
+### Restaurant Impression
+
+#### HTTP request
+
+GET http://127.0.0.1:3010/:id/impression
+
+##### Parameters
+**id**
+**integer**
+The **id** parameter specifies the unique id of the restaurant being queried. Seeded test values range from 1-5.
+
+##### Response
+
+If successful, this method returns a response body with the following structure:
+
+{
+  "location": **_string_**,
+  "noise": **_string_**,
+  "recommendPercent": **_integer_**,
+  "valueRating": **_string_**,
+  "averageOverall": **_string_**,
+  "averageFood": **_string_**,
+  "averageAmbience": **_string_**,
+  "averageService": **_string_**
+}
+
+### Restaurant Reviews
+
+#### HTTP Request
+
+GET http://127.0.0.1:3010/:id/reviews
+
+##### Parameters
+**id**
+**integer**
+The **id** parameter specifies the unique id of the restaurant being queried. Seeded test values range from 1-5.
+
+##### Reponse
+
+If successful, this method returns an array of objects with the following structure:
+
+{
+  "id": **integer**,
+  "restaurant": **integer**,
+  "diner": **integer**,
+  "text": **string**
+  "date": **date**,
+  "overall": **integer**,
+  "food": **integer**,
+  "service": **integer**,
+  "ambience": **integer**,
+  "wouldrecommend": **boolean**,
+  "tags": **string**
+}
+
+

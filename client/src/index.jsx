@@ -1,15 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Reviews from './components/reviewsComponent.jsx';
+import './styles/styles.css';
 
-
-class ReviewModule extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Reviews</h1>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<ReviewModule />, document.getElementById('reviews'));
+// How is id sent to module? Middleware for express to parse param?
+ReactDOM.render(<Reviews restaurantId={4} />, document.getElementsByTagName('main')[0]);

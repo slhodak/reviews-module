@@ -1,5 +1,4 @@
 const Faker = require('faker');
-const db = require('./index.js');
 const { Client } = require('pg');
 const squel = require('squel');
 const moment = require('moment');
@@ -9,20 +8,20 @@ const Seed = {
   foodWords: ['pot roast', 'chicken', 'sushi', 'marshmallows', 'pumpkin pie', 'wine'],
   tagWords: ['groups', 'kids', 'gluten free', 'vegan'],
   noiseLevels: ['Quiet', 'Average', 'Loud'],
-  getRandomFoodWord: function() {
+  getRandomFoodWord() {
     return Seed.foodWords[Math.floor(Math.random() * Seed.foodWords.length)];
   },
-  getRandomTagWord: function() {
+  getRandomTagWord() {
     return Seed.tagWords[Math.floor(Math.random() * Seed.tagWords.length)];
   },
-  getRandomNoiseLevel: function() {
+  getRandomNoiseLevel() {
     return Seed.noiseLevels[Math.floor(Math.random() * Seed.noiseLevels.length)];
   },
-  all: function() {
-    let restaurants = Seed.createRestaurants();
-    let diners = Seed.createDiners();
-    let reviews = Seed.createReviews();
-    let client = new Client({
+  all() {
+    const restaurants = Seed.createRestaurants();
+    const diners = Seed.createDiners();
+    const reviews = Seed.createReviews();
+    const client = new Client({
       user: localRole,
       host: 'localhost',
       database: 'reviews',
@@ -53,61 +52,75 @@ const Seed = {
       }
     });
   },
-  createRestaurants: function() {
+  createRestaurants() {
     //  create 5 restaurants
-    let restaurants = [];
-    for (var i = 0; i < 5; i++) {
-      var restaurant = {};
+    const restaurants = [];
+    for (let i = 0; i < 5; i++) {
+      const restaurant = {};
       restaurant.name = Faker.lorem.word();
-      restaurant.location = Faker.address.city().replace(/\'/g, '');
+      restaurant.location = Faker.address.city().replace(/'/g, '');
       restaurant.noise = Seed.getRandomNoiseLevel();
-      restaurant.location = Faker.address.city().replace(/\'/g, '');
-      restaurant.averageoverall = Faker.random.number({min: 0, max: 5, precision: 0.1});
-      restaurant.averageservice = Faker.random.number({min: 0, max: 5, precision: 0.1});
-      restaurant.averageambience = Faker.random.number({min: 0, max: 5, precision: 0.1});
-      restaurant.averagefood = Faker.random.number({min: 0, max: 5, precision: 0.1});
-      restaurant.valuerating = Faker.random.number({min: 0, max: 5, precision: 0.1});
-      restaurant.recommendpercent = Faker.random.number({min: 0, max: 100});
+      restaurant.location = Faker.address.city().replace(/'/g, '');
+      restaurant.averageoverall = Seed.fixFloatPrecision(Faker.random.number({ min: 0, max: 5, precision: 0.1 }));
+      restaurant.averageservice = Seed.fixFloatPrecision(Faker.random.number({ min: 0, max: 5, precision: 0.1 }));
+      restaurant.averageambience = Seed.fixFloatPrecision(Faker.random.number({ min: 0, max: 5, precision: 0.1 }));
+      restaurant.averagefood = Seed.fixFloatPrecision(Faker.random.number({ min: 0, max: 5, precision: 0.1 }));
+      restaurant.valuerating = Seed.fixFloatPrecision(Faker.random.number({ min: 0, max: 5, precision: 0.1 }));
+      restaurant.recommendpercent = Faker.random.number({ min: 0, max: 100 });
       restaurants.push(restaurant);
     }
     return restaurants;
   },
-  createDiners: function() {
+  fixFloatPrecision(float) {
+    let number = float;
+    if (typeof float !== 'string') {
+      number = float.toString();
+    }
+    number = number.split('.');
+    if (number[1]) {
+      if (number[1].slice(0, 1) === '0') {
+        return number[0];
+      }
+      return `${number[0]}.${number[1].slice(0, 1)}`;
+    }
+    return number[0];
+  },
+  createDiners() {
     //  create 50 diners
-    let diners = [];
-    for (var i = 0; i < 50; i++) {
-      var diner = {};
-      diner.firstname = Faker.name.firstName().replace(/\'/g, '');
-      diner.lastname = Faker.name.lastName().replace(/\'/g, '');
-      diner.city = Faker.address.city().replace(/\'/g, '');
-      diner.totalreviews = Faker.random.number({min: 0, max: 25});
+    const diners = [];
+    for (let i = 0; i < 50; i++) {
+      const diner = {};
+      diner.firstname = Faker.name.firstName().replace(/'/g, '');
+      diner.lastname = Faker.name.lastName().replace(/'/g, '');
+      diner.city = Faker.address.city().replace(/'/g, '');
+      diner.totalreviews = Faker.random.number({ min: 0, max: 25 });
       diners.push(diner);
     }
     return diners;
   },
-  createReviews: function() {
+  createReviews() {
     //  create 100 reviews
-    let reviews = [];
-    for (var i = 0; i < 100; i++) {
-      var review = {};
-      review.restaurant = Faker.random.number({min: 1, max: 5});
-      review.diner = Faker.random.number({min: 1, max: 50});
+    const reviews = [];
+    for (let i = 0; i < 100; i++) {
+      const review = {};
+      review.restaurant = Faker.random.number({ min: 1, max: 5 });
+      review.diner = Faker.random.number({ min: 1, max: 50 });
       review.text = Faker.lorem.sentences();
       review.date = moment().format('YYYY-MM-DD', Faker.date.recent());
-      review.overall = Faker.random.number({min: 0, max: 5});
-      review.food = Faker.random.number({min: 0, max: 5});
-      review.service = Faker.random.number({min: 0, max: 5});
-      review.ambience = Faker.random.number({min: 0, max: 5});
+      review.overall = Faker.random.number({ min: 0, max: 5 });
+      review.food = Faker.random.number({ min: 0, max: 5 });
+      review.service = Faker.random.number({ min: 0, max: 5 });
+      review.ambience = Faker.random.number({ min: 0, max: 5 });
       review.wouldrecommend = Faker.random.boolean();
       review.tags = '';
-      for (var j = 0; j < 2; j++) {
+      for (let j = 0; j < 2; j++) {
         if (Math.random() > 0.8) {
           if (review.tags.split(',').length > 0) {
             reviews.tags += ',';
           }
           review.tags += Seed.getRandomFoodWord();
           if (Math.random() > 0.9) {
-            review.tags += ',' + Seed.getRandomTagWord();
+            review.tags += `,${Seed.getRandomTagWord()}`;
           }
         }
       }
@@ -115,15 +128,15 @@ const Seed = {
     }
     return reviews;
   },
-  insertRestaurants: function(restaurants, callback) {
+  insertRestaurants(restaurants, callback) {
     //  insert 5 restaurants
-    let client = new Client({
+    const client = new Client({
       user: localRole,
       host: 'localhost',
       database: 'reviews',
       port: 5432
     });
-    let sql = squel.insert()
+    const sql = squel.insert()
       .into('restaurants')
       .setFieldsRows(restaurants)
       .toString();
@@ -138,15 +151,15 @@ const Seed = {
       }
     });
   },
-  insertDiners: function(diners, callback) {
+  insertDiners(diners, callback) {
     //  insert 50 diners 
-    let client = new Client({
+    const client = new Client({
       user: localRole,
       host: 'localhost',
       database: 'reviews',
       port: 5432
     });
-    let sql = squel.insert()
+    const sql = squel.insert()
       .into('diners')
       .setFieldsRows(diners)
       .toString();
@@ -157,11 +170,11 @@ const Seed = {
         client.end();
       } else {
         callback(null, res.rows[0]);
-        client.end()
+        client.end();
       }
     });
   },
-  insertReviews: function(reviews, callback) {
+  insertReviews(reviews, callback) {
     //  insert 100 reviews
     const client = new Client({
       user: localRole,
@@ -169,7 +182,7 @@ const Seed = {
       database: 'reviews',
       port: 5432
     });
-    let sql = squel.insert()
+    const sql = squel.insert()
       .into('reviews')
       .setFieldsRows(reviews)
       .toString();
