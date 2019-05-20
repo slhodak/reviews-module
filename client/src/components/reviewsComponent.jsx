@@ -4,7 +4,7 @@ import Summary from './summary.jsx';
 import Sorting from './sorting.jsx';
 import ReviewList from './reviewList.jsx';
 
-export default class ReviewsModule extends React.Component {
+export default class Reviews extends React.Component {
   constructor(props) {
     super(props);
 
@@ -64,6 +64,6 @@ export default class ReviewsModule extends React.Component {
   }
 }
 
-ReviewsModule.propTypes = {
+Reviews.propTypes = {
   restaurantId: PropTypes.number.isRequired
 };

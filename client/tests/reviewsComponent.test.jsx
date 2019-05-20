@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ReviewsComponent from './reviewsComponent.jsx';
+import Reviews from '../client/src/components/reviewsComponent.jsx';
 
 it('renders correctly', () => {
   const tree = renderer
-    .create(<ReviewsComponent />)
+    .create(<Reviews />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
