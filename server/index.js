@@ -6,10 +6,6 @@ const app = express();
 
 app.use(express.static(path.resolve(__dirname, '../public')));
 
-app.listen(3010, () => {
-  console.log('Reviews module server listening on port 3010!');
-});
-
 app.get('/:id/impression', (req, res) => {
   db.getImpression(req.params.id, (err, result) => {
     if (err) {
@@ -32,4 +28,8 @@ app.get('/:id/reviews', (req, res) => {
       res.send(result);
     }
   });
+});
+
+module.exports = app.listen(3010, () => {
+  console.log('Reviews module server listening on port 3010!');
 });
