@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import $ from 'jquery';
+import request from 'superagent';
 import Summary from './summary.jsx';
 import Sorting from './sorting.jsx';
 import ReviewList from './reviewList.jsx';
@@ -26,20 +26,22 @@ export default class Reviews extends React.Component {
 
   getSummaryData() {
     const { restaurantId } = this.props;
-    $.get(`http://localhost:3010/${restaurantId}/impression`,
-      (summaryData) => {
+    request
+      .get(`http://localhost:3010/${restaurantId}/impression`)
+      .then((res) => {
         this.setState({
-          summary: summaryData[0]
-        }, () => { console.log(summaryData); });
+          summary: res.body[0]
+        });
       });
   }
 
   getReviewsData() {
     const { restaurantId } = this.props;
-    $.get(`http://localhost:3010/${restaurantId}/reviews`,
-      (reviewsData) => {
+    request
+      .get(`http://localhost:3010/${restaurantId}/reviews`)
+      .then((res) => {
         this.setState({
-          reviews: reviewsData
+          reviews: res.body
         });
       });
   }
