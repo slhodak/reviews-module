@@ -4,7 +4,7 @@ import Reviews from '../src/components/reviewsComponent.jsx';
 
 it('renders correctly', () => {
   const tree = renderer
-    .create(<Reviews />)
+    .create(<Reviews restaurantId={1} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
