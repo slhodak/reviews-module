@@ -3,7 +3,8 @@ const server = require('../index.js');
 
 module.exports = {
   runAll() {
-    module.exports.testSummaryRoute();
+    this.testSummaryRoute();
+    this.testReviewsRoute();
   },
 
   testSummaryRoute() {
@@ -22,10 +23,29 @@ module.exports = {
       .end((err, res) => {
         if (err) {
           console.log(res);
-          server.close();
-        } else {
-          server.close();
         }
+        server.close();
+      });
+  },
+
+  testReviewsRoute() {
+    request(server)
+      .get('/2/reviews')
+      .expect(200)
+      .expect((res) => {
+        const actual = res.body[0].id;
+        if (typeof actual === 'number') {
+          console.log('Success: Body id is of type "number"');
+          return true;
+        }
+        console.log(`Failure: expected "number" to equal ${actual}`);
+        return false;
+      })
+      .end((err, res) => {
+        if (err) {
+          console.log(res);
+        }
+        server.close();
       });
   }
 };
