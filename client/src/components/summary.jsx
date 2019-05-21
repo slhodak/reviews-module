@@ -48,7 +48,7 @@ export default class Summary extends React.Component {
         </div>
         <div className="center">
           <div className="left">
-            <p>Reviews can only be made by diners who have eaten at this restaurant</p>
+            <p id="disclaimer">Reviews can only be made by diners who have eaten at this restaurant</p>
             <div id="overallStars">
               <div id="stars">
                 <div className="review-star" />

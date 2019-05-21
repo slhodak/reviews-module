@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 function Review(props) {
   const { review } = props;
@@ -15,11 +16,20 @@ function Review(props) {
       </div>
       <div id="review-details">
         <div id="header">
-          <div id="stars"></div>
-          <p id="date"></p>
+          <div id="stars">
+            <span className="review-star" />
+            <span className="review-star" />
+            <span className="review-star" />
+            <span className="review-star" />
+            <span className="review-star" />
+          </div>
+          <p id="date">{moment().format('MMMM Do, YYYY', review.date)}</p>
         </div>
         <div id="ratings">
-          <p>Overall 3 &middot;</p>
+          <span>Overall <span className="rating">{review.overall}</span> &middot; </span>
+          <span>Food <span className="rating">{review.food}</span> &middot; </span>
+          <span>Service <span className="rating">{review.service}</span> &middot; </span>
+          <span>Ambience <span className="rating">{review.ambience}</span></span>
         </div>
         <p id="text">{review.text}</p>
         <div id="report-help">
