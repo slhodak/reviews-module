@@ -52,11 +52,18 @@ body {
   padding: 0px 0px 8px;
 }
 
-#bars .container {
+#bars .containerNormal {
   margin-left: 8px;
   width: 100%;
   height: 16px;
-  border: 1px solid #ddd;
+  border: 1px solid #d8d9db;
+}
+
+#bars .containerHighlighted {
+  margin-left: 8px;
+  width: 100%;
+  height: 16px;
+  border: 2px solid #da3743;
 }
 
 .container .progress {
@@ -64,9 +71,10 @@ body {
   background-color: #da3743;
 }
 
-.container .five-stars {
-  width: 80%;
+.container .n-stars {
+  width: 50%;
 }
+
 
 .left #overallStars {
   display: flex;

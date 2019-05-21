@@ -2,122 +2,132 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 
-export default function Summary(props) {
-  const { totalReviews } = props;
-  const { summary } = props;
-  return (
-    <div id="summary">
-      <div className="header">
-        <h4>What {totalReviews} People Are Saying</h4>
-      </div>
-      <div className="sub-header">
-        <p>Overall ratings and reviews</p>
-      </div>
-      <div className="center">
-        <div className="left">
-          <p>Reviews can only be made by diners who have eaten at this restaurant</p>
-          <div id="overallStars">
-            <div id="stars">
-              <div className="review-star" />
-              <div className="review-star" />
-              <div className="review-star" />
-              <div className="review-star" />
-              <div className="review-star" />
-            </div>
-            <p>{summary.averageOverall} based on recent ratings</p>
-          </div>
-          <div id="overallRatings">
-            <div id="food">
-              <p className="rating">{summary.averageFood}</p>
-              <p>Food</p>
-            </div>
-            <div id="service">
-              <p className="rating">{summary.averageService}</p>
-              <p>Service</p>
-            </div>
-            <div id="ambience">
-              <p className="rating">{summary.averageAmbience}</p>
-              <p>Ambience</p>
-            </div>
-            <div id="value">
-              <p className="rating">{summary.valueRating}</p>
-              <p>Value</p>
-            </div>
-          </div>
-          <div id="noise">
-            <div id="noise-icon" />
-            <span>Noise &middot; {summary.noise}</span>
-          </div>
-          <div id="recommend">
-            <div id="recommend-icon" />
-            <span>{summary.recommendPercent}% <strong>of people</strong> would recommend it to a friend</span>
-          </div>
+export default class Summary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      oneHighlighted: false,
+      twoHighlighted: false,
+      threeHighlighted: false,
+      fourHighlighted: false,
+      fiveHighlighted: false
+    };
+    this.toggleBarHighlight = this.toggleBarHighlight.bind(this);
+  }
+
+  // refactor to satisfy eslint
+  toggleBarHighlight(event) {
+    console.log(event.currentTarget.id);
+    const currentBar = event.currentTarget.id + 'Highlighted';
+    const state = this.state[currentBar];
+    this.setState({
+      [currentBar]: !state
+    });
+  }
+
+  render() {
+    const { totalReviews } = this.props;
+    const { summary } = this.props;
+    const { oneHighlighted } = this.state;
+    const { twoHighlighted } = this.state;
+    const { threeHighlighted } = this.state;
+    const { fourHighlighted } = this.state;
+    const { fiveHighlighted } = this.state;
+    return (
+      <div id="summary">
+        <div className="header">
+          <h4>What {totalReviews} People Are Saying</h4>
         </div>
-        <div className="right">
-          <div id="bars">
-            {/* Can I generate these? */}
-            <div className="bar">
-              <span>5</span>
-              <div className="container">
-                <div className="progress five-stars" />
+        <div className="sub-header">
+          <p>Overall ratings and reviews</p>
+        </div>
+        <div className="center">
+          <div className="left">
+            <p>Reviews can only be made by diners who have eaten at this restaurant</p>
+            <div id="overallStars">
+              <div id="stars">
+                <div className="review-star" />
+                <div className="review-star" />
+                <div className="review-star" />
+                <div className="review-star" />
+                <div className="review-star" />
+              </div>
+              <p>{summary.averageOverall} based on recent ratings</p>
+            </div>
+            <div id="overallRatings">
+              <div id="food">
+                <p className="rating">{summary.averageFood}</p>
+                <p>Food</p>
+              </div>
+              <div id="service">
+                <p className="rating">{summary.averageService}</p>
+                <p>Service</p>
+              </div>
+              <div id="ambience">
+                <p className="rating">{summary.averageAmbience}</p>
+                <p>Ambience</p>
+              </div>
+              <div id="value">
+                <p className="rating">{summary.valueRating}</p>
+                <p>Value</p>
               </div>
             </div>
-            <div className="bar">
-              <span>4</span>
+            <div id="noise">
+              <div id="noise-icon" />
+              <span>Noise &middot; {summary.noise}</span>
             </div>
-            <div className="bar">
-              <span>3</span>
+            <div id="recommend">
+              <div id="recommend-icon" />
+              <span>{summary.recommendPercent}% <strong>of people</strong> would recommend it to a friend</span>
             </div>
-            <div className="bar">
-              <span>2</span>
-            </div>
-            <div className="bar">
-              <span>1</span>
+          </div>
+          <div className="right">
+            <div id="bars">
+              {/* Can I generate these? */}
+              <div className="bar">
+                <span>5</span>
+                <div id="five" onMouseEnter={this.toggleBarHighlight} onMouseLeave={this.toggleBarHighlight} className={`${fiveHighlighted ? 'containerHighlighted' : 'containerNormal'}`}>
+                  <div className="progress n-stars" />
+                </div>
+              </div>
+              <div className="bar">
+                <span>4</span>
+                <div id="four" onMouseEnter={this.toggleBarHighlight} onMouseLeave={this.toggleBarHighlight} className={`${fourHighlighted ? 'containerHighlighted' : 'containerNormal'}`}>
+                  <div className="progress n-stars" />
+                </div>
+              </div>
+              <div className="bar">
+                <span>3</span>
+                <div id="three" onMouseEnter={this.toggleBarHighlight} onMouseLeave={this.toggleBarHighlight} className={`${threeHighlighted ? 'containerHighlighted' : 'containerNormal'}`}>
+                  <div className="progress n-stars" />
+                </div>
+              </div>
+              <div className="bar">
+                <span>2</span>
+                <div id="two" onMouseEnter={this.toggleBarHighlight} onMouseLeave={this.toggleBarHighlight} className={`${twoHighlighted ? 'containerHighlighted' : 'containerNormal'}`}>
+                  <div className="progress n-stars" />
+                </div>
+              </div>
+              <div className="bar">
+                <span>1</span>
+                <div id="one" onMouseEnter={this.toggleBarHighlight} onMouseLeave={this.toggleBarHighlight} className={`${oneHighlighted ? 'containerHighlighted' : 'containerNormal'}`}>
+                  <div className="progress n-stars" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div id="summary-bottom">
-        <div id="link">
-          <a>Best Restaurants in {summary.location} ›</a>
+        <div id="summary-bottom">
+          <div id="link">
+            <a>Best Restaurants in {summary.location} ›</a>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 Summary.propTypes = {
   totalReviews: PropTypes.number.isRequired,
   summary: PropTypes.object.isRequired
 };
-
-
-// /* <div id="reviews-summary">
-// <div className="reviews-header">What {totalReviews} People Are Saying</div>
-// <div id="reviews-summary-main">
-//   <div id="reviews-summary-left-column">
-//     <div className="reviews-subheader-bold">Overall ratings and reviews</div>
-//     <div className="reviews-summary-text-large">Reviews can only be made by diners who have eaten at this restaurant</div>
-//     <div id="reviews-summary-stars">
-//       <div className="review-star" />
-//     </div>
-//     <div id="reviews-summary-average-ratings">
-//       {/* include average ratings with correct borders between */}
-//       <span>{summary.averageOverall} based on recent ratings</span>
-//     </div>
-//     <div id="reviews-summary-noise">
-//       <div className="noise-icon" />
-//       <span> Noise · {summary.noise}</span>
-//     </div>
-//     <div id="reviews-summary-recommendation-percent">
-//       <div id="thumb-icon" />
-//       <span>{summary.recommendPercent}% of people would recommend it to a friend.</span>
-//     </div>
-//     {/* use exzerone search api for location href? */}
-//     <a id="reviews-summary-best-link" href="#">Best Restaurants in {summary.location}</a>
-//   </div>
-//   <div id="reviews-summary-right-column">
-//     <div id="reviews-rating-bars">Bars go here</div>
-//   </div>
-// </div>
-// </div>
