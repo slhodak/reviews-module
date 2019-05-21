@@ -6,7 +6,6 @@ function ReviewList(props) {
   const { reviews } = props;
   return (
     <div>
-      <h1>Reviews...</h1>
       {reviews.map(review => (
         <Review review={review} />
       ))}

@@ -1,7 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default () => (
-  <div>
-    <h3>review goes here</h3>
-  </div>
-);
+function Review(props) {
+  const { review } = props;
+  return (
+    <div>
+      <h3>{review.diner}</h3>
+    </div>
+  );
+}
+
+Review.propTypes = {
+  review: PropTypes.object.isRequired
+};
+
+export default Review;
