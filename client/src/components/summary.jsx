@@ -56,22 +56,22 @@ export default function Summary(props) {
         <div className="right">
           <div id="bars">
             {/* Can I generate these? */}
-            <div id="bar-five">
+            <div className="bar">
               <span>5</span>
               <div className="container">
-                <div className="progress" />
+                <div className="progress five-stars" />
               </div>
             </div>
-            <div id="bar-four">
+            <div className="bar">
               <span>4</span>
             </div>
-            <div id="bar-three">
+            <div className="bar">
               <span>3</span>
             </div>
-            <div id="bar-two">
+            <div className="bar">
               <span>2</span>
             </div>
-            <div id="bar-one">
+            <div className="bar">
               <span>1</span>
             </div>
           </div>

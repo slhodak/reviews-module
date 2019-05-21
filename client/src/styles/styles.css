@@ -1,15 +1,13 @@
+* {box-sizing: border-box}
+
 body {
   font-family: 'PT Sans', sans-serif;
-}
-
-main #main {
-  width: 638px;
 }
 
 #reviews {
   padding: 0 0 4rem;
   margin: 0px;
-
+  width: 608px;
 }
 
 #reviews #summary {
@@ -37,13 +35,37 @@ main #main {
   margin: 0px 0px 32px;
 }
 
-.right #bars {
+#summary .center .left {
+  width: 352px;
+}
+
+#summary .center .right {
   width: 256px;
 }
 
+.right #bars {
+  font-size: 1rem;
+}
+
+#bars .bar {
+  display: flex;
+  padding: 0px 0px 8px;
+}
+
 #bars .container {
+  margin-left: 8px;
   width: 100%;
-  background-color: #ddd;
+  height: 16px;
+  border: 1px solid #ddd;
+}
+
+.container .progress {
+  padding: 7px;
+  background-color: #da3743;
+}
+
+.container .five-stars {
+  width: 80%;
 }
 
 .left #overallStars {

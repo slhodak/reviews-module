@@ -49,6 +49,9 @@ export default class Reviews extends React.Component {
   render() {
     const { summary } = this.state;
     const { reviews } = this.state;
+    // calculate reviews of each star value
+    // use that data to create skill bars and filter
+    // must be done when the page loads--b/c skill bars
     return (
       <div id="reviews">
         {summary ? <Summary summary={summary} totalReviews={reviews.length} /> : null}
