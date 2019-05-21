@@ -8,28 +8,55 @@ body {
 
 }
 
-#reviews-summary {
-  display: block;
+#reviews #summary {
+  display: flex;
+  flex-direction: column;
 }
 
-.reviews-header {
+#reviews #summary .header h4 {
   font-size: 1.5rem;
   font-weight: bold;
-  line-height: 1.33;
   color: #2d333f;
   border-bottom: 1px solid #d8d9db;
   padding-bottom: 1rem;
   margin: 0 0 1rem;
-  display: flex;
-  justify-content: space-between;
 }
 
-#reviews-summary-main {
+#reviews #summary .sub-header p {
+  margin: 0px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#reviews #summary #center {
   display: flex;
 }
 
-#reviews-rating-bars {
-  width : 300px;
+#overallRatings {
+  display: flex;
+  font-size: 0.875rem;
+}
+
+#overallRatings p {
+  margin: 0 0 0 0;
+}
+
+#overallRatings div {
+  padding: 0px 7px 0px 7px;
+}
+
+#overallRatings div .rating {
+  text-align: center;
+  font-size: 1rem;
+}
+
+#overallRatings #service {
+  border-left: 1px solid #d8d9db;
+  border-right: 1px solid #d8d9db;
+}
+
+#overallRatings #ambience {
+  border-right: 1px solid #d8d9db;
 }
 
 .noise-icon {

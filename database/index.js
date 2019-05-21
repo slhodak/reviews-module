@@ -9,7 +9,7 @@ module.exports.getAllReviews = (restaurantId, callback) => {
     database: 'reviews',
     port: 5432
   });
-  
+
   const sql = squel.select()
     .from('reviews')
     .where(`restaurant = ${restaurantId}`)
