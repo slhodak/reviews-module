@@ -2,15 +2,15 @@ const { Client } = require('pg');
 const squel = require('squel');
 const localRole = require('../config/localRole.js');
 
-module.exports.getAllReviews = function (restaurantId, callback) {
-  let client = new Client({
+module.exports.getAllReviews = (restaurantId, callback) => {
+  const client = new Client({
     user: localRole,
     host: 'localhost',
     database: 'reviews',
     port: 5432
   });
   
-  let sql = squel.select()
+  const sql = squel.select()
     .from('reviews')
     .where(`restaurant = ${restaurantId}`)
     .toString();
@@ -18,30 +18,30 @@ module.exports.getAllReviews = function (restaurantId, callback) {
   client.connect()
     .then(() => {
       client.query(sql)
-        .then(res => {
+        .then((res) => {
           callback(null, res.rows);
           client.end();
         })
-        .catch(err => {
+        .catch((err) => {
           callback(err);
           client.end();
         });
     })
-    .catch(err => {
+    .catch((err) => {
       callback(err);
       client.end();
     });
 };
 
-module.exports.getImpression = function (restaurantId, callback) {
+module.exports.getImpression = (restaurantId, callback) => {
   // get restaurant impression info from restaurant table
-  let client = new Client({
+  const client = new Client({
     user: localRole,
     host: 'localhost',
     database: 'reviews',
     port: 5432
   });
-  let sql = squel.select()
+  const sql = squel.select()
     .from('restaurants')
     .field('restaurants.location')
     .field('restaurants.noise')
@@ -57,16 +57,16 @@ module.exports.getImpression = function (restaurantId, callback) {
   client.connect()
     .then(() => {
       client.query(sql)
-        .then(res => {
+        .then((res) => {
           callback(null, res.rows);
           client.end();
         })
-        .catch(err => {
+        .catch((err) => {
           callback(err);
           client.end();
         });
     })
-    .catch(err => {
+    .catch((err) => {
       callback(err);
       client.end();
     });
