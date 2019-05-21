@@ -58,6 +58,9 @@ export default function Summary(props) {
             {/* Can I generate these? */}
             <div id="bar-five">
               <span>5</span>
+              <div className="container">
+                <div className="progress" />
+              </div>
             </div>
             <div id="bar-four">
               <span>4</span>

@@ -2,6 +2,10 @@ body {
   font-family: 'PT Sans', sans-serif;
 }
 
+main #main {
+  width: 638px;
+}
+
 #reviews {
   padding: 0 0 4rem;
   margin: 0px;
@@ -33,8 +37,13 @@ body {
   margin: 0px 0px 32px;
 }
 
-#summary .right {
-  
+.right #bars {
+  width: 256px;
+}
+
+#bars .container {
+  width: 100%;
+  background-color: #ddd;
 }
 
 .left #overallStars {
