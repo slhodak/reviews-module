@@ -14,7 +14,18 @@ function Review(props) {
         <p id="reviews-count"><span id="review-icon" />2 reviews</p>
       </div>
       <div id="review-details">
-
+        <div id="header">
+          <div id="stars"></div>
+          <p id="date"></p>
+        </div>
+        <div id="ratings">
+          <p>Overall 3 &middot;</p>
+        </div>
+        <p id="text">{review.text}</p>
+        <div id="report-help">
+          <button type="button" id="report">Report</button>
+          <button type="button" id="helpful">Helpful</button>
+        </div>
       </div>
     </div>
   );
