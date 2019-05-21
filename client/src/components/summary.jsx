@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 
 export default function Summary(props) {
@@ -15,9 +15,16 @@ export default function Summary(props) {
       </div>
       <div className="center">
         <div className="left">
+          <p>Reviews can only be made by diners who have eaten at this restaurant</p>
           <div id="overallStars">
-            <div id="stars"></div>
-            <p id="overallStars">{summary.averageOverall} based on recent ratings</p>
+            <div id="stars">
+              <div className="review-star" />
+              <div className="review-star" />
+              <div className="review-star" />
+              <div className="review-star" />
+              <div className="review-star" />
+            </div>
+            <p>{summary.averageOverall} based on recent ratings</p>
           </div>
           <div id="overallRatings">
             <div id="food">
@@ -37,10 +44,41 @@ export default function Summary(props) {
               <p>Value</p>
             </div>
           </div>
+          <div id="noise">
+            <div id="noise-icon" />
+            <span>Noise &middot; {summary.noise}</span>
+          </div>
+          <div id="recommend">
+            <div id="recommend-icon" />
+            <span>{summary.recommendPercent}% <strong>of people</strong> would recommend it to a friend</span>
+          </div>
         </div>
-        <div className="right"></div>
+        <div className="right">
+          <div id="bars">
+            {/* Can I generate these? */}
+            <div id="bar-five">
+              <span>5</span>
+            </div>
+            <div id="bar-four">
+              <span>4</span>
+            </div>
+            <div id="bar-three">
+              <span>3</span>
+            </div>
+            <div id="bar-two">
+              <span>2</span>
+            </div>
+            <div id="bar-one">
+              <span>1</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="bottom"></div>
+      <div id="summary-bottom">
+        <div id="link">
+          <a>Best Restaurants in {summary.location} ›</a>
+        </div>
+      </div>
     </div>
   );
 }
