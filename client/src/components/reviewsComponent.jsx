@@ -79,7 +79,7 @@ export default class Reviews extends React.Component {
       <div id="reviews">
         {summary ? <Summary summary={summary} totalReviews={reviews.length} reviewsByRating={reviewsByRating} /> : null}
         <Sorting />
-        <ReviewList reviews={reviews} />
+        <ReviewList reviews={reviews} reviewsByRating={reviewsByRating} />
       </div>
     );
   }
