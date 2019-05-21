@@ -36,7 +36,8 @@ export default class Summary extends React.Component {
   render() {
     const { totalReviews } = this.props;
     const { summary } = this.props;
-    // const { highlighted } = this.state;
+    const { reviewsByRating } = this.props;
+    const { handleRatingClick } = this.props;
     return (
       <div id="summary">
         <div className="header">
@@ -88,13 +89,14 @@ export default class Summary extends React.Component {
           <div className="right">
             <div id="bars">
               {/* Can I generate these? */}
-
-              <div className="bar">
-                <span>5</span>
-                <div id="barFive" onMouseEnter={this.toggleBarHighlight} onMouseLeave={this.toggleBarHighlight} className={this.isHighlighted ? 'containerHighlighted' : 'containerNormal'}>
-                  <div className="progress n-stars" />
+              {Object.keys(reviewsByRating).map(rating => (
+                <div className="bar" key={rating}>
+                  <span>{rating}</span>
+                  <div className="containerNormal" id={`bar${rating}`} onMouseEnter={this.toggleBarHighlight} onMouseLeave={this.toggleBarHighlight} onClick={handleRatingClick}>
+                    <div className="progress n-stars" />
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -111,5 +113,6 @@ export default class Summary extends React.Component {
 Summary.propTypes = {
   totalReviews: PropTypes.number.isRequired,
   summary: PropTypes.object.isRequired,
+  handleRatingClick: PropTypes.func.isRequired,
   reviewsByRating: PropTypes.object.isRequired
 };

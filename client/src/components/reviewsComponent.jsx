@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import request from 'superagent';
-import util from 'util';
 import Summary from './summary.jsx';
 import Sorting from './sorting.jsx';
 import ReviewList from './reviewList.jsx';
@@ -19,7 +18,7 @@ export default class Reviews extends React.Component {
     this.componentWillMount = this.componentWillMount.bind(this);
     this.getSummaryData = this.getSummaryData.bind(this);
     this.getReviewsData = this.getReviewsData.bind(this);
-    // this.getReviewsData = util.promisify(this.getReviewsData);
+    this.handleRatingClick = this.handleRatingClick.bind(this);
     this.parseStarPercentages = this.parseStarPercentages.bind(this);
   }
 
@@ -65,7 +64,17 @@ export default class Reviews extends React.Component {
     });
     this.setState({
       reviewsByRating
-    }, () => console.log(reviewsByRating));
+    });
+  }
+
+  handleRatingClick(event) {
+    const { reviews } = this.state;
+    reviews.forEach((review) => {
+      if (review.overall.toString() === event.currentTarget.id.slice(3)) {
+        // yess
+        console.log(review);
+      }
+    });
   }
 
   render() {
@@ -77,7 +86,7 @@ export default class Reviews extends React.Component {
     // must be done when the page loads--b/c skill bars
     return (
       <div id="reviews">
-        {summary ? <Summary summary={summary} totalReviews={reviews.length} reviewsByRating={reviewsByRating} /> : null}
+        {summary ? <Summary summary={summary} totalReviews={reviews.length} reviewsByRating={reviewsByRating} handleRatingClick={this.handleRatingClick} /> : null}
         <Sorting />
         <ReviewList reviews={reviews} reviewsByRating={reviewsByRating} />
       </div>
