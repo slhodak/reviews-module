@@ -18,7 +18,7 @@ export default class Summary extends React.Component {
   // refactor to satisfy eslint
   toggleBarHighlight(event) {
     console.log(event.currentTarget.id);
-    const currentBar = event.currentTarget.id + 'Highlighted';
+    const currentBar = `${event.currentTarget.id}Highlighted`;
     const state = this.state[currentBar];
     this.setState({
       [currentBar]: !state
@@ -128,6 +128,7 @@ export default class Summary extends React.Component {
 }
 
 Summary.propTypes = {
-  totalReviews: PropTypes.number.isRequired,
-  summary: PropTypes.object.isRequired
+  totalReviews: PropTypes.number,
+  summary: PropTypes.object,
+  reviewsByRating: PropTypes.object
 };
