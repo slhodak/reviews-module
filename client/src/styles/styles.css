@@ -174,3 +174,45 @@ body {
   cursor: pointer;
   text-decoration: underline;
 }
+
+#single-review {
+  display: flex;
+}
+
+#single-review #reviewer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#reviewer #initials-icon {
+  background-color: pink;
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#reviewer p {
+  font-size: 0.875rem;
+  margin: 0px;
+  color: #6f737b;
+}
+
+#reviewer #name {
+  margin: 0px 0px 8px 0px;
+  font-weight: 500;
+  color: #2d333f;
+}
+
+#reviewer #reviews-count {
+  font-size: 12px;
+}
+
+#single-review #review-details {
+  display: flex;
+  flex-direction: column;
+}
