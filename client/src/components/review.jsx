@@ -44,9 +44,13 @@ function Review(props) {
           <span className="rating">{review.ambience}</span>
         </div>
         <p id="text">{review.text}</p>
-        <div id="report-help">
-          <button type="button" id="report">Report</button>
-          <button type="button" id="helpful">Helpful</button>
+        <div id="report-helpful">
+          <div id="report">
+            <i id="report-icon" /><button type="button">Report</button>
+          </div>
+          <div id="helpful">
+            <i id="helpful-icon" /><button type="button">Helpful</button>
+          </div>
         </div>
       </div>
     </div>
