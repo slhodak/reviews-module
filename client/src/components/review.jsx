@@ -5,29 +5,29 @@ import moment from 'moment';
 function Review(props) {
   const { review } = props;
   return (
-    <div id="single-review">
-      <div id="reviewer">
-        <div id="initials-icon">
+    <div className="single-review">
+      <div className="reviewer">
+        <div className="initials-icon">
           <div>J</div>
         </div>
-        <p id="name">Jaclyn</p>
-        <p id="city">Baltimore</p>
-        <div id="reviewer-stat">
-          <span id="review-icon" /><p id="reviews-count">2 reviews</p>
+        <p className="name">Jaclyn</p>
+        <p className="city">Baltimore</p>
+        <div className="reviewer-stat">
+          <span className="review-icon" /><p className="reviews-count">2 reviews</p>
         </div>
       </div>
-      <div id="review-details">
-        <div id="header">
-          <div id="stars">
+      <div className="review-details">
+        <div className="header">
+          <div className="stars">
             <span className="review-star" />
             <span className="review-star" />
             <span className="review-star" />
             <span className="review-star" />
             <span className="review-star" />
           </div>
-          <p id="date">{moment().format('MMMM Do, YYYY', review.date)}</p>
+          <p className="date">{moment().format('MMMM Do, YYYY', review.date)}</p>
         </div>
-        <div id="ratings">
+        <div className="ratings">
           <span className="rating-name">Overall</span>
           <span className="rating">{review.overall}
             <span className="dot">&middot;</span>
@@ -43,13 +43,15 @@ function Review(props) {
           <span className="rating-name">Ambience</span>
           <span className="rating">{review.ambience}</span>
         </div>
-        <p id="text">{review.text}</p>
-        <div id="report-helpful">
-          <div id="report">
-            <i id="report-icon" /><button type="button">Report</button>
+        <p className="text">{review.text}</p>
+        <div className="report-helpful">
+          <div className="report">
+            <i className="report-icon" />
+            <button type="button">Report</button>
           </div>
-          <div id="helpful">
-            <i id="helpful-icon" /><button type="button">Helpful</button>
+          <div className="helpful">
+            <i className="helpful-icon" />
+            <button type="button">Helpful</button>
           </div>
         </div>
       </div>

@@ -39,7 +39,7 @@ export default class Summary extends React.Component {
     const { reviewsByRating } = this.props;
     const { handleRatingClick } = this.props;
     return (
-      <div id="summary">
+      <div className="summary">
         <div className="header">
           <h4>What {totalReviews} People Are Saying</h4>
         </div>
@@ -48,9 +48,9 @@ export default class Summary extends React.Component {
         </div>
         <div className="center">
           <div className="left">
-            <p id="disclaimer">Reviews can only be made by diners who have eaten at this restaurant</p>
-            <div id="overallStars">
-              <div id="stars">
+            <p className="disclaimer">Reviews can only be made by diners who have eaten at this restaurant</p>
+            <div className="overallStars">
+              <div className="stars">
                 <div className="review-star" />
                 <div className="review-star" />
                 <div className="review-star" />
@@ -59,35 +59,35 @@ export default class Summary extends React.Component {
               </div>
               <p>{summary.averageOverall} based on recent ratings</p>
             </div>
-            <div id="overallRatings">
-              <div id="food">
+            <div className="overallRatings">
+              <div className="food">
                 <p className="rating">{summary.averageFood}</p>
                 <p>Food</p>
               </div>
-              <div id="service">
+              <div className="service">
                 <p className="rating">{summary.averageService}</p>
                 <p>Service</p>
               </div>
-              <div id="ambience">
+              <div className="ambience">
                 <p className="rating">{summary.averageAmbience}</p>
                 <p>Ambience</p>
               </div>
-              <div id="value">
+              <div className="value">
                 <p className="rating">{summary.valueRating}</p>
                 <p>Value</p>
               </div>
             </div>
-            <div id="noise">
-              <div id="noise-icon" />
+            <div className="noise">
+              <div className="noise-icon" />
               <span>Noise &middot; {summary.noise}</span>
             </div>
-            <div id="recommend">
-              <div id="recommend-icon" />
+            <div className="recommend">
+              <div className="recommend-icon" />
               <span>{summary.recommendPercent}% <strong>of people</strong> would recommend it to a friend</span>
             </div>
           </div>
           <div className="right">
-            <div id="bars">
+            <div className="bars">
               {/* Can I generate these? */}
               {Object.keys(reviewsByRating).map(rating => (
                 <div className="bar" key={rating}>
@@ -100,8 +100,8 @@ export default class Summary extends React.Component {
             </div>
           </div>
         </div>
-        <div id="summary-bottom">
-          <div id="link">
+        <div className="summary-bottom">
+          <div className="link">
             <a>Best Restaurants in {summary.location} ›</a>
           </div>
         </div>

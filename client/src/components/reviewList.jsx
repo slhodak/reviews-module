@@ -5,7 +5,7 @@ import Review from './review.jsx';
 function ReviewList(props) {
   const { reviews } = props;
   return (
-    <div id="reviews-list">
+    <div>
       {reviews.map(review => (
         <Review key={review.id} review={review} />
       ))}
