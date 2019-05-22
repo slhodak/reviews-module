@@ -336,12 +336,17 @@ body {
   font-weight: 500;
 }
 
+.sort-area {
+  font-size: 0.875rem;
+  color: #6f737b;
+  font-weight: 500;
+}
+
 .sort-area .sort-dropdown {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 6px 0.25rem;
-  font-size: 0.875rem;
   border-radius: 2px;
   border: 1px solid #d8d9db;
   cursor: pointer;
@@ -349,21 +354,41 @@ body {
   margin: 0.5rem 0;
 }
 
-.sort-dropdown .sorter-name {
+.sort-area .sort-dropdown:hover {
+  border: 2px solid #da3743;
+  padding: 5px calc(0.25rem - 1px);
+}
+
+.sort-area .sorter-name {
   margin: 0 0 0 0.25rem;
-  font-weight: 500;
   line-height: 1.43;
-  font-size: 0.875rem;
-  color: #6f737b;
 }
 
 .sort-dropdown .sorter-icon {
   height: 1.5rem;
   width: 1.5rem;
   font-size: 0.875rem;
-  background-image: url("arrow-down-sign-to-navigate.svg");
+  background-image: url();
   background-repeat: no-repeat;
   background-position: 50%;
+}
+
+.options-container {
+  position: absolute;
+}
+
+.options-container .sort-options {
+  position: relative;
+  top: -0.5rem;
+  width: 18rem;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #d8d9db;
+  border-top: none;
+}
+
+.sort-options .option {
+  padding: 0.5rem 0.25rem;
 }
 
 .sorting-panel .filters {

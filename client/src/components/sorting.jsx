@@ -9,6 +9,14 @@ class Sorting extends React.Component {
     this.state = {
       choosingSort: false
     };
+    this.handleSortClick = this.handleSortClick.bind(this);
+  }
+
+  handleSortClick() {
+    const { choosingSort } = this.state;
+    this.setState({
+      choosingSort: !choosingSort
+    });
   }
 
   render() {
@@ -18,9 +26,11 @@ class Sorting extends React.Component {
       <div className="sorting-panel">
         <h4>Sort by</h4>
         <div className="sort-area">
-          <div className="sort-dropdown">
+          <div className="sort-dropdown" onClick={this.handleSortClick}>
             <span className="sorter-name">Newest</span>
             <i className="sorter-icon" />
+          </div>
+          <div className="options-container">
             {choosingSort ? <SortOptions /> : null}
           </div>
         </div>
