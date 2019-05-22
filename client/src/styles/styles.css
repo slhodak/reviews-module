@@ -329,3 +329,19 @@ body {
   background-position: 50%;
   color: #2d333f;
 }
+
+.sorting-panel h4 {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.sorting-panel .filters {
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.filter .filter-button {
+  margin: 0px 16px 16px 0px;
+  padding: 8px;
+}
