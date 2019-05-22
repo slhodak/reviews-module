@@ -12,7 +12,9 @@ function Review(props) {
         </div>
         <p id="name">Jaclyn</p>
         <p id="city">Baltimore</p>
-        <p id="reviews-count"><span id="review-icon" />2 reviews</p>
+        <div id="reviewer-stat">
+          <span id="review-icon" /><p id="reviews-count">2 reviews</p>
+        </div>
       </div>
       <div id="review-details">
         <div id="header">
@@ -26,10 +28,20 @@ function Review(props) {
           <p id="date">{moment().format('MMMM Do, YYYY', review.date)}</p>
         </div>
         <div id="ratings">
-          <span>Overall <span className="rating">{review.overall}</span> &middot; </span>
-          <span>Food <span className="rating">{review.food}</span> &middot; </span>
-          <span>Service <span className="rating">{review.service}</span> &middot; </span>
-          <span>Ambience <span className="rating">{review.ambience}</span></span>
+          <span className="rating-name">Overall</span>
+          <span className="rating">{review.overall}
+            <span className="dot">&middot;</span>
+          </span>
+          <span className="rating-name">Food</span>
+          <span className="rating">{review.food}
+            <span className="dot">&middot;</span>
+          </span>
+          <span className="rating-name">Service</span>
+          <span className="rating">{review.service}
+            <span className="dot">&middot;</span>
+          </span>
+          <span className="rating-name">Ambience</span>
+          <span className="rating">{review.ambience}</span>
         </div>
         <p id="text">{review.text}</p>
         <div id="report-help">

@@ -71,7 +71,6 @@ export default class Reviews extends React.Component {
     const { reviews } = this.state;
     reviews.forEach((review) => {
       if (review.overall.toString() === event.currentTarget.id.slice(3)) {
-        // yess
         console.log(review);
       }
     });
