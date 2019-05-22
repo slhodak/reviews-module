@@ -7,7 +7,7 @@ function SortOptions(props) {
     <div className="sort-options">
       {options.map(option => (
         <div className="option">
-          <span>{option.name}</span>
+          <span className="option-name">{option.name}</span>
         </div>
       ))}
     </div>
