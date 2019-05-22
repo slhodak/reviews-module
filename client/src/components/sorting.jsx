@@ -7,7 +7,18 @@ class Sorting extends React.Component {
     super(props);
 
     this.state = {
-      choosingSort: false
+      choosingSort: false,
+      options: [
+        {
+          name: 'Newest'
+        },
+        {
+          name: 'Highest Rating'
+        },
+        {
+          name: 'Lowest Rating'
+        }
+      ]
     };
     this.handleSortClick = this.handleSortClick.bind(this);
   }
@@ -22,6 +33,7 @@ class Sorting extends React.Component {
   render() {
     const { tags } = this.props;
     const { choosingSort } = this.state;
+    const { options } = this.state;
     return (
       <div className="sorting-panel">
         <h4>Sort by</h4>
@@ -31,7 +43,7 @@ class Sorting extends React.Component {
             <i className="sorter-icon" />
           </div>
           <div className="options-container">
-            {choosingSort ? <SortOptions /> : null}
+            {choosingSort ? <SortOptions options={options} /> : null}
           </div>
         </div>
         <h4>Filters</h4>
