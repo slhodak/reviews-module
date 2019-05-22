@@ -336,12 +336,60 @@ body {
   font-weight: 500;
 }
 
+.sort-area .sort-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0.25rem;
+  font-size: 0.875rem;
+  border-radius: 2px;
+  border: 1px solid #d8d9db;
+  cursor: pointer;
+  width: 18rem;
+  margin: 0.5rem 0;
+}
+
+.sort-dropdown .sorter-name {
+  margin: 0 0 0 0.25rem;
+  font-weight: 500;
+  line-height: 1.43;
+  font-size: 0.875rem;
+  color: #6f737b;
+}
+
+.sort-dropdown .sorter-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+  font-size: 0.875rem;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' style='background:%23fff'%3E%3Ctitle%3Eicon/ic_down%3C/title%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 0h24v24H0z'/%3E%3Cg transform='scale(1 -1)' width='2' height='6' rx='.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
 .sorting-panel .filters {
   padding-top: 0.5rem;
   padding-bottom: 1rem;
 }
 
-.filter .filter-button {
-  margin: 0px 16px 16px 0px;
+.filters .filter-button {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
   padding: 8px;
+  border: 1px solid #d8d9db;
+  background: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: .125rem;
+  cursor: pointer;
+}
+
+.filter-button .filter-name {
+  margin: 0 0 0 0.25rem;
+  font-weight: 500;
+  line-height: 1.43;
+  font-size: 0.875rem;
+  color: #6f737b;
 }
