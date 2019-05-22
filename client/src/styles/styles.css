@@ -361,7 +361,7 @@ body {
   height: 1.5rem;
   width: 1.5rem;
   font-size: 0.875rem;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' style='background:%23fff'%3E%3Ctitle%3Eicon/ic_down%3C/title%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 0h24v24H0z'/%3E%3Cg transform='scale(1 -1)' width='2' height='6' rx='.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("arrow-down-sign-to-navigate.svg");
   background-repeat: no-repeat;
   background-position: 50%;
 }
@@ -392,4 +392,9 @@ body {
   line-height: 1.43;
   font-size: 0.875rem;
   color: #6f737b;
+}
+
+.footer-credits {
+  font-size: 0.875rem;
+  color: #2d332d;
 }
