@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders the reviews top-level component 1`] = `
+exports[`Reviews Component renders the reviews component and its children 1`] = `
 <div
   className="reviews"
 >
