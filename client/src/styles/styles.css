@@ -384,6 +384,7 @@ body {
   z-index: 1;
   background-color: #fff;
   border: 1px solid #d8d9db;
+  border-radius: 0.125rem;
   border-top: none;
 }
 
@@ -429,12 +430,21 @@ body {
   margin-bottom: 1rem;
   padding: 8px;
   border: 1px solid #d8d9db;
+  border-radius: 0.125rem;
   background: none;
   padding: 0.5rem;
   font-size: 1rem;
   font-weight: 500;
-  border-radius: .125rem;
   cursor: pointer;
+}
+
+.filters .filter-button:hover {
+  border: 2px solid #da3743;
+  padding: calc(0.5rem - 1px);
+}
+
+.filters .filter-button:hover .filter-name {
+  color: #da3743;
 }
 
 .filter-button .filter-name {
