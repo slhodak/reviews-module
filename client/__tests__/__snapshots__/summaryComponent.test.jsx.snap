@@ -2,84 +2,235 @@
 
 exports[`renders the summary sub-component 1`] = `
 <div
-  id="reviews-summary"
+  className="summary"
 >
   <div
-    className="reviews-header"
+    className="header"
   >
-    What 
-    5
-     People Are Saying
+    <h4>
+      What 
+      5
+       People Are Saying
+    </h4>
   </div>
   <div
-    id="reviews-summary-main"
+    className="sub-header"
+  >
+    <p>
+      Overall ratings and reviews
+    </p>
+  </div>
+  <div
+    className="center"
   >
     <div
-      id="reviews-summary-left-column"
+      className="left"
     >
-      <div
-        className="reviews-subheader-bold"
-      >
-        Overall ratings and reviews
-      </div>
-      <div
-        className="reviews-summary-text-large"
+      <p
+        className="disclaimer"
       >
         Reviews can only be made by diners who have eaten at this restaurant
-      </div>
+      </p>
       <div
-        id="reviews-summary-stars"
+        className="overallStars"
       >
         <div
-          className="review-star"
-        />
-      </div>
-      <div
-        id="reviews-summary-average-ratings"
-      >
-        <span>
+          className="stars"
+        >
+          <div
+            className="review-star"
+          />
+          <div
+            className="review-star"
+          />
+          <div
+            className="review-star"
+          />
+          <div
+            className="review-star"
+          />
+          <div
+            className="review-star"
+          />
+        </div>
+        <p>
           0.4
            based on recent ratings
-        </span>
+        </p>
       </div>
       <div
-        id="reviews-summary-noise"
+        className="overallRatings"
+      >
+        <div
+          className="food"
+        >
+          <p
+            className="rating"
+          >
+            4.5
+          </p>
+          <p>
+            Food
+          </p>
+        </div>
+        <div
+          className="service"
+        >
+          <p
+            className="rating"
+          >
+            5
+          </p>
+          <p>
+            Service
+          </p>
+        </div>
+        <div
+          className="ambience"
+        >
+          <p
+            className="rating"
+          >
+            4.5
+          </p>
+          <p>
+            Ambience
+          </p>
+        </div>
+        <div
+          className="value"
+        >
+          <p
+            className="rating"
+          >
+            4
+          </p>
+          <p>
+            Value
+          </p>
+        </div>
+      </div>
+      <div
+        className="noise"
       >
         <div
           className="noise-icon"
         />
         <span>
-           Noise · 
+          Noise · 
           Average
         </span>
       </div>
       <div
-        id="reviews-summary-recommendation-percent"
+        className="recommend"
       >
         <div
-          id="thumb-icon"
+          className="recommend-icon"
         />
         <span>
-          36
-          % of people would recommend it to a friend.
+          <strong>
+            36
+            % of people
+          </strong>
+           would recommend it to a friend
         </span>
       </div>
-      <a
-        href="#"
-        id="reviews-summary-best-link"
-      >
-        Best Restaurants in 
-        West Ernieville
-      </a>
     </div>
     <div
-      id="reviews-summary-right-column"
+      className="right"
     >
       <div
-        id="reviews-rating-bars"
+        className="bars"
       >
-        Bars go here
+        <div
+          className="bar"
+        >
+          <span>
+            1
+          </span>
+          <div
+            className="bar-container"
+            id="bar1"
+          >
+            <div
+              className="progress n-stars"
+            />
+          </div>
+        </div>
+        <div
+          className="bar"
+        >
+          <span>
+            2
+          </span>
+          <div
+            className="bar-container"
+            id="bar2"
+          >
+            <div
+              className="progress n-stars"
+            />
+          </div>
+        </div>
+        <div
+          className="bar"
+        >
+          <span>
+            3
+          </span>
+          <div
+            className="bar-container"
+            id="bar3"
+          >
+            <div
+              className="progress n-stars"
+            />
+          </div>
+        </div>
+        <div
+          className="bar"
+        >
+          <span>
+            4
+          </span>
+          <div
+            className="bar-container"
+            id="bar4"
+          >
+            <div
+              className="progress n-stars"
+            />
+          </div>
+        </div>
+        <div
+          className="bar"
+        >
+          <span>
+            5
+          </span>
+          <div
+            className="bar-container"
+            id="bar5"
+          >
+            <div
+              className="progress n-stars"
+            />
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+  <div
+    className="summary-bottom"
+  >
+    <div
+      className="link"
+    >
+      <a>
+        Best Restaurants in 
+        West Ernieville
+         ›
+      </a>
     </div>
   </div>
 </div>
