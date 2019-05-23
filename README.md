@@ -72,15 +72,17 @@ npm install
 
 ## API
 
-### Restaurant Impression
+### Reviews Summary
 
 #### HTTP request
 
-GET http://127.0.0.1:3010/:id/impression
+GET http://127.0.0.1:3010/:id/summary
 
 ##### Parameters
 **id**
+
 **integer**
+
 The **id** parameter specifies the unique id of the restaurant being queried. Seeded test values range from 1-5.
 
 ##### Response
@@ -106,10 +108,12 @@ GET http://127.0.0.1:3010/:id/reviews
 
 ##### Parameters
 **id**
+
 **integer**
+
 The **id** parameter specifies the unique id of the restaurant being queried. Seeded test values range from 1-5.
 
-##### Reponse
+##### Response
 
 If successful, this method returns an array of objects with the following structure:
 

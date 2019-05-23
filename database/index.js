@@ -30,26 +30,6 @@ module.exports.getAllReviews = (restaurantId, callback) => {
     port: 5432
   });
 
-  const sql = squel.select()
-    .from('reviews')
-    .where(`restaurant = ${restaurantId}`)
-    .toString();
-
-  makeQuery(client, sql, callback);
-};
-
-//  should get relevant diner data for each review and bundle it in a composite object...
-//    but that would produce duplicate diner data? so?
-//    just get all diners who reviewed the restaurant
-//    join? get all diner ids and query each? hell no, join.
-module.exports.getAllDinersWhoReviewed = (restaurantId, callback) => {
-  const client = new Client({
-    user: localRole,
-    host: 'localhost',
-    database: 'reviews',
-    port: 5432
-  });
-
   const sql = `SELECT * from reviews INNER JOIN diners on (reviews.diner = diners.id) where reviews.restaurant = ${restaurantId}`;
 
   makeQuery(client, sql, callback);

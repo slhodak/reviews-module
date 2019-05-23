@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.static(path.resolve(__dirname, '../public')));
 
-app.get('/:id/impression', (req, res) => {
+app.get('/:id/summary', (req, res) => {
   db.getImpression(req.params.id, (err, result) => {
     if (err) {
       res.status(500);
