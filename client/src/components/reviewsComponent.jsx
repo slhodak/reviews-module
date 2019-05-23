@@ -104,7 +104,12 @@ export default class Reviews extends React.Component {
   }
 
   sortReviews() {
-    // sort reviews and rerender everything
+    // sort reviews using 'sortBy' and rerender everything
+    
+  }
+
+  filterReviews() {
+    // filter reviews by tag
   }
 
   render() {
