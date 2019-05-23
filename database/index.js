@@ -35,8 +35,8 @@ module.exports.getAllReviews = (restaurantId, callback) => {
   makeQuery(client, sql, callback);
 };
 
-module.exports.getImpression = (restaurantId, callback) => {
-  // get restaurant impression info from restaurant table
+module.exports.getSummary = (restaurantId, callback) => {
+  // get restaurant summary info from restaurant table
   const client = new Client({
     user: localRole,
     host: 'localhost',

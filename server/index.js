@@ -7,7 +7,7 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '../public')));
 
 app.get('/:id/summary', (req, res) => {
-  db.getImpression(req.params.id, (err, result) => {
+  db.getSummary(req.params.id, (err, result) => {
     if (err) {
       res.status(500);
       res.end();
