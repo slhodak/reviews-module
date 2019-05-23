@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Summary from '../src/components/summary.jsx';
+import Summary from '../src/components/Summary.jsx';
 
 it('renders the summary sub-component', () => {
   const summary = {

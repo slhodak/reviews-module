@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SortOptions from './sortOptions.jsx';
+import SortOptions from './SortOptions.jsx';
 
 function Sorting(props) {
   const { tags } = props;

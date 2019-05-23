@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import request from 'superagent';
-import Summary from './summary.jsx';
-import Sorting from './sorting.jsx';
-import ReviewList from './reviewList.jsx';
+import Summary from './Summary.jsx';
+import Sorting from './Sorting.jsx';
+import ReviewList from './ReviewList.jsx';
 
 export default class Reviews extends React.Component {
   constructor(props) {
