@@ -57,6 +57,10 @@ body {
   padding: 0px 0px 8px;
 }
 
+.bars .bar:hover {
+  text-decoration: underline;
+}
+
 .bars .bar-container {
   margin-left: 8px;
   width: 100%;
@@ -64,16 +68,16 @@ body {
   border: 1px solid #d8d9db;
 }
 
-.bars .bar-container:hover {
+.bars .bar:hover .bar-container {
   border: 2px solid red;
 }
 
-.container .progress {
+.bar-container .progress {
   padding: 7px;
   background-color: #da3743;
 }
 
-.container .n-stars {
+.bar-container .n-stars {
   width: 50%;
 }
 
