@@ -1,5 +1,5 @@
-const express = require('express');
 const path = require('path');
+const express = require('express');
 const db = require('../database/index.js');
 
 const app = express();
@@ -30,6 +30,4 @@ app.get('/:id/reviews', (req, res) => {
   });
 });
 
-module.exports = app.listen(3010, () => {
-  console.log('Reviews module server listening on port 3010!');
-});
+module.exports = app;
