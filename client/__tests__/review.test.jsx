@@ -25,4 +25,9 @@ describe('Single Review', () => {
     const wrapper = render(<Review review={review} />);
     expect(wrapper.find('.name').text()).to.equal('Jaclyn');
   });
+
+  it('should contain review text from the prop passed in', () => {
+    const wrapper = render(<Review review={review} />);
+    expect(wrapper.find('.text').text()).to.equal('Tenetur enim ullam hic quaerat molestiae voluptatum libero et. Id vero qui. Aspernatur eos impedit maiores iure eius hic officia. Est aut eius. Eveniet maxime et distinctio cumque atque.');
+  });
 });
