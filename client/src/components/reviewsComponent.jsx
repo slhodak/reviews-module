@@ -44,7 +44,7 @@ export default class Reviews extends React.Component {
   getSummaryData() {
     const { restaurantId } = this.props;
     request
-      .get(`http://localhost:3010/${restaurantId}/impression`)
+      .get(`http://localhost:3010/${restaurantId}/summary`)
       .then((res) => {
         this.setState({
           summary: res.body[0]
