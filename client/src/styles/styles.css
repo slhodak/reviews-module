@@ -18,6 +18,9 @@ body {
 .reviews .summary {
   display: flex;
   flex-direction: column;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #d8d9db;
 }
 
 .reviews .summary .header h4 {
@@ -170,10 +173,15 @@ body {
   margin-left: 25px;
 }
 
+.summary-bottom .link {
+  padding-top: 0.5rem;
+}
+
 .summary-bottom .link a {
   font-size: 1rem;
   font-weight: 100;
   color: #da3743;
+
 }
 
 .summary-bottom .link a:hover {
@@ -335,6 +343,8 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 500;
+  margin: 0px;
+  padding: 0px;
 }
 
 .sort-area {

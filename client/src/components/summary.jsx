@@ -51,7 +51,7 @@ function Summary(props) {
           </div>
           <div className="recommend">
             <div className="recommend-icon" />
-            <span>{summary.recommendPercent}% <strong>of people</strong> would recommend it to a friend</span>
+            <span><strong>{summary.recommendPercent}% of people</strong> would recommend it to a friend</span>
           </div>
         </div>
         <div className="right">
