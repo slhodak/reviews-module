@@ -388,18 +388,32 @@ body {
 
 .sort-options .option {
   padding: 0.5rem 0.25rem;
-}
-
-.option .option-name::before {
-  height: 1.5rem;
-  width: 1.5rem;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3Eicon/ic_radio_default%3C/title%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M0 0h24v24H0z'/%3E%3Crect x='1' y='1' width='18' height='18' rx='9' fill='%23fff' transform='translate(2 2)' stroke='%23333' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E");
-  background-position: 50%;
-  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
 }
 
 .sort-options .option:hover {
   background-color: #f7f7f7;
+}
+
+.option input {
+  position: absolute;
+  opacity: 0;
+}
+
+.option .radio-button {
+  height: calc(1.5rem - 2px);
+  width: calc(1.5rem - 2px);
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.sort-options input:checked ~ .radio-button {
+  background-color: #da3743;
+}
+
+.sort-options .option-name {
+  margin: 0 0 0 0.25rem;
 }
 
 .sorting-panel .filters {

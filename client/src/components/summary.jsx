@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-
 export default class Summary extends React.Component {
   constructor(props) {
     super(props);
