@@ -9,10 +9,22 @@ export default class Reviews extends React.Component {
   constructor(props) {
     super(props);
 
+    this.options = [
+      'Newest',
+      'Highest Rating',
+      'Lowest Rating'
+    ];
+
     this.state = {
       summary: null,
       reviews: [],
-      reviewsByRating: {}
+      reviewsByRating: {},
+      tags: [
+        'gnocchi',
+        'asparagus'
+      ],
+      choosingSort: false,
+      sortBy: 'Newest'
     };
 
     this.componentWillMount = this.componentWillMount.bind(this);
@@ -20,6 +32,8 @@ export default class Reviews extends React.Component {
     this.getReviewsData = this.getReviewsData.bind(this);
     this.handleRatingClick = this.handleRatingClick.bind(this);
     this.parseStarPercentages = this.parseStarPercentages.bind(this);
+    this.handleSortClick = this.handleSortClick.bind(this);
+    this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
   }
 
   componentWillMount() {
@@ -76,17 +90,43 @@ export default class Reviews extends React.Component {
     });
   }
 
+  handleSortClick() {
+    const { choosingSort } = this.state;
+    this.setState({
+      choosingSort: !choosingSort
+    });
+  }
+
+  handleSortOptionClick(event) {
+    this.setState({
+      sortBy: event.currentTarget.dataset.option
+    }, this.sortReviews);
+  }
+
+  sortReviews() {
+    // sort reviews using 'sortBy' and rerender everything
+    
+  }
+
+  filterReviews() {
+    // filter reviews by tag
+  }
+
   render() {
     const { summary } = this.state;
     const { reviews } = this.state;
     const { reviewsByRating } = this.state;
+    const { tags } = this.state;
+    const { choosingSort } = this.state;
     // calculate reviews of each star value
     // use that data to create skill bars and filter
     // must be done when the page loads--b/c skill bars
     return (
       <div className="reviews">
-        {summary ? <Summary summary={summary} totalReviews={reviews.length} reviewsByRating={reviewsByRating} handleRatingClick={this.handleRatingClick} /> : null}
-        <Sorting />
+        {summary
+          ? <Summary summary={summary} totalReviews={reviews.length} reviewsByRating={reviewsByRating} handleRatingClick={this.handleRatingClick} />
+          : null}
+        <Sorting tags={tags} options={this.options} choosingSort={choosingSort} handleSortClick={this.handleSortClick} handleSortOptionClick={this.handleSortOptionClick} />
         <ReviewList reviews={reviews} reviewsByRating={reviewsByRating} />
       </div>
     );
