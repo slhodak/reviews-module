@@ -1,7 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Review from './review.jsx';
 
-export default () => (
-  <div>
-    <h1>reviews render here</h1>
-  </div>
-);
+function ReviewList(props) {
+  const { reviews } = props;
+  return (
+    <div>
+      {reviews.map(review => (
+        <Review key={review.id} review={review} />
+      ))}
+    </div>
+  );
+}
+
+ReviewList.propTypes = {
+  reviews: PropTypes.array.isRequired
+};
+
+export default ReviewList;

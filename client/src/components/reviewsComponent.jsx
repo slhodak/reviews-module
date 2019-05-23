@@ -71,7 +71,6 @@ export default class Reviews extends React.Component {
     const { reviews } = this.state;
     reviews.forEach((review) => {
       if (review.overall.toString() === event.currentTarget.id.slice(3)) {
-        // yess
         console.log(review);
       }
     });
@@ -85,7 +84,7 @@ export default class Reviews extends React.Component {
     // use that data to create skill bars and filter
     // must be done when the page loads--b/c skill bars
     return (
-      <div id="reviews">
+      <div className="reviews">
         {summary ? <Summary summary={summary} totalReviews={reviews.length} reviewsByRating={reviewsByRating} handleRatingClick={this.handleRatingClick} /> : null}
         <Sorting />
         <ReviewList reviews={reviews} reviewsByRating={reviewsByRating} />
