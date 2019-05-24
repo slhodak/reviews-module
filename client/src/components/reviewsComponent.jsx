@@ -5,6 +5,7 @@ import request from 'superagent';
 import Summary from './Summary.jsx';
 import Sorting from './Sorting.jsx';
 import ReviewList from './ReviewList.jsx';
+import { ascendingRating, descendingRating, recency } from '../helpers';
 
 export default class Reviews extends React.Component {
   constructor(props) {
@@ -36,7 +37,6 @@ export default class Reviews extends React.Component {
     this.handleSortClick = this.handleSortClick.bind(this);
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
     this.sortReviews = this.sortReviews.bind(this);
-    this.sortByDate = this.sortByDate.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.filterReviews = this.filterReviews.bind(this);
   }
@@ -128,62 +128,17 @@ export default class Reviews extends React.Component {
     console.log('called sort function');
     const { sortBy } = this.state;
     if (sortBy === 'Newest') {
-      this.sortByDate();
+      this.sort(recency);
     } else if (sortBy === 'Highest Rating') {
-      this.sortByRatingDescending();
+      this.sort(ascendingRating);
     } else if (sortBy === 'Lowest Rating') {
-      this.sortByRatingAscending();
+      this.sort(descendingRating);
     }
   }
 
-  sortByDate() {
+  sort(type) {
     const { reviews } = this.state;
-    function dateComparison(reviewA, reviewB) {
-      const timeA = new Date(reviewA.date).getTime();
-      const timeB = new Date(reviewB.date).getTime();
-      if (timeA > timeB) {
-        return -1;
-      }
-      if (timeA < timeB) {
-        return 1;
-      }
-      return 0;
-    }
-    reviews.sort(dateComparison);
-    this.setState({
-      showing: reviews
-    });
-  }
-
-  sortByRatingAscending() {
-    const { reviews } = this.state;
-    function ratingComparisonAsc(reviewA, reviewB) {
-      const diff = reviewA.overall - reviewB.overall;
-      if (diff !== 0) {
-        return diff;
-      }
-      const dateB = new Date(reviewB.date);
-      const dateA = new Date(reviewA.date);
-      return dateB.getTime() - dateA.getTime();
-    }
-    reviews.sort(ratingComparisonAsc);
-    this.setState({
-      showing: reviews
-    });
-  }
-
-  sortByRatingDescending() {
-    const { reviews } = this.state;
-    function ratingComparisonDesc(reviewA, reviewB) {
-      const diff = reviewB.overall - reviewA.overall;
-      if (diff !== 0) {
-        return diff;
-      }
-      const dateB = new Date(reviewB.date);
-      const dateA = new Date(reviewA.date);
-      return dateB.getTime() - dateA.getTime();
-    }
-    reviews.sort(ratingComparisonDesc);
+    reviews.sort(type);
     this.setState({
       showing: reviews
     });
