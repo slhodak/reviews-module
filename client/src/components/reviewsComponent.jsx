@@ -5,7 +5,7 @@ import request from 'superagent';
 import Summary from './Summary.jsx';
 import Sorting from './Sorting.jsx';
 import ReviewList from './ReviewList.jsx';
-import { ascendingRating, descendingRating, recency } from '../helpers';
+import comparisons from '../helpers';
 
 export default class Reviews extends React.Component {
   constructor(props) {
@@ -125,20 +125,9 @@ export default class Reviews extends React.Component {
   }
 
   sortReviews() {
-    console.log('called sort function');
     const { sortBy } = this.state;
-    if (sortBy === 'Newest') {
-      this.sort(recency);
-    } else if (sortBy === 'Highest Rating') {
-      this.sort(ascendingRating);
-    } else if (sortBy === 'Lowest Rating') {
-      this.sort(descendingRating);
-    }
-  }
-
-  sort(type) {
     const { reviews } = this.state;
-    reviews.sort(type);
+    reviews.sort(comparisons[sortBy]);
     this.setState({
       showing: reviews
     });
