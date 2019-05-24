@@ -121,7 +121,8 @@ export default class Reviews extends React.Component {
 
   handleSortOptionClick(event) {
     this.setState({
-      sortBy: event.currentTarget.dataset.option
+      sortBy: event.currentTarget.dataset.option,
+      choosingSort: false
     }, this.sortReviews);
   }
 
