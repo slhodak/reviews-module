@@ -8,12 +8,12 @@ function Review(props) {
     <div className="single-review">
       <div className="reviewer">
         <div className="initials-icon">
-          <div>J</div>
+          <div>{review.firstname[0]}</div>
         </div>
-        <p className="name">Jaclyn</p>
-        <p className="city">Baltimore</p>
+        <p className="name">{review.firstname}</p>
+        <p className="city">{review.city}</p>
         <div className="reviewer-stat">
-          <span className="review-icon" /><p className="reviews-count">2 reviews</p>
+          <span className="review-icon" /><p className="reviews-count">{review.totalreviews} reviews</p>
         </div>
       </div>
       <div className="review-details">
