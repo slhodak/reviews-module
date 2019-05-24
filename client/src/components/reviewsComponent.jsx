@@ -126,7 +126,6 @@ export default class Reviews extends React.Component {
 
   sortReviews() {
     console.log('called sort function');
-    // sort reviews using 'sortBy' and rerender everything
     const { sortBy } = this.state;
     if (sortBy === 'Newest') {
       this.sortByDate();
@@ -138,8 +137,6 @@ export default class Reviews extends React.Component {
   }
 
   sortByDate() {
-    //  take all reviews and sort with compare function
-    //    compare function sorts with date in milliseconds
     const { reviews } = this.state;
     function dateComparison(reviewA, reviewB) {
       const timeA = new Date(reviewA.date).getTime();
@@ -161,7 +158,13 @@ export default class Reviews extends React.Component {
   sortByRatingAscending() {
     const { reviews } = this.state;
     function ratingComparisonAsc(reviewA, reviewB) {
-      return reviewA.overall - reviewB.overall;
+      const diff = reviewA.overall - reviewB.overall;
+      if (diff !== 0) {
+        return diff;
+      }
+      const dateB = new Date(reviewB.date);
+      const dateA = new Date(reviewA.date);
+      return dateB.getTime() - dateA.getTime();
     }
     reviews.sort(ratingComparisonAsc);
     this.setState({
@@ -172,7 +175,13 @@ export default class Reviews extends React.Component {
   sortByRatingDescending() {
     const { reviews } = this.state;
     function ratingComparisonDesc(reviewA, reviewB) {
-      return reviewB.overall - reviewA.overall;
+      const diff = reviewB.overall - reviewA.overall;
+      if (diff !== 0) {
+        return diff;
+      }
+      const dateB = new Date(reviewB.date);
+      const dateA = new Date(reviewA.date);
+      return dateB.getTime() - dateA.getTime();
     }
     reviews.sort(ratingComparisonDesc);
     this.setState({
