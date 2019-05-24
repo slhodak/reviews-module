@@ -78,9 +78,6 @@ body {
 .bar-container .progress {
   padding: 7px;
   background-color: #da3743;
-}
-
-.bar-container .n-stars {
   width: 50%;
 }
 

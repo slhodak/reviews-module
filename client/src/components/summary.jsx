@@ -4,8 +4,9 @@ import React from 'react';
 function Summary(props) {
   const { totalReviews } = props;
   const { summary } = props;
-  const { reviewsByRating } = props;
+  const { starPercentages } = props;
   const { handleRatingClick } = props;
+
   return (
     <div className="summary">
       <div className="header">
@@ -56,11 +57,11 @@ function Summary(props) {
         </div>
         <div className="right">
           <div className="bars">
-            {Object.keys(reviewsByRating).map(rating => (
-              <div className="bar" key={rating}>
-                <span>{rating}</span>
-                <div className="bar-container" id={`bar${rating}`} onClick={handleRatingClick}>
-                  <div className="progress n-stars" />
+            {starPercentages.map(ratingAndPercent => (
+              <div className="bar" key={ratingAndPercent[0]}>
+                <span>{(ratingAndPercent[0] + 1).toString()}</span>
+                <div className="bar-container" id={`bar${ratingAndPercent[0] + 1}`} onClick={handleRatingClick}>
+                  <div className="progress" style={{ width: `${ratingAndPercent[1]}%` }} />
                 </div>
               </div>
             ))}
@@ -80,7 +81,7 @@ Summary.propTypes = {
   totalReviews: PropTypes.number.isRequired,
   summary: PropTypes.object.isRequired,
   handleRatingClick: PropTypes.func.isRequired,
-  reviewsByRating: PropTypes.object.isRequired
+  starPercentages: PropTypes.array.isRequired
 };
 
 export default Summary;

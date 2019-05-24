@@ -20,7 +20,7 @@ export default class Reviews extends React.Component {
       summary: null,
       reviews: [],
       showing: [],
-      reviewsByRating: {},
+      starPercentages: [0, 0, 0, 0, 0],
       allTags: [],
       selectedTags: [],
       choosingSort: false,
@@ -86,16 +86,16 @@ export default class Reviews extends React.Component {
 
   parseStarPercentages() {
     const { reviews } = this.state;
-    const reviewsByRating = {};
+    const { starPercentages } = this.state;
     reviews.forEach((review) => {
-      if (reviewsByRating[review.overall]) {
-        reviewsByRating[review.overall] += 1;
-      } else {
-        reviewsByRating[review.overall] = 1;
-      }
+      starPercentages[review.overall - 1] += 1 / reviews.length * 100;
     });
+    const reversed = [];
+    for (let i = 4; i > -1; i--) {
+      reversed.push([i, starPercentages[i]]);
+    }
     this.setState({
-      reviewsByRating
+      starPercentages: reversed
     });
   }
 
@@ -137,16 +137,29 @@ export default class Reviews extends React.Component {
     const { reviewsByRating } = this.state;
     const { allTags } = this.state;
     const { choosingSort } = this.state;
-    // calculate reviews of each star value
-    // use that data to create skill bars and filter
-    // must be done when the page loads--b/c skill bars
+    const { starPercentages } = this.state;
     return (
       <div className="reviews">
         {summary
-          ? <Summary summary={summary} totalReviews={reviews.length} reviewsByRating={reviewsByRating} handleRatingClick={this.handleRatingClick} />
+          ? (
+            <Summary
+              summary={summary}
+              totalReviews={reviews.length}
+              starPercentages={starPercentages}
+              handleRatingClick={this.handleRatingClick}
+            />
+          )
           : null}
-        <Sorting tags={allTags} options={this.options} choosingSort={choosingSort} handleSortClick={this.handleSortClick} handleSortOptionClick={this.handleSortOptionClick} />
-        <ReviewList reviews={reviews} reviewsByRating={reviewsByRating} />
+        <Sorting
+          tags={allTags}
+          options={this.options}
+          choosingSort={choosingSort}
+          handleSortClick={this.handleSortClick}
+          handleSortOptionClick={this.handleSortOptionClick}
+        />
+        <ReviewList
+          reviews={reviews}
+        />
       </div>
     );
   }
