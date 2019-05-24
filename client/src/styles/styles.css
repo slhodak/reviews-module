@@ -238,6 +238,7 @@ body {
 
 .reviewer .reviewer-stat {
   display: flex;
+  align-items: flex-start;
 }
 
 .reviewer-stat .review-icon {
@@ -252,6 +253,7 @@ body {
 .reviewer-stat .reviews-count {
   font-size: 12px;
   font-weight: bold;
+  padding-top: 2px;
 }
 
 .single-review .review-details {
