@@ -7,8 +7,8 @@ function SortOptions(props) {
   return (
     <div className="sort-options">
       {options.map(option => (
-        <div className="option" key={option}>
-          <input type="radio" onChange={handleSortOptionClick} data-option={option} />
+        <div className="option" key={option} onClick={handleSortOptionClick} data-option={option}>
+          <input type="radio" />
           <span className="radio-button">
             <span className="inner-dot" />
           </span>

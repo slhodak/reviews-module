@@ -19,7 +19,7 @@ function Sorting(props) {
         </div>
         <div className="options-container">
           {choosingSort
-            ? <SortOptions options={options} handleSortOptionClick={handleSortOptionClick} /> 
+            ? <SortOptions options={options} handleSortOptionClick={handleSortOptionClick} />
             : null}
         </div>
       </div>

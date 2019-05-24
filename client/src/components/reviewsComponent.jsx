@@ -35,6 +35,8 @@ export default class Reviews extends React.Component {
     this.getTags = this.getTags.bind(this);
     this.handleSortClick = this.handleSortClick.bind(this);
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
+    this.sortReviews = this.sortReviews.bind(this);
+    this.sortByDate = this.sortByDate.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.filterReviews = this.filterReviews.bind(this);
   }
@@ -123,9 +125,37 @@ export default class Reviews extends React.Component {
   }
 
   sortReviews() {
+    console.log('called sort function');
     // sort reviews using 'sortBy' and rerender everything
-    //  must determine which date is most recent
-    //    convert to computer time and compare milliseconds maybe
+    const { sortBy } = this.state;
+    if (sortBy === 'Newest') {
+      this.sortByDate();
+    // } else if (sortBy === 'Highest Rating') {
+    //   this.sortByRatingDescending();
+    // } else if (sortBy === 'Lowest Rating') {
+    //   this.sortByRatingAscending();
+    }
+  }
+
+  sortByDate() {
+    //  take all reviews and sort with compare function
+    //    compare function sorts with date in milliseconds
+    const { reviews } = this.state;
+    function dateComparison(reviewA, reviewB) {
+      const timeA = new Date(reviewA.date).getTime();
+      const timeB = new Date(reviewB.date).getTime();
+      if (timeA > timeB) {
+        return -1;
+      }
+      if (timeA < timeB) {
+        return 1;
+      }
+      return 0;
+    }
+    reviews.sort(dateComparison);
+    this.setState({
+      showing: reviews
+    });
   }
 
   filterReviews() {

@@ -29,7 +29,8 @@ function Review(props) {
           <div className="stars">
             {stars}
           </div>
-          <p className="date">&nbsp;&middot;&nbsp;&nbsp;Dined on {moment().format('MMMM Do, YYYY', review.date)}</p>
+          <p className="date">&nbsp;&middot;&nbsp;&nbsp;Dined on {moment(review.date).format('MMMM Do, YYYY')}</p>
+          <p>timestamp: {new Date(review.date).getTime()}</p>
         </div>
         <div className="ratings">
           <span className="rating-name">Overall</span>
