@@ -167,6 +167,7 @@ export default class Reviews extends React.Component {
     const { reviews } = this.state;
     const { showing } = this.state;
     const { allTags } = this.state;
+    const { selectedTags } = this.state;
     const { choosingSort } = this.state;
     const { starPercentages } = this.state;
     return (
@@ -183,6 +184,7 @@ export default class Reviews extends React.Component {
           : null}
         <Sorting
           tags={allTags}
+          selectedTags={selectedTags}
           options={this.options}
           choosingSort={choosingSort}
           handleSortClick={this.handleSortClick}
