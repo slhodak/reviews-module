@@ -4,18 +4,14 @@ const comparisons = {
     if (diff !== 0) {
       return diff;
     }
-    const dateB = new Date(reviewB.date);
-    const dateA = new Date(reviewA.date);
-    return dateB.getTime() - dateA.getTime();
+    return comparisons.Newest(reviewA, reviewB);
   },
   'Lowest Rating': (reviewA, reviewB) => {
     const diff = reviewA.overall - reviewB.overall;
     if (diff !== 0) {
       return diff;
     }
-    const dateB = new Date(reviewB.date);
-    const dateA = new Date(reviewA.date);
-    return dateB.getTime() - dateA.getTime();
+    return comparisons.Newest(reviewA, reviewB);
   },
   Newest: (reviewA, reviewB) => {
     const dateB = new Date(reviewB.date);
