@@ -30,7 +30,24 @@ module.exports.getAllReviews = (restaurantId, callback) => {
     port: 5432
   });
 
-  const sql = `SELECT * from reviews INNER JOIN diners on (reviews.diner = diners.id) where reviews.restaurant = ${restaurantId}`;
+  const sql = `SELECT 
+    reviews.id, 
+    reviews.restaurant,
+    reviews.text,
+    reviews.date,
+    reviews.overall,
+    reviews.food,
+    reviews.service,
+    reviews.ambience,
+    reviews.wouldrecommend,
+    reviews.tags,
+    diners.firstname,
+    diners.lastname,
+    diners.city,
+    diners.totalreviews
+    from reviews INNER JOIN diners 
+    on (reviews.diner = diners.id) 
+    where reviews.restaurant = ${restaurantId}`;
 
   makeQuery(client, sql, callback);
 };

@@ -35,6 +35,7 @@ export default class Reviews extends React.Component {
     this.getTags = this.getTags.bind(this);
     this.handleSortClick = this.handleSortClick.bind(this);
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
+    this.handleFilterClick = this.handleFilterClick.bind(this);
   }
 
   componentWillMount() {
@@ -63,6 +64,7 @@ export default class Reviews extends React.Component {
           reviews: res.body,
           showing: res.body
         }, () => {
+          console.log(res.body);
           this.parseStarPercentages();
           this.getTags();
         });
@@ -71,7 +73,6 @@ export default class Reviews extends React.Component {
   }
 
   getTags() {
-    //  check all reviews for all tags, no duplicates
     let tags = [];
     const { showing } = this.state;
     showing.forEach((review) => {
@@ -127,14 +128,20 @@ export default class Reviews extends React.Component {
     //    convert to computer time and compare milliseconds maybe
   }
 
-  filterReviews() {
-    // filter reviews by tag
+  handleFilterClick(event) {
+    const { showing } = this.state;
+    const filtered = showing.filter(
+      review => _.includes(review.tags, event.currentTarget.dataset.tag)
+    );
+    this.setState({
+      showing: filtered
+    }, this.getTags);
   }
 
   render() {
     const { summary } = this.state;
     const { reviews } = this.state;
-    const { reviewsByRating } = this.state;
+    const { showing } = this.state;
     const { allTags } = this.state;
     const { choosingSort } = this.state;
     const { starPercentages } = this.state;
@@ -156,9 +163,10 @@ export default class Reviews extends React.Component {
           choosingSort={choosingSort}
           handleSortClick={this.handleSortClick}
           handleSortOptionClick={this.handleSortOptionClick}
+          handleFilterClick={this.handleFilterClick}
         />
         <ReviewList
-          reviews={reviews}
+          reviews={showing}
         />
       </div>
     );

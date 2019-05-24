@@ -8,6 +8,7 @@ function Sorting(props) {
   const { options } = props;
   const { handleSortClick } = props;
   const { handleSortOptionClick } = props;
+  const { handleFilterClick } = props;
   return (
     <div className="sorting-panel">
       <h4>Sort by</h4>
@@ -25,7 +26,7 @@ function Sorting(props) {
       <h4>Filters</h4>
       <div className="filters">
         {tags.map(tag => (
-          <div className="filter-button" key={tag}>
+          <div className="filter-button" key={tag} data-tag={tag} onClick={handleFilterClick}>
             <input type="checkbox" className="filter-checkbox" />
             <span className="filter-name">{tag}</span>
           </div>
@@ -40,7 +41,8 @@ Sorting.propTypes = {
   choosingSort: PropTypes.bool.isRequired,
   options: PropTypes.array.isRequired,
   handleSortClick: PropTypes.func.isRequired,
-  handleSortOptionClick: PropTypes.func.isRequired
+  handleSortOptionClick: PropTypes.func.isRequired,
+  handleFilterClick: PropTypes.func.isRequired
 };
 
 export default Sorting;
