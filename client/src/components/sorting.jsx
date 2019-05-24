@@ -7,11 +7,13 @@ function Sorting(props) {
   const { tags } = props;
   const { selectedTags } = props;
   const { choosingSort } = props;
+  const { sortBy } = props;
   const { options } = props;
   const { handleSortClick } = props;
   const { handleSortOptionClick } = props;
   const { handleFilterClick } = props;
 
+  //  this could use a refactor
   const filterTags = tags.map((tag) => {
     if (_.includes(selectedTags, tag)) {
       return (
@@ -33,7 +35,7 @@ function Sorting(props) {
       <h4>Sort by</h4>
       <div className="sort-area">
         <div className="sort-dropdown" onClick={handleSortClick}>
-          <span className="sorter-name">Newest</span>
+          <span className="sorter-name">{sortBy}</span>
           <i className="sorter-icon" />
         </div>
         <div className="options-container">
@@ -54,6 +56,7 @@ Sorting.propTypes = {
   tags: PropTypes.array.isRequired,
   selectedTags: PropTypes.array.isRequired,
   choosingSort: PropTypes.bool.isRequired,
+  sortBy: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   handleSortClick: PropTypes.func.isRequired,
   handleSortOptionClick: PropTypes.func.isRequired,

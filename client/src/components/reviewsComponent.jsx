@@ -24,7 +24,8 @@ export default class Reviews extends React.Component {
       starPercentages: [0, 0, 0, 0, 0],
       allTags: [],
       selectedTags: [],
-      choosingSort: false
+      choosingSort: false,
+      sortBy: 'Newest'
     };
 
     this.componentWillMount = this.componentWillMount.bind(this);
@@ -34,6 +35,7 @@ export default class Reviews extends React.Component {
     this.parseStarPercentages = this.parseStarPercentages.bind(this);
     this.getTags = this.getTags.bind(this);
     this.handleSortClick = this.handleSortClick.bind(this);
+    this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
     this.sortReviews = this.sortReviews.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.filterReviews = this.filterReviews.bind(this);
@@ -117,13 +119,16 @@ export default class Reviews extends React.Component {
     });
   }
 
-  sortReviews(event) {
+  handleSortOptionClick(event) {
+    this.setState({
+      sortBy: event.currentTarget.dataset.option
+    }, this.sortReviews);
+  }
+
+  sortReviews() {
     const { reviews } = this.state;
-    if (!event) {
-      reviews.sort(comparisons.Newest);
-    } else {
-      reviews.sort(comparisons[event.currentTarget.dataset.option]);
-    }
+    const { sortBy } = this.state;
+    reviews.sort(comparisons[sortBy]);
     this.setState({
       showing: reviews
     });
@@ -167,6 +172,7 @@ export default class Reviews extends React.Component {
     const { reviews } = this.state;
     const { showing } = this.state;
     const { allTags } = this.state;
+    const { sortBy } = this.state;
     const { selectedTags } = this.state;
     const { choosingSort } = this.state;
     const { starPercentages } = this.state;
@@ -186,9 +192,10 @@ export default class Reviews extends React.Component {
           tags={allTags}
           selectedTags={selectedTags}
           options={this.options}
+          sortBy={sortBy}
           choosingSort={choosingSort}
           handleSortClick={this.handleSortClick}
-          handleSortOptionClick={this.sortReviews}
+          handleSortOptionClick={this.handleSortOptionClick}
           handleFilterClick={this.handleFilterClick}
         />
         <ReviewList
