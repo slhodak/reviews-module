@@ -130,10 +130,10 @@ export default class Reviews extends React.Component {
     const { sortBy } = this.state;
     if (sortBy === 'Newest') {
       this.sortByDate();
-    // } else if (sortBy === 'Highest Rating') {
-    //   this.sortByRatingDescending();
-    // } else if (sortBy === 'Lowest Rating') {
-    //   this.sortByRatingAscending();
+    } else if (sortBy === 'Highest Rating') {
+      this.sortByRatingDescending();
+    } else if (sortBy === 'Lowest Rating') {
+      this.sortByRatingAscending();
     }
   }
 
@@ -153,6 +153,28 @@ export default class Reviews extends React.Component {
       return 0;
     }
     reviews.sort(dateComparison);
+    this.setState({
+      showing: reviews
+    });
+  }
+
+  sortByRatingAscending() {
+    const { reviews } = this.state;
+    function ratingComparisonAsc(reviewA, reviewB) {
+      return reviewA.overall - reviewB.overall;
+    }
+    reviews.sort(ratingComparisonAsc);
+    this.setState({
+      showing: reviews
+    });
+  }
+
+  sortByRatingDescending() {
+    const { reviews } = this.state;
+    function ratingComparisonDesc(reviewA, reviewB) {
+      return reviewB.overall - reviewA.overall;
+    }
+    reviews.sort(ratingComparisonDesc);
     this.setState({
       showing: reviews
     });
