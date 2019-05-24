@@ -88,16 +88,16 @@ The **id** parameter specifies the unique id of the restaurant being queried. Se
 
 If successful, this method returns a response body with the following structure:
 
-    {  
-      "location": **_string_**,  
-      "noise": **_string_**,  
-      "recommendPercent": **_integer_**,  
-      "valueRating": **_string_**,  
-      "averageOverall": **_string_**,  
-      "averageFood": **_string_**,  
-      "averageAmbience": **_string_**,  
-      "averageService": **_string_**  
-    }  
+{  
+  "location": **_string_**,  
+  "noise": **_string_**,  
+  "recommendPercent": **_integer_**,  
+  "valueRating": **_string_**,  
+  "averageOverall": **_string_**,  
+  "averageFood": **_string_**,  
+  "averageAmbience": **_string_**,  
+  "averageService": **_string_**  
+}  
 
 ### Restaurant Reviews
 
@@ -115,20 +115,20 @@ The **id** parameter specifies the unique id of the restaurant being queried. Se
 
 If successful, this method returns an array containing objects with the following structure:
 
-    {  
-      "id": **_integer_**,  
-      "restaurant": **_integer_**,  
-      "diner": **_integer_**,  
-      "text": **_string_**,  
-      "date": **_date_**,  
-      "overall": **_integer_**,  
-      "food": **_integer_**,  
-      "service": **_integer_**,  
-      "ambience": **_integer_**,  
-      "wouldrecommend": **_boolean_**  
-      "tags": **_string_**,  
-      "firstname": **_string_**,  
-      "lastname": **_string_**,  
-      "city": **_string_**,  
-      "totalreviews": **_integer_**  
-    }
+{  
+  "id": **_integer_**,  
+  "restaurant": **_integer_**,  
+  "diner": **_integer_**,  
+  "text": **_string_**,  
+  "date": **_date_**,  
+  "overall": **_integer_**,  
+  "food": **_integer_**,  
+  "service": **_integer_**,  
+  "ambience": **_integer_**,  
+  "wouldrecommend": **_boolean_**  
+  "tags": **_string_**,  
+  "firstname": **_string_**,  
+  "lastname": **_string_**,  
+  "city": **_string_**,  
+  "totalreviews": **_integer_**  
+}
