@@ -131,8 +131,6 @@ export default class Reviews extends React.Component {
   filterReviews() {
     const { reviews } = this.state;
     const { selectedTags } = this.state;
-    // for each review
-    // check all of it's tags for inclusion in selected tags array
     let filtered = null;
     if (selectedTags.length) {
       filtered = reviews.filter((review) => {
@@ -153,12 +151,9 @@ export default class Reviews extends React.Component {
   handleFilterClick(event) {
     let { selectedTags } = this.state;
     const indexCheck = selectedTags.indexOf(event.currentTarget.dataset.tag);
-    console.log('index of tag:' + indexCheck);
     if (indexCheck >= 0) {
-      // if clicked tag is in selected, remove it
       selectedTags.splice(indexCheck, 1);
     } else {
-    //   // else add it
       selectedTags = selectedTags.concat(event.currentTarget.dataset.tag);
     }
     this.setState({
