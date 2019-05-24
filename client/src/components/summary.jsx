@@ -6,7 +6,14 @@ function Summary(props) {
   const { summary } = props;
   const { starPercentages } = props;
   const { handleRatingClick } = props;
-
+  const stars = [];
+  for (let i = 0; i < 5; i++) {
+    if (summary.averageOverall >= i + 1) {
+      stars[i] = <span className="review-star" />;
+    } else {
+      stars[i] = <span className="review-star-blank" />;
+    }
+  }
   return (
     <div className="summary">
       <div className="header">
@@ -19,12 +26,8 @@ function Summary(props) {
         <div className="left">
           <p className="disclaimer">Reviews can only be made by diners who have eaten at this restaurant</p>
           <div className="overallStars">
-            <div className="stars">
-              <div className="review-star" />
-              <div className="review-star" />
-              <div className="review-star" />
-              <div className="review-star" />
-              <div className="review-star" />
+            <div className="summary-stars">
+              {stars}
             </div>
             <p>{summary.averageOverall} based on recent ratings</p>
           </div>
