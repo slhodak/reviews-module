@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import request from 'superagent';
 import Summary from './Summary.jsx';
 import Sorting from './Sorting.jsx';
@@ -18,11 +19,10 @@ export default class Reviews extends React.Component {
     this.state = {
       summary: null,
       reviews: [],
+      showing: [],
       reviewsByRating: {},
-      tags: [
-        'gnocchi',
-        'asparagus'
-      ],
+      allTags: [],
+      selectedTags: [],
       choosingSort: false,
       sortBy: 'Newest'
     };
@@ -32,6 +32,7 @@ export default class Reviews extends React.Component {
     this.getReviewsData = this.getReviewsData.bind(this);
     this.handleRatingClick = this.handleRatingClick.bind(this);
     this.parseStarPercentages = this.parseStarPercentages.bind(this);
+    this.getTags = this.getTags.bind(this);
     this.handleSortClick = this.handleSortClick.bind(this);
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
   }
@@ -59,14 +60,31 @@ export default class Reviews extends React.Component {
       .get(`http://localhost:3010/${restaurantId}/reviews`)
       .then((res) => {
         this.setState({
-          reviews: res.body
-        }, this.parseStarPercentages);
+          reviews: res.body,
+          showing: res.body
+        }, () => {
+          this.parseStarPercentages();
+          this.getTags();
+        });
       })
       .catch(err => console.log(err));
   }
 
+  getTags() {
+    //  check all reviews for all tags, no duplicates
+    let tags = [];
+    const { showing } = this.state;
+    showing.forEach((review) => {
+      if (review.tags) {
+        tags = tags.concat(...review.tags.split(','));
+      }
+    });
+    this.setState({
+      allTags: _.uniq(tags)
+    });
+  }
+
   parseStarPercentages() {
-    console.log('parsing');
     const { reviews } = this.state;
     const reviewsByRating = {};
     reviews.forEach((review) => {
@@ -105,7 +123,8 @@ export default class Reviews extends React.Component {
 
   sortReviews() {
     // sort reviews using 'sortBy' and rerender everything
-    
+    //  must determine which date is most recent
+    //    convert to computer time and compare milliseconds maybe
   }
 
   filterReviews() {
@@ -116,7 +135,7 @@ export default class Reviews extends React.Component {
     const { summary } = this.state;
     const { reviews } = this.state;
     const { reviewsByRating } = this.state;
-    const { tags } = this.state;
+    const { allTags } = this.state;
     const { choosingSort } = this.state;
     // calculate reviews of each star value
     // use that data to create skill bars and filter
@@ -126,7 +145,7 @@ export default class Reviews extends React.Component {
         {summary
           ? <Summary summary={summary} totalReviews={reviews.length} reviewsByRating={reviewsByRating} handleRatingClick={this.handleRatingClick} />
           : null}
-        <Sorting tags={tags} options={this.options} choosingSort={choosingSort} handleSortClick={this.handleSortClick} handleSortOptionClick={this.handleSortOptionClick} />
+        <Sorting tags={allTags} options={this.options} choosingSort={choosingSort} handleSortClick={this.handleSortClick} handleSortOptionClick={this.handleSortOptionClick} />
         <ReviewList reviews={reviews} reviewsByRating={reviewsByRating} />
       </div>
     );
