@@ -7,9 +7,9 @@ function Review(props) {
   const stars = [];
   for (let i = 0; i < 5; i++) {
     if (review.overall >= i + 1) {
-      stars[i] = true;
+      stars[i] = <span className="review-star" />;
     } else {
-      stars[i] = false;
+      stars[i] = <span className="review-star-blank" />;
     }
   }
   return (
@@ -27,12 +27,7 @@ function Review(props) {
       <div className="review-details">
         <div className="header">
           <div className="stars">
-            {stars.map((star) => {
-              if (star) {
-                return <span className="review-star" />;
-              }
-              return <span className="review-star-blank" />;
-            })}
+            {stars}
           </div>
           <p className="date">&nbsp;&middot;&nbsp;&nbsp;Dined on {moment().format('MMMM Do, YYYY', review.date)}</p>
         </div>
