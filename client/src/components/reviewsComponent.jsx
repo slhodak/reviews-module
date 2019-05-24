@@ -24,8 +24,7 @@ export default class Reviews extends React.Component {
       starPercentages: [0, 0, 0, 0, 0],
       allTags: [],
       selectedTags: [],
-      choosingSort: false,
-      sortBy: 'Newest'
+      choosingSort: false
     };
 
     this.componentWillMount = this.componentWillMount.bind(this);
@@ -35,7 +34,6 @@ export default class Reviews extends React.Component {
     this.parseStarPercentages = this.parseStarPercentages.bind(this);
     this.getTags = this.getTags.bind(this);
     this.handleSortClick = this.handleSortClick.bind(this);
-    this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
     this.sortReviews = this.sortReviews.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.filterReviews = this.filterReviews.bind(this);
@@ -67,6 +65,7 @@ export default class Reviews extends React.Component {
           reviews: res.body,
           showing: res.body
         }, () => {
+          this.sortReviews();
           this.parseStarPercentages();
           this.getTags();
         });
@@ -118,16 +117,13 @@ export default class Reviews extends React.Component {
     });
   }
 
-  handleSortOptionClick(event) {
-    this.setState({
-      sortBy: event.currentTarget.dataset.option
-    }, this.sortReviews);
-  }
-
-  sortReviews() {
-    const { sortBy } = this.state;
+  sortReviews(event) {
     const { reviews } = this.state;
-    reviews.sort(comparisons[sortBy]);
+    if (!event) {
+      reviews.sort(comparisons.Newest);
+    } else {
+      reviews.sort(comparisons[event.currentTarget.dataset.option]);
+    }
     this.setState({
       showing: reviews
     });
@@ -190,7 +186,7 @@ export default class Reviews extends React.Component {
           options={this.options}
           choosingSort={choosingSort}
           handleSortClick={this.handleSortClick}
-          handleSortOptionClick={this.handleSortOptionClick}
+          handleSortOptionClick={this.sortReviews}
           handleFilterClick={this.handleFilterClick}
         />
         <ReviewList
