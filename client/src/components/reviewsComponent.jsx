@@ -36,6 +36,7 @@ export default class Reviews extends React.Component {
     this.handleSortClick = this.handleSortClick.bind(this);
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
+    this.filterReviews = this.filterReviews.bind(this);
   }
 
   componentWillMount() {
@@ -64,7 +65,6 @@ export default class Reviews extends React.Component {
           reviews: res.body,
           showing: res.body
         }, () => {
-          console.log(res.body);
           this.parseStarPercentages();
           this.getTags();
         });
@@ -128,14 +128,42 @@ export default class Reviews extends React.Component {
     //    convert to computer time and compare milliseconds maybe
   }
 
-  handleFilterClick(event) {
-    const { showing } = this.state;
-    const filtered = showing.filter(
-      review => _.includes(review.tags, event.currentTarget.dataset.tag)
-    );
+  filterReviews() {
+    const { reviews } = this.state;
+    const { selectedTags } = this.state;
+    // for each review
+    // check all of it's tags for inclusion in selected tags array
+    let filtered = null;
+    if (selectedTags.length) {
+      filtered = reviews.filter((review) => {
+        const reviewTags = review.tags.split(',');
+        for (let i = 0; i < reviewTags.length; i++) {
+          if (_.includes(selectedTags, reviewTags[i])) {
+            return true;
+          }
+        }
+        return false;
+      });
+    }
     this.setState({
-      showing: filtered
+      showing: filtered || reviews
     }, this.getTags);
+  }
+
+  handleFilterClick(event) {
+    let { selectedTags } = this.state;
+    const indexCheck = selectedTags.indexOf(event.currentTarget.dataset.tag);
+    console.log('index of tag:' + indexCheck);
+    if (indexCheck >= 0) {
+      // if clicked tag is in selected, remove it
+      selectedTags.splice(indexCheck, 1);
+    } else {
+    //   // else add it
+      selectedTags = selectedTags.concat(event.currentTarget.dataset.tag);
+    }
+    this.setState({
+      selectedTags
+    }, this.filterReviews);
   }
 
   render() {
