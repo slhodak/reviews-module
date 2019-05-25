@@ -72,7 +72,6 @@ export default class Reviews extends React.Component {
           this.sortReviews();
           this.parseStarPercentages();
           this.getTags();
-          this.createPages();
         });
       })
       .catch(err => console.log(err));
@@ -88,7 +87,7 @@ export default class Reviews extends React.Component {
     });
     this.setState({
       allTags: _.uniq(tags)
-    });
+    }, this.createPages);
   }
 
   parseStarPercentages() {
@@ -106,22 +105,25 @@ export default class Reviews extends React.Component {
     });
   }
 
-  //  create pages array from reviews
   createPages() {
-    const { reviews } = this.state;
-    //  create pages with every element in reviews
+    const { showing } = this.state;
     const pages = [];
     let page = [];
-    reviews.forEach((review, index) => {
+    showing.forEach((review, index) => {
       if (index % 10 < 9) {
         page.push(review);
-      } else {
+      } else if (index % 10 === 9) {
         page.push(review);
         pages.push(page);
         page = [];
       }
+      if (index === showing.length - 1) {
+        pages.push(page);
+      }
     });
-    console.log(pages);
+    this.setState({
+      pages
+    });
   }
 
   handleRatingClick(event) {
@@ -133,27 +135,13 @@ export default class Reviews extends React.Component {
     });
   }
 
-  handleSortClick() {
-    const { choosingSort } = this.state;
-    this.setState({
-      choosingSort: !choosingSort
-    });
-  }
-
-  handleSortOptionClick(event) {
-    this.setState({
-      sortBy: event.currentTarget.dataset.option,
-      choosingSort: false
-    }, this.sortReviews);
-  }
-
   sortReviews() {
     const { reviews } = this.state;
     const { sortBy } = this.state;
     reviews.sort(comparisons[sortBy]);
     this.setState({
       showing: reviews
-    });
+    }, this.createPages);
   }
 
   filterReviews() {
@@ -176,6 +164,20 @@ export default class Reviews extends React.Component {
     }, this.getTags);
   }
 
+  handleSortClick() {
+    const { choosingSort } = this.state;
+    this.setState({
+      choosingSort: !choosingSort
+    });
+  }
+
+  handleSortOptionClick(event) {
+    this.setState({
+      sortBy: event.currentTarget.dataset.option,
+      choosingSort: false
+    }, this.sortReviews);
+  }
+
   handleFilterClick(event) {
     let { selectedTags } = this.state;
     const indexCheck = selectedTags.indexOf(event.currentTarget.dataset.tag);
@@ -192,6 +194,7 @@ export default class Reviews extends React.Component {
   render() {
     const { summary } = this.state;
     const { reviews } = this.state;
+    const { pages } = this.state;
     const { showing } = this.state;
     const { allTags } = this.state;
     const { sortBy } = this.state;
@@ -220,9 +223,15 @@ export default class Reviews extends React.Component {
           handleSortOptionClick={this.handleSortOptionClick}
           handleFilterClick={this.handleFilterClick}
         />
-        <ReviewList
-          reviews={showing}
-        />
+        {pages.length
+          ? (
+            <ReviewList
+              reviews={showing}
+              pages={pages}
+              currentPage={0}
+            />
+          )
+          : null}
       </div>
     );
   }
