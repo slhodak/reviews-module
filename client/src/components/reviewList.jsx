@@ -11,11 +11,11 @@ function ReviewList(props) {
   const { goToPreviousPage } = props;
   const buttonArray = pageButtonList.getArray();
   return (
-    <div>
+    <div className="review-list">
       {pages[currentPage].map(review => (
         <Review key={review.id} review={review} />
       ))}
-      <div className="pageButtons">
+      <div className="page-buttons">
         {/* always include first and last page */}
         {/* always include current page */}
         {/* include pages to left and right of current page unless they are the first or the last page or they do not exist */}
@@ -26,11 +26,22 @@ function ReviewList(props) {
         {currentPage > 0
           ? <div className="button left" onClick={goToPreviousPage} />
           : <div className="button left dead" />}
-        {buttonArray.map(button => (
-          <div className={button.display} data-page={button.page} onClick={goToPage}>
-            <p>{button.page + 1}</p>
-          </div>
-        ))}
+        {buttonArray.map((button) => {
+          console.log(button);
+          if (button.display === 'button') {
+            return (
+              <div className={button.display} data-page={button.page} onClick={goToPage}>
+                <p>{button.page + 1}</p>
+              </div>
+            );
+          }
+          if (button.display === 'ellipse') {
+            return (
+              <span className={button.display}>...</span>
+            );
+          }
+          return null;
+        })}
         {currentPage < pages.length - 1
           ? <div className="button right" onClick={goToNextPage} />
           : <div className="button right dead" />}

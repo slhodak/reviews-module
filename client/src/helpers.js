@@ -36,24 +36,23 @@ const Models = {
     }
 
     setButtonDisplays(inputButton = this.head, currentPage) {
-      console.log(inputButton);
       const button = inputButton;
       if (!button.next) {
-        button.display = 'Button';
+        button.display = 'button';
         return;
       }
       if (!button.previous) {
-        button.display = 'Button';
+        button.display = 'button';
       } else if (button.page === currentPage) {
-        button.display = 'Button';
+        button.display = 'button';
       } else if (button.previous.page === currentPage) {
-        button.display = 'Button';
+        button.display = 'button';
       } else if (button.next.page === currentPage) {
-        button.display = 'Button';
+        button.display = 'button';
       } else if (button.previous.previous && button.previous.previous.page === currentPage && button.next) {
-        button.display = 'Ellipse';
+        button.display = 'ellipse';
       } else if (button.next.next && button.next.next.page === currentPage && button.previous) {
-        button.display = 'Ellipse';
+        button.display = 'ellipse';
       } else {
         button.display = null;
       }

@@ -149,7 +149,7 @@ export default class Reviews extends React.Component {
     // call right after create list and when you flip pages
     console.log(buttonList);
     const { currentPage } = this.state;
-    buttonList.setButtonDisplays(buttonList, currentPage);
+    buttonList.setButtonDisplays(buttonList.head, currentPage);
     this.setState({
       pageButtonList: buttonList
     });
