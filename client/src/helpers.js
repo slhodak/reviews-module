@@ -20,4 +20,25 @@ const comparisons = {
   }
 };
 
-export default comparisons;
+const Models = {
+  ButtonLinkedList: class {
+    constructor(page) {
+      this.head = new Models.ButtonListNode(page);
+      this.tail = this.head;
+    }
+
+    addButtonToTail(page) {
+      const newButton = new Models.ButtonListNode(page);
+      newButton.previous = this.tail;
+      this.tail.next = newButton;
+      this.tail = newButton;
+    }
+  },
+  ButtonListNode: (page) => {
+    this.page = page;
+    this.next = null;
+    this.previous = null;
+  }
+};
+
+export { comparisons, Models };

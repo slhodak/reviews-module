@@ -5,7 +5,7 @@ import request from 'superagent';
 import Summary from './Summary.jsx';
 import Sorting from './Sorting.jsx';
 import ReviewList from './ReviewList.jsx';
-import comparisons from '../helpers';
+import { comparisons } from '../helpers';
 
 export default class Reviews extends React.Component {
   constructor(props) {
