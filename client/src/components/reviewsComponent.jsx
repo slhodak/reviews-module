@@ -136,11 +136,11 @@ export default class Reviews extends React.Component {
   }
 
   sortReviews() {
-    const { reviews } = this.state;
+    const { showing } = this.state;
     const { sortBy } = this.state;
-    reviews.sort(comparisons[sortBy]);
+    showing.sort(comparisons[sortBy]);
     this.setState({
-      showing: reviews
+      showing
     }, this.createPages);
   }
 
