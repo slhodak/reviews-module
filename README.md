@@ -52,21 +52,21 @@ npm install
   - brew install postgres
 2) Start postgres if it is not already started
   - brew services start postgres
-1) Run the following commands:
+3) Run the following commands:
   - createdb reviews
   - $ psql reviews
-2) Run the schema file
+4) Run the schema file
   - reviews=# \i database/schema.sql
-4) Check out the tables
+5) Check out the tables
   - reviews=# \dt
-5) Exit the psql shell
+6) Exit the psql shell
   - reviews=# \q
-6) Go to the config/localRole.example.js file
+7) Go to the config/localRole.example.js file
   - rename to 'localRole.js'
   - make the key equal to your local username or whatever is the username of the postgres role that created the database (run 'select * from pg_roles;' in the psql shell [psql reviews to enter the shell again] to see a list of possibilities)
-6) Run the seed script (don't forget npm install)
+8) Run the seed script (don't forget npm install)
   - npm run seed
-7) Check if the tables populated
+9) Check if the tables populated
   - psql reviews
   - reviews=# select * from reviews;
 
@@ -79,9 +79,8 @@ npm install
 GET http://127.0.0.1:3010/:id/summary
 
 ##### Parameters
-**id**
-
-**integer**
+**id**  
+**integer**  
 
 The **id** parameter specifies the unique id of the restaurant being queried. Seeded test values range from 1-5.
 
@@ -89,16 +88,16 @@ The **id** parameter specifies the unique id of the restaurant being queried. Se
 
 If successful, this method returns a response body with the following structure:
 
-{
-  "location": **_string_**,
-  "noise": **_string_**,
-  "recommendPercent": **_integer_**,
-  "valueRating": **_string_**,
-  "averageOverall": **_string_**,
-  "averageFood": **_string_**,
-  "averageAmbience": **_string_**,
-  "averageService": **_string_**
-}
+{  
+  "location": **_string_**,  
+  "noise": **_string_**,  
+  "recommendPercent": **_integer_**,  
+  "valueRating": **_string_**,  
+  "averageOverall": **_string_**,  
+  "averageFood": **_string_**,  
+  "averageAmbience": **_string_**,  
+  "averageService": **_string_**  
+}  
 
 ### Restaurant Reviews
 
@@ -107,9 +106,8 @@ If successful, this method returns a response body with the following structure:
 GET http://127.0.0.1:3010/:id/reviews
 
 ##### Parameters
-**id**
-
-**integer**
+**id**  
+**integer**  
 
 The **id** parameter specifies the unique id of the restaurant being queried. Seeded test values range from 1-5.
 
@@ -117,20 +115,20 @@ The **id** parameter specifies the unique id of the restaurant being queried. Se
 
 If successful, this method returns an array containing objects with the following structure:
 
-{
-  "id": **_integer_**,
-  "restaurant": **_integer_**,
-  "diner": **_integer_**,
-  "text": **_string_**,
-  "date": **_date_**,
-  "overall": **_integer_**,
-  "food": **_integer_**,
-  "service": **_integer_**,
-  "ambience": **_integer_**,
-  "wouldrecommend": **_boolean_**
-  "tags": **_string_**,
-  "firstname": **_string_**,
-  "lastname": **_string_**,
-  "city": **_string_**,
-  "totalreviews": **_integer_**
+{  
+  "id": **_integer_**,  
+  "restaurant": **_integer_**,  
+  "diner": **_integer_**,  
+  "text": **_string_**,  
+  "date": **_date_**,  
+  "overall": **_integer_**,  
+  "food": **_integer_**,  
+  "service": **_integer_**,  
+  "ambience": **_integer_**,  
+  "wouldrecommend": **_boolean_**  
+  "tags": **_string_**,  
+  "firstname": **_string_**,  
+  "lastname": **_string_**,  
+  "city": **_string_**,  
+  "totalreviews": **_integer_**  
 }

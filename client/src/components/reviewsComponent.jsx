@@ -5,6 +5,7 @@ import request from 'superagent';
 import Summary from './Summary.jsx';
 import Sorting from './Sorting.jsx';
 import ReviewList from './ReviewList.jsx';
+import comparisons from '../helpers';
 
 export default class Reviews extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ export default class Reviews extends React.Component {
     this.getTags = this.getTags.bind(this);
     this.handleSortClick = this.handleSortClick.bind(this);
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
+    this.sortReviews = this.sortReviews.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.filterReviews = this.filterReviews.bind(this);
   }
@@ -65,6 +67,7 @@ export default class Reviews extends React.Component {
           reviews: res.body,
           showing: res.body
         }, () => {
+          this.sortReviews();
           this.parseStarPercentages();
           this.getTags();
         });
@@ -118,14 +121,18 @@ export default class Reviews extends React.Component {
 
   handleSortOptionClick(event) {
     this.setState({
-      sortBy: event.currentTarget.dataset.option
+      sortBy: event.currentTarget.dataset.option,
+      choosingSort: false
     }, this.sortReviews);
   }
 
   sortReviews() {
-    // sort reviews using 'sortBy' and rerender everything
-    //  must determine which date is most recent
-    //    convert to computer time and compare milliseconds maybe
+    const { reviews } = this.state;
+    const { sortBy } = this.state;
+    reviews.sort(comparisons[sortBy]);
+    this.setState({
+      showing: reviews
+    });
   }
 
   filterReviews() {
@@ -166,6 +173,8 @@ export default class Reviews extends React.Component {
     const { reviews } = this.state;
     const { showing } = this.state;
     const { allTags } = this.state;
+    const { sortBy } = this.state;
+    const { selectedTags } = this.state;
     const { choosingSort } = this.state;
     const { starPercentages } = this.state;
     return (
@@ -182,7 +191,9 @@ export default class Reviews extends React.Component {
           : null}
         <Sorting
           tags={allTags}
+          selectedTags={selectedTags}
           options={this.options}
+          sortBy={sortBy}
           choosingSort={choosingSort}
           handleSortClick={this.handleSortClick}
           handleSortOptionClick={this.handleSortOptionClick}
