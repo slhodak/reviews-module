@@ -13,16 +13,10 @@ it('renders the summary sub-component', () => {
     averageAmbience: '4.5',
     averageService: '5'
   };
-  const reviewsByRating = {
-    1: 4,
-    2: 2,
-    3: 5,
-    4: 1,
-    5: 0
-  };
+  const starPercentages = [10, 30, 20, 35, 5];
 
   const tree = renderer
-    .create(<Summary summary={summary} totalReviews={5} reviewsByRating={reviewsByRating} />)
+    .create(<Summary summary={summary} totalReviews={5} starPercentages={starPercentages} />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

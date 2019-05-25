@@ -18,7 +18,11 @@ describe('Single Review', () => {
     service: 5,
     ambience: 3,
     wouldrecommend: false,
-    tags: 'pumpkin pie'
+    tags: 'pumpkin pie',
+    firstname: 'Jaclyn',
+    lastname: 'Mcdermott',
+    city: 'New York City',
+    totalReviews: 12
   };
 
   it('should contain a user with username text', () => {

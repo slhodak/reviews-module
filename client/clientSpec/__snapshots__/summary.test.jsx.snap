@@ -35,22 +35,22 @@ exports[`renders the summary sub-component 1`] = `
         className="overallStars"
       >
         <div
-          className="stars"
+          className="summary-stars"
         >
-          <div
-            className="review-star"
+          <span
+            className="review-star-blank"
           />
-          <div
-            className="review-star"
+          <span
+            className="review-star-blank"
           />
-          <div
-            className="review-star"
+          <span
+            className="review-star-blank"
           />
-          <div
-            className="review-star"
+          <span
+            className="review-star-blank"
           />
-          <div
-            className="review-star"
+          <span
+            className="review-star-blank"
           />
         </div>
         <p>
@@ -146,14 +146,19 @@ exports[`renders the summary sub-component 1`] = `
           className="bar"
         >
           <span>
-            1
+            NaN
           </span>
           <div
             className="bar-container"
-            id="bar1"
+            id="barNaN"
           >
             <div
-              className="progress n-stars"
+              className="progress"
+              style={
+                Object {
+                  "width": "undefined%",
+                }
+              }
             />
           </div>
         </div>
@@ -161,14 +166,19 @@ exports[`renders the summary sub-component 1`] = `
           className="bar"
         >
           <span>
-            2
+            NaN
           </span>
           <div
             className="bar-container"
-            id="bar2"
+            id="barNaN"
           >
             <div
-              className="progress n-stars"
+              className="progress"
+              style={
+                Object {
+                  "width": "undefined%",
+                }
+              }
             />
           </div>
         </div>
@@ -176,14 +186,19 @@ exports[`renders the summary sub-component 1`] = `
           className="bar"
         >
           <span>
-            3
+            NaN
           </span>
           <div
             className="bar-container"
-            id="bar3"
+            id="barNaN"
           >
             <div
-              className="progress n-stars"
+              className="progress"
+              style={
+                Object {
+                  "width": "undefined%",
+                }
+              }
             />
           </div>
         </div>
@@ -191,14 +206,19 @@ exports[`renders the summary sub-component 1`] = `
           className="bar"
         >
           <span>
-            4
+            NaN
           </span>
           <div
             className="bar-container"
-            id="bar4"
+            id="barNaN"
           >
             <div
-              className="progress n-stars"
+              className="progress"
+              style={
+                Object {
+                  "width": "undefined%",
+                }
+              }
             />
           </div>
         </div>
@@ -206,14 +226,19 @@ exports[`renders the summary sub-component 1`] = `
           className="bar"
         >
           <span>
-            5
+            NaN
           </span>
           <div
             className="bar-container"
-            id="bar5"
+            id="barNaN"
           >
             <div
-              className="progress n-stars"
+              className="progress"
+              style={
+                Object {
+                  "width": "undefined%",
+                }
+              }
             />
           </div>
         </div>

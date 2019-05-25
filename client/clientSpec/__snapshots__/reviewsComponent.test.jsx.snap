@@ -35,35 +35,7 @@ exports[`Reviews Component renders the reviews component and its children 1`] = 
     </h4>
     <div
       className="filters"
-    >
-      <div
-        className="filter-button"
-      >
-        <input
-          className="filter-checkbox"
-          type="checkbox"
-        />
-        <span
-          className="filter-name"
-        >
-          gnocchi
-        </span>
-      </div>
-      <div
-        className="filter-button"
-      >
-        <input
-          className="filter-checkbox"
-          type="checkbox"
-        />
-        <span
-          className="filter-name"
-        >
-          asparagus
-        </span>
-      </div>
-    </div>
+    />
   </div>
-  <div />
 </div>
 `;
