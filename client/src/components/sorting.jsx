@@ -3,7 +3,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import SortOptions from './SortOptions.jsx';
 
-function Sorting(props) {
+function Sorting(props, ref) {
   const { tags } = props;
   const { selectedTags } = props;
   const { choosingSort } = props;

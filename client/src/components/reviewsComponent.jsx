@@ -136,7 +136,6 @@ export default class Reviews extends React.Component {
   }
 
   createPageButtonList() {
-    //  call when page is loaded and when filtering (when pages or showing is changed)
     const { pages } = this.state;
     const PageButtonList = new Models.ButtonLinkedList(0);
     for (let i = 1; i < pages.length; i++) {
@@ -146,7 +145,6 @@ export default class Reviews extends React.Component {
   }
 
   updatePageButtonList(buttonList = this.state.pageButtonList) {
-    // call right after create list and when you flip pages
     const { currentPage } = this.state;
     buttonList.setButtonDisplays(buttonList.head, currentPage);
     this.setState({
@@ -155,18 +153,14 @@ export default class Reviews extends React.Component {
   }
 
   goToPage(event) {
-    // Hacky and bad
-    const sorting = document.getElementsByClassName('sorting-panel')[0].getBoundingClientRect();
-    window.scrollTo(0, sorting.top + 600);
+    this.sortingPanel.scrollIntoView({ behavior: 'smooth' });
     this.setState({
       currentPage: +event.target.dataset.page
     }, this.updatePageButtonList);
   }
 
   goToNextPage() {
-    // Hacky and bad
-    const sorting = document.getElementsByClassName('sorting-panel')[0].getBoundingClientRect();
-    window.scrollTo(0, sorting.top + 600);
+    this.sortingPanel.scrollIntoView({ behavior: 'smooth' });
     const { currentPage } = this.state;
     this.setState({
       currentPage: currentPage + 1
@@ -174,9 +168,7 @@ export default class Reviews extends React.Component {
   }
 
   goToPreviousPage() {
-    // Hacky and bad and repeated
-    const sorting = document.getElementsByClassName('sorting-panel')[0].getBoundingClientRect();
-    window.scrollTo(0, sorting.top + 600);
+    this.sortingPanel.scrollIntoView({ behavior: 'smooth' });
     const { currentPage } = this.state;
     this.setState({
       currentPage: currentPage - 1
@@ -274,16 +266,18 @@ export default class Reviews extends React.Component {
             />
           )
           : null}
-        <Sorting
-          tags={allTags}
-          selectedTags={selectedTags}
-          options={this.options}
-          sortBy={sortBy}
-          choosingSort={choosingSort}
-          handleSortClick={this.handleSortClick}
-          handleSortOptionClick={this.handleSortOptionClick}
-          handleFilterClick={this.handleFilterClick}
-        />
+        <div ref={(node) => { this.sortingPanel = node; }}>
+          <Sorting
+            tags={allTags}
+            selectedTags={selectedTags}
+            options={this.options}
+            sortBy={sortBy}
+            choosingSort={choosingSort}
+            handleSortClick={this.handleSortClick}
+            handleSortOptionClick={this.handleSortOptionClick}
+            handleFilterClick={this.handleFilterClick}
+          />
+        </div>
         {pageButtonList
           ? (
             <ReviewList
