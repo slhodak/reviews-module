@@ -23,7 +23,8 @@ const comparisons = {
 const Models = {
   ButtonLinkedList: class {
     constructor(page) {
-      this.head = new Models.ButtonListNode(page);
+      const newButton = new Models.ButtonListNode(page);
+      this.head = newButton;
       this.tail = this.head;
     }
 
@@ -33,11 +34,39 @@ const Models = {
       this.tail.next = newButton;
       this.tail = newButton;
     }
+
+    setButtonDisplays(inputButton = this.head, currentPage) {
+      const button = inputButton;
+      if (!button.next) {
+        button.display = 'Button';
+        return;
+      }
+      if (!button.previous) {
+        button.display = 'Button';
+      } else if (button.page === currentPage) {
+        button.display = 'Button';
+      } else if (button.previous.page === currentPage) {
+        button.display = 'Button';
+      } else if (button.next.page === currentPage) {
+        button.display = 'Button';
+      } else if (button.previous.previous && button.previous.previous.page === currentPage && button.next) {
+        button.display = 'Ellipse';
+      } else if (button.next.next && button.next.next.page === currentPage && button.previous) {
+        button.display = 'Ellipse';
+      } else {
+        button.display = null;
+      }
+      this.setButtonDisplays(button.next, currentPage);
+    }
   },
-  ButtonListNode: (page) => {
-    this.page = page;
-    this.next = null;
-    this.previous = null;
+  ButtonListNode: class {
+    constructor(page) {
+      this.page = page;
+      this.next = null;
+      this.previous = null;
+      //  Options are 'Button', 'Ellipse', and null
+      this.display = null;
+    }
   }
 };
 

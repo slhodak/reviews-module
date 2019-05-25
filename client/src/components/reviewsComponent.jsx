@@ -5,7 +5,7 @@ import request from 'superagent';
 import Summary from './Summary.jsx';
 import Sorting from './Sorting.jsx';
 import ReviewList from './ReviewList.jsx';
-import { comparisons } from '../helpers';
+import { comparisons, Models } from '../helpers';
 
 export default class Reviews extends React.Component {
   constructor(props) {
@@ -23,6 +23,7 @@ export default class Reviews extends React.Component {
       showing: [],
       pages: [],
       currentPage: 0,
+      pageButtonList: null,
       starPercentages: [0, 0, 0, 0, 0],
       allTags: [],
       selectedTags: [],
@@ -33,18 +34,22 @@ export default class Reviews extends React.Component {
     this.componentWillMount = this.componentWillMount.bind(this);
     this.getSummaryData = this.getSummaryData.bind(this);
     this.getReviewsData = this.getReviewsData.bind(this);
-    this.handleRatingClick = this.handleRatingClick.bind(this);
     this.parseStarPercentages = this.parseStarPercentages.bind(this);
     this.getTags = this.getTags.bind(this);
+
     this.createPages = this.createPages.bind(this);
+    this.createPageButtonList = this.createPageButtonList.bind(this);
+    this.updatePageButtonList = this.updatePageButtonList.bind(this);
     this.goToPage = this.goToPage.bind(this);
     this.goToNextPage = this.goToNextPage.bind(this);
     this.goToPreviousPage = this.goToPreviousPage.bind(this);
+
+    this.sortReviews = this.sortReviews.bind(this);
+    this.filterReviews = this.filterReviews.bind(this);
+    this.handleRatingClick = this.handleRatingClick.bind(this);
     this.handleSortClick = this.handleSortClick.bind(this);
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
-    this.sortReviews = this.sortReviews.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
-    this.filterReviews = this.filterReviews.bind(this);
   }
 
   componentWillMount() {
@@ -127,7 +132,24 @@ export default class Reviews extends React.Component {
     });
     this.setState({
       pages
-    });
+    }, this.createPageButtonList);
+  }
+
+  createPageButtonList() {
+    //  call when page is loaded and when filtering (when pages or showing is changed)
+    //  using pages array
+    const { pages } = this.state;
+    const PageButtonList = new Models.ButtonLinkedList(0);
+    for (let i = 1; i < pages.length; i++) {
+      PageButtonList.addButtonToTail(i);
+    }
+    this.updatePageButtonList(PageButtonList.head);
+  }
+
+  updatePageButtonList(buttonList) {
+    // call right after create list and when you flip pages
+    const { currentPage } = this.state;
+    buttonList.setButtonDisplays(null, currentPage);
   }
 
   goToPage(event) {
