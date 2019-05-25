@@ -9,7 +9,7 @@ function ReviewList(props) {
   const { goToPage } = props;
   const { goToNextPage } = props;
   const { goToPreviousPage } = props;
-
+  const buttonArray = pageButtonList.getArray();
   return (
     <div>
       {pages[currentPage].map(review => (
@@ -26,9 +26,9 @@ function ReviewList(props) {
         {currentPage > 0
           ? <div className="button left" onClick={goToPreviousPage} />
           : <div className="button left dead" />}
-        {pages.map((page, index) => (
-          <div className="button" data-page={index} onClick={goToPage}>
-            <p>{index + 1}</p>
+        {buttonArray.map(button => (
+          <div className={button.display} data-page={button.page} onClick={goToPage}>
+            <p>{button.page + 1}</p>
           </div>
         ))}
         {currentPage < pages.length - 1
@@ -44,7 +44,7 @@ ReviewList.propTypes = {
   goToNextPage: PropTypes.func.isRequired,
   goToPreviousPage: PropTypes.func.isRequired,
   pages: PropTypes.array.isRequired,
-  currentPage: PropTypes.number.isRequired
+  currentPage: PropTypes.number.isRequired,
   pageButtonList: PropTypes.object.isRequired
 };
 

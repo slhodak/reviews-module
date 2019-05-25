@@ -36,6 +36,7 @@ const Models = {
     }
 
     setButtonDisplays(inputButton = this.head, currentPage) {
+      console.log(inputButton);
       const button = inputButton;
       if (!button.next) {
         button.display = 'Button';
@@ -57,6 +58,16 @@ const Models = {
         button.display = null;
       }
       this.setButtonDisplays(button.next, currentPage);
+    }
+
+    getArray() {
+      const array = [];
+      let button = this.head;
+      while (button) {
+        array.push(button);
+        button = button.next;
+      }
+      return array;
     }
   },
   ButtonListNode: class {

@@ -142,13 +142,14 @@ export default class Reviews extends React.Component {
     for (let i = 1; i < pages.length; i++) {
       PageButtonList.addButtonToTail(i);
     }
-    this.updatePageButtonList(PageButtonList.head);
+    this.updatePageButtonList(PageButtonList);
   }
 
   updatePageButtonList(buttonList = this.state.pageButtonList) {
     // call right after create list and when you flip pages
+    console.log(buttonList);
     const { currentPage } = this.state;
-    buttonList.setButtonDisplays(null, currentPage);
+    buttonList.setButtonDisplays(buttonList, currentPage);
     this.setState({
       pageButtonList: buttonList
     });
@@ -275,7 +276,7 @@ export default class Reviews extends React.Component {
           handleSortOptionClick={this.handleSortOptionClick}
           handleFilterClick={this.handleFilterClick}
         />
-        {pages.length
+        {pageButtonList
           ? (
             <ReviewList
               reviews={showing}
