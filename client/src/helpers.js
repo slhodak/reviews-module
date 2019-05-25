@@ -37,11 +37,11 @@ const Models = {
 
     setButtonDisplays(inputButton = this.head, currentPage) {
       const button = inputButton;
-      if (!button.next) {
+      if (button === this.tail) {
         button.display = 'button';
         return;
       }
-      if (!button.previous) {
+      if (button === this.head) {
         button.display = 'button';
       } else if (button.page === currentPage) {
         button.display = 'button';
@@ -49,9 +49,11 @@ const Models = {
         button.display = 'button';
       } else if (button.next.page === currentPage) {
         button.display = 'button';
-      } else if (button.previous.previous && button.previous.previous.page === currentPage && button.next) {
-        button.display = 'ellipse';
-      } else if (button.next.next && button.next.next.page === currentPage && button.previous) {
+      } else if (button.previous.previous && button.previous.previous.page === currentPage && button.previous.previous === this.head) {
+        button.display = 'button';
+      } else if (button.next.next && button.next.next.page === currentPage && button.next.next === this.tail) {
+        button.display = 'button';
+      } else if (button.previous === this.head || button.next === this.tail) {
         button.display = 'ellipse';
       } else {
         button.display = null;
