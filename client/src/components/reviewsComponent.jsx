@@ -22,6 +22,7 @@ export default class Reviews extends React.Component {
       reviews: [],
       showing: [],
       pages: [],
+      currentPage: 0,
       starPercentages: [0, 0, 0, 0, 0],
       allTags: [],
       selectedTags: [],
@@ -36,6 +37,7 @@ export default class Reviews extends React.Component {
     this.parseStarPercentages = this.parseStarPercentages.bind(this);
     this.getTags = this.getTags.bind(this);
     this.createPages = this.createPages.bind(this);
+    this.goToPage = this.goToPage.bind(this);
     this.handleSortClick = this.handleSortClick.bind(this);
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
     this.sortReviews = this.sortReviews.bind(this);
@@ -126,6 +128,13 @@ export default class Reviews extends React.Component {
     });
   }
 
+  goToPage(event) {
+    console.log(event.currentTarget.dataset.page);
+    this.setState({
+      currentPage: event.currentTarget.dataset.page
+    });
+  }
+
   handleRatingClick(event) {
     const { reviews } = this.state;
     reviews.forEach((review) => {
@@ -195,6 +204,7 @@ export default class Reviews extends React.Component {
     const { summary } = this.state;
     const { reviews } = this.state;
     const { pages } = this.state;
+    const { currentPage } = this.state;
     const { showing } = this.state;
     const { allTags } = this.state;
     const { sortBy } = this.state;
@@ -228,7 +238,8 @@ export default class Reviews extends React.Component {
             <ReviewList
               reviews={showing}
               pages={pages}
-              currentPage={0}
+              currentPage={currentPage}
+              goToPage={this.goToPage}
             />
           )
           : null}
