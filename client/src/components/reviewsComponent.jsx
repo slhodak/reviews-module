@@ -38,6 +38,8 @@ export default class Reviews extends React.Component {
     this.getTags = this.getTags.bind(this);
     this.createPages = this.createPages.bind(this);
     this.goToPage = this.goToPage.bind(this);
+    this.goToNextPage = this.goToNextPage.bind(this);
+    this.goToPreviousPage = this.goToPreviousPage.bind(this);
     this.handleSortClick = this.handleSortClick.bind(this);
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
     this.sortReviews = this.sortReviews.bind(this);
@@ -129,16 +131,23 @@ export default class Reviews extends React.Component {
   }
 
   goToPage(event) {
-    if (event.target.dataset.flip) {
-      const { currentPage } = this.state;
-      this.setState({
-        currentPage: currentPage + +event.target.dataset.flip
-      });
-    } else {
-      this.setState({
-        currentPage: +event.target.dataset.page
-      });
-    }
+    this.setState({
+      currentPage: +event.target.dataset.page
+    });
+  }
+
+  goToNextPage() {
+    const { currentPage } = this.state;
+    this.setState({
+      currentPage: currentPage + 1
+    });
+  }
+
+  goToPreviousPage() {
+    const { currentPage } = this.state;
+    this.setState({
+      currentPage: currentPage - 1
+    });
   }
 
   handleRatingClick(event) {
@@ -246,6 +255,8 @@ export default class Reviews extends React.Component {
               pages={pages}
               currentPage={currentPage}
               goToPage={this.goToPage}
+              goToNextPage={this.goToNextPage}
+              goToPreviousPage={this.goToPreviousPage}
             />
           )
           : null}

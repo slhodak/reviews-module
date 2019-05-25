@@ -497,6 +497,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .pageButtons .button:hover {
@@ -508,9 +509,22 @@ body {
 }
 
 .pageButtons .button.left {
-  background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='7' height='10' viewBox='0 0 7 10' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3Eicon-caret-left%3C/title%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M16 17V-7H-8v24z'/%3E%3Cg fill-rule='nonzero' fill='%23717171'%3E%3Cpath d='M5 .765L.757 5.007l1.415 1.415 4.242-4.243z'/%3E%3Cpath d='M2.172 3.593L.757 5.007 5 9.25l1.414-1.414z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat 50%;
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='7' height='10' viewBox='0 0 7 10' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3EIcon/Carot Down%3C/title%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M16 17V-7H-8v24z'/%3E%3Cg fill='%23333'%3E%3Cpath d='M5 .765L.757 5.007l1.415 1.415 4.242-4.243z'/%3E%3Cpath d='M2.172 3.593L.757 5.007 5 9.25l1.414-1.414z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat 50%;
 }
 
 .pageButtons .button.right {
   background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='7' height='10' viewBox='0 0 7 10' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3EIcon/Carot Down%3C/title%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M-9 17V-7h24v24z'/%3E%3Cg fill='%23333'%3E%3Cpath d='M2 .765l4.243 4.242-1.415 1.415L.586 2.179z'/%3E%3Cpath d='M4.828 3.593l1.415 1.414L2 9.25.586 7.836z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat 50%;
+}
+
+.button.left.dead {
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='7' height='10' viewBox='0 0 7 10' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3Eicon-caret-left%3C/title%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M16 17V-7H-8v24z'/%3E%3Cg fill-rule='nonzero' fill='%23717171'%3E%3Cpath d='M5 .765L.757 5.007l1.415 1.415 4.242-4.243z'/%3E%3Cpath d='M2.172 3.593L.757 5.007 5 9.25l1.414-1.414z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat 50%;
+}
+
+.button.right.dead {
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='7' height='10' viewBox='0 0 7 10' xmlns='http://www.w3.org/2000/svg'%3E%3Ctitle%3Eicon-caret-right%3C/title%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cpath d='M-9 17V-7h24v24z'/%3E%3Cg fill-rule='nonzero' fill='%23717171'%3E%3Cpath d='M2 .765l4.243 4.242-1.415 1.415L.586 2.179z'/%3E%3Cpath d='M4.828 3.593l1.415 1.414L2 9.25.586 7.836z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat 50%;
+}
+
+.button.dead:hover {
+  border: 1px solid #d8d9db!important;
+  cursor: default;
 }
