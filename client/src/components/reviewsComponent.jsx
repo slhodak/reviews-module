@@ -147,7 +147,6 @@ export default class Reviews extends React.Component {
 
   updatePageButtonList(buttonList = this.state.pageButtonList) {
     // call right after create list and when you flip pages
-    console.log(buttonList);
     const { currentPage } = this.state;
     buttonList.setButtonDisplays(buttonList.head, currentPage);
     this.setState({
@@ -156,12 +155,18 @@ export default class Reviews extends React.Component {
   }
 
   goToPage(event) {
+    // Hacky and bad
+    const sorting = document.getElementsByClassName('sorting-panel')[0].getBoundingClientRect();
+    window.scrollTo(0, sorting.top + 600);
     this.setState({
       currentPage: +event.target.dataset.page
     }, this.updatePageButtonList);
   }
 
   goToNextPage() {
+    // Hacky and bad
+    const sorting = document.getElementsByClassName('sorting-panel')[0].getBoundingClientRect();
+    window.scrollTo(0, sorting.top + 600);
     const { currentPage } = this.state;
     this.setState({
       currentPage: currentPage + 1
@@ -169,6 +174,9 @@ export default class Reviews extends React.Component {
   }
 
   goToPreviousPage() {
+    // Hacky and bad and repeated
+    const sorting = document.getElementsByClassName('sorting-panel')[0].getBoundingClientRect();
+    window.scrollTo(0, sorting.top + 600);
     const { currentPage } = this.state;
     this.setState({
       currentPage: currentPage - 1
