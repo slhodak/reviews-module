@@ -129,14 +129,14 @@ export default class Reviews extends React.Component {
   }
 
   goToPage(event) {
-    if (event.target.dataset.next) {
+    if (event.target.dataset.flip) {
       const { currentPage } = this.state;
       this.setState({
-        currentPage: currentPage + +event.target.dataset.next
+        currentPage: currentPage + +event.target.dataset.flip
       });
     } else {
       this.setState({
-        currentPage: event.target.dataset.page
+        currentPage: +event.target.dataset.page
       });
     }
   }
