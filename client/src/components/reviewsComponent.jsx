@@ -21,6 +21,7 @@ export default class Reviews extends React.Component {
       summary: null,
       reviews: [],
       showing: [],
+      pages: [],
       starPercentages: [0, 0, 0, 0, 0],
       allTags: [],
       selectedTags: [],
@@ -34,6 +35,7 @@ export default class Reviews extends React.Component {
     this.handleRatingClick = this.handleRatingClick.bind(this);
     this.parseStarPercentages = this.parseStarPercentages.bind(this);
     this.getTags = this.getTags.bind(this);
+    this.createPages = this.createPages.bind(this);
     this.handleSortClick = this.handleSortClick.bind(this);
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
     this.sortReviews = this.sortReviews.bind(this);
@@ -70,6 +72,7 @@ export default class Reviews extends React.Component {
           this.sortReviews();
           this.parseStarPercentages();
           this.getTags();
+          this.createPages();
         });
       })
       .catch(err => console.log(err));
@@ -101,6 +104,24 @@ export default class Reviews extends React.Component {
     this.setState({
       starPercentages: reversed
     });
+  }
+
+  //  create pages array from reviews
+  createPages() {
+    const { reviews } = this.state;
+    //  create pages with every element in reviews
+    const pages = [];
+    let page = [];
+    reviews.forEach((review, index) => {
+      if (index % 10 < 9) {
+        page.push(review);
+      } else {
+        page.push(review);
+        pages.push(page);
+        page = [];
+      }
+    });
+    console.log(pages);
   }
 
   handleRatingClick(event) {
