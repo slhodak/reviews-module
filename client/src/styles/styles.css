@@ -525,6 +525,6 @@ body {
 }
 
 .button.dead:hover {
-  border: 1px solid #d8d9db!important;
+  border: 1px solid #d8d9db !important;
   cursor: default;
 }

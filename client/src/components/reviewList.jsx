@@ -14,7 +14,6 @@ function ReviewList(props) {
       {pages[currentPage].map(review => (
         <Review key={review.id} review={review} />
       ))}
-      {/* if currentpage is 0, this button is no button */}
       <div className="pageButtons">
         {currentPage > 0
           ? <div className="button left" onClick={goToPreviousPage} />
@@ -24,7 +23,6 @@ function ReviewList(props) {
             <p>{index + 1}</p>
           </div>
         ))}
-        {/* if current page is maximum, this button is no button */}
         {currentPage < pages.length - 1
           ? <div className="button right" onClick={goToNextPage} />
           : <div className="button right dead" />}

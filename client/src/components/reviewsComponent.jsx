@@ -150,15 +150,6 @@ export default class Reviews extends React.Component {
     });
   }
 
-  handleRatingClick(event) {
-    const { reviews } = this.state;
-    reviews.forEach((review) => {
-      if (review.overall.toString() === event.currentTarget.id.slice(3)) {
-        console.log(review);
-      }
-    });
-  }
-
   sortReviews() {
     const { showing } = this.state;
     const { sortBy } = this.state;
@@ -173,6 +164,7 @@ export default class Reviews extends React.Component {
     const { selectedTags } = this.state;
     let filtered = null;
     if (selectedTags.length) {
+      //  will need to update this to handle star ratings as if they were tags
       filtered = reviews.filter((review) => {
         const reviewTags = review.tags.split(',');
         for (let i = 0; i < reviewTags.length; i++) {
@@ -184,8 +176,18 @@ export default class Reviews extends React.Component {
       });
     }
     this.setState({
-      showing: filtered || reviews
+      showing: filtered || reviews,
+      currentPage: 0
     }, this.getTags);
+  }
+
+  handleRatingClick(event) {
+    const { reviews } = this.state;
+    reviews.forEach((review) => {
+      if (review.overall.toString() === event.currentTarget.id.slice(3)) {
+        console.log(review);
+      }
+    });
   }
 
   handleSortClick() {
