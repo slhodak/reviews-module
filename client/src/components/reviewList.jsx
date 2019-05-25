@@ -5,6 +5,7 @@ import Review from './Review.jsx';
 function ReviewList(props) {
   const { pages } = props;
   const { currentPage } = props;
+  const { pageButtonList } = props;
   const { goToPage } = props;
   const { goToNextPage } = props;
   const { goToPreviousPage } = props;
@@ -44,6 +45,7 @@ ReviewList.propTypes = {
   goToPreviousPage: PropTypes.func.isRequired,
   pages: PropTypes.array.isRequired,
   currentPage: PropTypes.number.isRequired
+  pageButtonList: PropTypes.object.isRequired
 };
 
 export default ReviewList;

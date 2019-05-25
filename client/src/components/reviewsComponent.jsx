@@ -137,7 +137,6 @@ export default class Reviews extends React.Component {
 
   createPageButtonList() {
     //  call when page is loaded and when filtering (when pages or showing is changed)
-    //  using pages array
     const { pages } = this.state;
     const PageButtonList = new Models.ButtonLinkedList(0);
     for (let i = 1; i < pages.length; i++) {
@@ -146,30 +145,33 @@ export default class Reviews extends React.Component {
     this.updatePageButtonList(PageButtonList.head);
   }
 
-  updatePageButtonList(buttonList) {
+  updatePageButtonList(buttonList = this.state.pageButtonList) {
     // call right after create list and when you flip pages
     const { currentPage } = this.state;
     buttonList.setButtonDisplays(null, currentPage);
+    this.setState({
+      pageButtonList: buttonList
+    });
   }
 
   goToPage(event) {
     this.setState({
       currentPage: +event.target.dataset.page
-    });
+    }, this.updatePageButtonList);
   }
 
   goToNextPage() {
     const { currentPage } = this.state;
     this.setState({
       currentPage: currentPage + 1
-    });
+    }, this.updatePageButtonList);
   }
 
   goToPreviousPage() {
     const { currentPage } = this.state;
     this.setState({
       currentPage: currentPage - 1
-    });
+    }, this.updatePageButtonList);
   }
 
   sortReviews() {
@@ -244,6 +246,7 @@ export default class Reviews extends React.Component {
     const { reviews } = this.state;
     const { pages } = this.state;
     const { currentPage } = this.state;
+    const { pageButtonList } = this.state;
     const { showing } = this.state;
     const { allTags } = this.state;
     const { sortBy } = this.state;
@@ -278,6 +281,7 @@ export default class Reviews extends React.Component {
               reviews={showing}
               pages={pages}
               currentPage={currentPage}
+              pageButtonList={pageButtonList}
               goToPage={this.goToPage}
               goToNextPage={this.goToNextPage}
               goToPreviousPage={this.goToPreviousPage}
