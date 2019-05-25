@@ -11,14 +11,14 @@ function ReviewList(props) {
       {pages[currentPage].map(review => (
         <Review key={review.id} review={review} />
       ))}
-      <div className="pageButtons">
-        <div className="button left" />
+      <div className="pageButtons" onClick={goToPage}>
+        <div className="button left" data-next={-1} />
         {pages.map((page, index) => (
-          <div className="button" data-page={index} onClick={goToPage}>
+          <div className="button" data-page={index}>
             <p>{index + 1}</p>
           </div>
         ))}
-        <div className="button right" />
+        <div className="button right" data-next={1} />
       </div>
     </div>
   );

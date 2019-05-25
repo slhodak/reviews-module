@@ -129,10 +129,16 @@ export default class Reviews extends React.Component {
   }
 
   goToPage(event) {
-    console.log(event.currentTarget.dataset.page);
-    this.setState({
-      currentPage: event.currentTarget.dataset.page
-    });
+    if (event.target.dataset.next) {
+      const { currentPage } = this.state;
+      this.setState({
+        currentPage: currentPage + +event.target.dataset.next
+      });
+    } else {
+      this.setState({
+        currentPage: event.target.dataset.page
+      });
+    }
   }
 
   handleRatingClick(event) {
