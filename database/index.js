@@ -2,19 +2,8 @@ const { Client } = require('pg');
 const squel = require('squel');
 const localRole = require('../config/localRole.js');
 
-module.exports.getAllReviews = (restaurantId, callback) => {
-  const client = new Client({
-    user: localRole,
-    host: 'localhost',
-    database: 'reviews',
-    port: 5432
-  });
 
-  const sql = squel.select()
-    .from('reviews')
-    .where(`restaurant = ${restaurantId}`)
-    .toString();
-
+const makeQuery = (client, sql, callback) => {
   client.connect()
     .then(() => {
       client.query(sql)
@@ -33,8 +22,38 @@ module.exports.getAllReviews = (restaurantId, callback) => {
     });
 };
 
-module.exports.getImpression = (restaurantId, callback) => {
-  // get restaurant impression info from restaurant table
+module.exports.getAllReviews = (restaurantId, callback) => {
+  const client = new Client({
+    user: localRole,
+    host: 'localhost',
+    database: 'reviews',
+    port: 5432
+  });
+
+  const sql = `SELECT 
+    reviews.id, 
+    reviews.restaurant,
+    reviews.text,
+    reviews.date,
+    reviews.overall,
+    reviews.food,
+    reviews.service,
+    reviews.ambience,
+    reviews.wouldrecommend,
+    reviews.tags,
+    diners.firstname,
+    diners.lastname,
+    diners.city,
+    diners.totalreviews
+    from reviews INNER JOIN diners 
+    on (reviews.diner = diners.id) 
+    where reviews.restaurant = ${restaurantId}`;
+
+  makeQuery(client, sql, callback);
+};
+
+module.exports.getSummary = (restaurantId, callback) => {
+  // get restaurant summary info from restaurant table
   const client = new Client({
     user: localRole,
     host: 'localhost',
@@ -54,20 +73,5 @@ module.exports.getImpression = (restaurantId, callback) => {
     .where(`id = ${restaurantId}`)
     .toString();
 
-  client.connect()
-    .then(() => {
-      client.query(sql)
-        .then((res) => {
-          callback(null, res.rows);
-          client.end();
-        })
-        .catch((err) => {
-          callback(err);
-          client.end();
-        });
-    })
-    .catch((err) => {
-      callback(err);
-      client.end();
-    });
+  makeQuery(client, sql, callback);
 };

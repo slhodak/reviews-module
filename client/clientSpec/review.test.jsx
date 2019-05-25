@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { render } from 'enzyme';
 import { expect } from 'chai';
 import Adapter from 'enzyme-adapter-react-16';
-import Review from '../src/components/review.jsx';
+import Review from '../src/components/Review.jsx';
 
 Enzyme.configure({ adapter: new Adapter() });
 

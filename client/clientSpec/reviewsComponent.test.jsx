@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Reviews from '../src/components/reviewsComponent.jsx';
+import Reviews from '../src/components/ReviewsComponent.jsx';
 
 describe('Reviews Component', () => {
   it('renders the reviews component and its children', () => {

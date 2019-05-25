@@ -4,28 +4,32 @@ import moment from 'moment';
 
 function Review(props) {
   const { review } = props;
+  const stars = [];
+  for (let i = 0; i < 5; i++) {
+    if (review.overall >= i + 1) {
+      stars[i] = <span className="review-star" />;
+    } else {
+      stars[i] = <span className="review-star-blank" />;
+    }
+  }
   return (
     <div className="single-review">
       <div className="reviewer">
         <div className="initials-icon">
-          <div>J</div>
+          <div>{review.firstname[0]}</div>
         </div>
-        <p className="name">Jaclyn</p>
-        <p className="city">Baltimore</p>
+        <p className="name">{review.firstname}</p>
+        <p className="city">{review.city}</p>
         <div className="reviewer-stat">
-          <span className="review-icon" /><p className="reviews-count">2 reviews</p>
+          <span className="review-icon" /><p className="reviews-count">{review.totalreviews} reviews</p>
         </div>
       </div>
       <div className="review-details">
         <div className="header">
           <div className="stars">
-            <span className="review-star" />
-            <span className="review-star" />
-            <span className="review-star" />
-            <span className="review-star" />
-            <span className="review-star" />
+            {stars}
           </div>
-          <p className="date">{moment().format('MMMM Do, YYYY', review.date)}</p>
+          <p className="date">&nbsp;&middot;&nbsp;&nbsp;Dined on {moment().format('MMMM Do, YYYY', review.date)}</p>
         </div>
         <div className="ratings">
           <span className="rating-name">Overall</span>

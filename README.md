@@ -72,15 +72,17 @@ npm install
 
 ## API
 
-### Restaurant Impression
+### Reviews Summary
 
 #### HTTP request
 
-GET http://127.0.0.1:3010/:id/impression
+GET http://127.0.0.1:3010/:id/summary
 
 ##### Parameters
 **id**
+
 **integer**
+
 The **id** parameter specifies the unique id of the restaurant being queried. Seeded test values range from 1-5.
 
 ##### Response
@@ -106,25 +108,29 @@ GET http://127.0.0.1:3010/:id/reviews
 
 ##### Parameters
 **id**
+
 **integer**
+
 The **id** parameter specifies the unique id of the restaurant being queried. Seeded test values range from 1-5.
 
-##### Reponse
+##### Response
 
-If successful, this method returns an array of objects with the following structure:
+If successful, this method returns an array containing objects with the following structure:
 
 {
-  "id": **integer**,
-  "restaurant": **integer**,
-  "diner": **integer**,
-  "text": **string**
-  "date": **date**,
-  "overall": **integer**,
-  "food": **integer**,
-  "service": **integer**,
-  "ambience": **integer**,
-  "wouldrecommend": **boolean**,
-  "tags": **string**
+  "id": **_integer_**,
+  "restaurant": **_integer_**,
+  "diner": **_integer_**,
+  "text": **_string_**,
+  "date": **_date_**,
+  "overall": **_integer_**,
+  "food": **_integer_**,
+  "service": **_integer_**,
+  "ambience": **_integer_**,
+  "wouldrecommend": **_boolean_**
+  "tags": **_string_**,
+  "firstname": **_string_**,
+  "lastname": **_string_**,
+  "city": **_string_**,
+  "totalreviews": **_integer_**
 }
-
-

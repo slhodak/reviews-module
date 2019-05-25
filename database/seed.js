@@ -115,8 +115,8 @@ const Seed = {
       review.tags = '';
       for (let j = 0; j < 2; j++) {
         if (Math.random() > 0.8) {
-          if (review.tags.split(',').length > 0) {
-            reviews.tags += ',';
+          if (review.tags[0]) {
+            review.tags += ',';
           }
           review.tags += Seed.getRandomFoodWord();
           if (Math.random() > 0.9) {

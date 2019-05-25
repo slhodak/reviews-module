@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { expect } from 'chai';
-import SortOptions from '../src/components/sortOptions.jsx';
+import SortOptions from '../src/components/SortOptions.jsx';
 
 Enzyme.configure({ adapter: new Adapter() });
 
