@@ -311,6 +311,7 @@ export default class Reviews extends React.Component {
               reviews={showing}
               openReport={openReport}
               handleReportClick={this.handleReportClick}
+              handleReportClear={this.handleReportClear}
               pages={pages}
               currentPage={currentPage}
               pageButtonList={pageButtonList}

@@ -11,14 +11,15 @@ function ReviewList(props) {
   const { goToPreviousPage } = props;
   const { openReport } = props;
   const { handleReportClick } = props;
+  const { handleReportClear } = props;
   const buttonArray = pageButtonList.getArray();
   return (
     <div className="review-list">
       {pages[currentPage].map((review) => {
         if (openReport === review.id) {
-          return <Review key={review.id} review={review} openReport handleReportClick={handleReportClick} />;
+          return <Review key={review.id} review={review} openReport handleReportClick={handleReportClick} handleReportClear={handleReportClear} />;
         }
-        return <Review key={review.id} review={review} handleReportClick={handleReportClick} />;
+        return <Review key={review.id} review={review} handleReportClick={handleReportClick} handleReportClear={handleReportClear} />;
       })}
       <div className="page-buttons">
         {currentPage > 0
@@ -55,7 +56,8 @@ ReviewList.propTypes = {
   currentPage: PropTypes.number.isRequired,
   pageButtonList: PropTypes.object.isRequired,
   openReport: PropTypes.number.isRequired,
-  handleReportClick: PropTypes.func.isRequired
+  handleReportClick: PropTypes.func.isRequired,
+  handleReportClear: PropTypes.func.isRequired
 };
 
 export default ReviewList;

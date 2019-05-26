@@ -7,6 +7,7 @@ function Review(props) {
   const { review } = props;
   const { openReport } = props;
   const { handleReportClick } = props;
+  const { handleReportClear } = props;
   const stars = [];
   for (let i = 0; i < 5; i++) {
     if (review.overall >= i + 1) {
@@ -58,7 +59,7 @@ function Review(props) {
         <div className="report-helpful">
           <div className="report" onClick={handleReportClick} data-id={review.id}>
             {openReport
-              ? <Report />
+              ? <Report handleReportClear={handleReportClear} />
               : null}
             <i className="report-icon" />
             <p>Report</p>
@@ -76,7 +77,8 @@ function Review(props) {
 Review.propTypes = {
   review: PropTypes.object.isRequired,
   openReport: PropTypes.bool.isRequired,
-  handleReportClick: PropTypes.func.isRequired
+  handleReportClick: PropTypes.func.isRequired,
+  handleReportClear: PropTypes.func.isRequired
 };
 
 export default Review;
