@@ -205,6 +205,7 @@ export default class Reviews extends React.Component {
     this.sortingPanel.scrollIntoView({ behavior: 'smooth' });
     this.setState({
       showing: filtered || reviews,
+      pageButtonList: null,
       currentPage: 0
     }, this.getTags);
   }
