@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 const FilterButton = (props) => {
   const { tag } = props;
   const { handleFilterClick } = props;
+  const { classString } = props;
+
   return (
-    <div className="filter-button selected" key={tag} data-tag={tag} onClick={handleFilterClick}>
+    <div className={classString} key={tag} data-tag={tag} onClick={handleFilterClick}>
       <input type="checkbox" className="filter-checkbox" />
       <span className="filter-name">{tag}</span>
     </div>
@@ -13,6 +15,7 @@ const FilterButton = (props) => {
 };
 
 FilterButton.propTypes = {
+  classString: PropTypes.string.isRequired,
   tag: PropTypes.string.isRequired,
   handleFilterClick: PropTypes.func.isRequired
 };

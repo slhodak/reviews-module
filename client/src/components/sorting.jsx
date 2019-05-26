@@ -18,20 +18,11 @@ function Sorting(props) {
   //  this could use a refactor... to another subcomponent
   const filterTags = Object.keys(tags).map((tag) => {
     if (filters.storage[tag]) {
-      return (
-        <div className="filter-button selected" key={tag} data-tag={tag} onClick={handleFilterClick}>
-          <input type="checkbox" className="filter-checkbox" />
-          <span className="filter-name">{tag}</span>
-        </div>
-      );
+      return <FilterButton tag={tag} classString="filter-button selected" handleFilterClick={handleFilterClick} />;
     }
-    return (
-      <div className="filter-button" key={tag} data-tag={tag} onClick={handleFilterClick}>
-        <input type="checkbox" className="filter-checkbox" />
-        <span className="filter-name">{tag}</span>
-      </div>
-    );
+    return <FilterButton tag={tag} classString="filter-button" handleFilterClick={handleFilterClick} />;
   });
+
   return (
     <div className="sorting-panel">
       <h4>Sort by</h4>
