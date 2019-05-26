@@ -217,6 +217,7 @@ export default class Reviews extends React.Component {
   }
 
   handleSortOptionClick(event) {
+    this.sortingPanel.scrollIntoView({ behavior: 'smooth' });
     this.setState({
       sortBy: event.currentTarget.dataset.option,
       choosingSort: false
