@@ -76,8 +76,25 @@ const Models = {
       this.page = page;
       this.next = null;
       this.previous = null;
-      //  Options are 'Button', 'Ellipse', and null
       this.display = null;
+    }
+  },
+  FilterSet: class {
+    constructor(tag) {
+      this.storage = {};
+      this.storage[tag] = tag;
+    }
+
+    add(tag) {
+      if (!this.storage[tag]) {
+        this.storage[tag] = tag;
+      }
+    }
+
+    remove(tag) {
+      if (this.storage[tag]) {
+        delete this.storage[tag];
+      }
     }
   }
 };
