@@ -16,6 +16,8 @@ CREATE TABLE diners (
   firstname     varchar(30),
   lastname      varchar(30),
   city          varchar(30),
+  avatarcolor   varchar(10),
+  isvip         boolean,
   totalreviews  int
 );
 

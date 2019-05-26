@@ -8,6 +8,7 @@ const Seed = {
   foodWords: ['pot roast', 'chicken', 'sushi', 'marshmallows', 'pumpkin pie', 'wine'],
   tagWords: ['groups', 'kids', 'gluten free', 'vegan'],
   noiseLevels: ['Quiet', 'Average', 'Loud'],
+  colors: ['#d86441', '#bb6acd', '#6c8ae4', '#df4e96'],
   getRandomFoodWord() {
     return Seed.foodWords[Math.floor(Math.random() * Seed.foodWords.length)];
   },
@@ -16,6 +17,12 @@ const Seed = {
   },
   getRandomNoiseLevel() {
     return Seed.noiseLevels[Math.floor(Math.random() * Seed.noiseLevels.length)];
+  },
+  getRandomColor() {
+    return Seed.colors[Math.floor(Math.random() * Seed.colors.length)];
+  },
+  lowProbabilityRandom() {
+    return Math.random() > 0.8;
   },
   all() {
     const restaurants = Seed.createRestaurants();
@@ -94,6 +101,8 @@ const Seed = {
       diner.lastname = Faker.name.lastName().replace(/'/g, '');
       diner.city = Faker.address.city().replace(/'/g, '');
       diner.totalreviews = Faker.random.number({ min: 0, max: 25 });
+      diner.avatarcolor = Seed.getRandomColor();
+      diner.isVIP = Seed.lowProbabilityRandom();
       diners.push(diner);
     }
     return diners;
