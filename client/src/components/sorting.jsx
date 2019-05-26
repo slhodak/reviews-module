@@ -14,8 +14,8 @@ function Sorting(props) {
   const { handleSortClick } = props;
   const { handleSortOptionClick } = props;
   const { handleFilterClick } = props;
+  const { unFilterByRating } = props;
 
-  //  this could use a refactor... to another subcomponent
   const filterTags = Object.keys(tags).map((tag) => {
     if (filters.storage[tag]) {
       return <FilterButton tag={tag} classString="filter-button selected" handleFilterClick={handleFilterClick} />;
@@ -39,6 +39,9 @@ function Sorting(props) {
       </div>
       <h4>Filters</h4>
       <div className="filters">
+        {ratingFilter
+          ? <FilterButton tag={`${ratingFilter} stars`} classString="filter-button selected" handleFilterClick={unFilterByRating} />
+          : null}
         {filterTags}
       </div>
     </div>
@@ -54,7 +57,8 @@ Sorting.propTypes = {
   options: PropTypes.array.isRequired,
   handleSortClick: PropTypes.func.isRequired,
   handleSortOptionClick: PropTypes.func.isRequired,
-  handleFilterClick: PropTypes.func.isRequired
+  handleFilterClick: PropTypes.func.isRequired,
+  unFilterByRating: PropTypes.func.isRequired
 };
 
 export default Sorting;

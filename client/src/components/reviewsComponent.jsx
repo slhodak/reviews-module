@@ -52,6 +52,7 @@ export default class Reviews extends React.Component {
     this.handleSortClick = this.handleSortClick.bind(this);
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
+    this.unFilterByRating = this.unFilterByRating.bind(this);
   }
 
   componentWillMount() {
@@ -194,12 +195,10 @@ export default class Reviews extends React.Component {
     const { filters } = this.state;
     const { ratingFilter } = this.state;
     let filtered = null;
-    //  filter by star rating first
     if (ratingFilter) {
       filtered = reviews.filter(review => review.overall === ratingFilter);
     }
     if (filters.size) {
-      //  then filter by tags
       filtered = (filtered || reviews).filter((review) => {
         const reviewTags = review.tags.split(',');
         return filters.isContainedBy(reviewTags);
@@ -227,8 +226,6 @@ export default class Reviews extends React.Component {
   }
 
   handleRatingClick(event) {
-    //  add filter: star rating from event
-
     this.setState({
       ratingFilter: +event.currentTarget.dataset.rating
     }, this.filterReviews);
@@ -243,6 +240,12 @@ export default class Reviews extends React.Component {
     }
     this.setState({
       filters
+    }, this.filterReviews);
+  }
+
+  unFilterByRating() {
+    this.setState({
+      ratingFilter: null
     }, this.filterReviews);
   }
 
@@ -282,6 +285,7 @@ export default class Reviews extends React.Component {
             handleSortClick={this.handleSortClick}
             handleSortOptionClick={this.handleSortOptionClick}
             handleFilterClick={this.handleFilterClick}
+            unFilterByRating={this.unFilterByRating}
           />
         </div>
         {pageButtonList
