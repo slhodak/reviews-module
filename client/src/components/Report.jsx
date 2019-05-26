@@ -19,10 +19,14 @@ class Report extends React.Component {
   }
 
   handleClick(event) {
+    const { handleReportClear } = this.props;
+    if (event.target.className === 'cancel') {
+      handleReportClear();
+      return;
+    }
     if (this.reportPopup.contains(event.target)) {
       return;
     }
-    const { handleReportClear } = this.props;
     handleReportClear();
   }
 
