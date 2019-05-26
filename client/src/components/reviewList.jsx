@@ -16,7 +16,7 @@ function ReviewList(props) {
     <div className="review-list">
       {pages[currentPage].map((review) => {
         if (openReport === review.id) {
-          return <Review key={review.id} review={review} openReport="true" handleReportClick={handleReportClick} />;
+          return <Review key={review.id} review={review} openReport handleReportClick={handleReportClick} />;
         }
         return <Review key={review.id} review={review} handleReportClick={handleReportClick} />;
       })}
