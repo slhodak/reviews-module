@@ -9,12 +9,17 @@ function ReviewList(props) {
   const { goToPage } = props;
   const { goToNextPage } = props;
   const { goToPreviousPage } = props;
+  const { openReport } = props;
+  const { handleReportClick } = props;
   const buttonArray = pageButtonList.getArray();
   return (
     <div className="review-list">
-      {pages[currentPage].map(review => (
-        <Review key={review.id} review={review} />
-      ))}
+      {pages[currentPage].map((review) => {
+        if (openReport === review.id) {
+          return <Review key={review.id} review={review} openReport="true" handleReportClick={handleReportClick} />;
+        }
+        return <Review key={review.id} review={review} handleReportClick={handleReportClick} />;
+      })}
       <div className="page-buttons">
         {currentPage > 0
           ? <div className="button left" onClick={goToPreviousPage} />
@@ -48,7 +53,9 @@ ReviewList.propTypes = {
   goToPreviousPage: PropTypes.func.isRequired,
   pages: PropTypes.array.isRequired,
   currentPage: PropTypes.number.isRequired,
-  pageButtonList: PropTypes.object.isRequired
+  pageButtonList: PropTypes.object.isRequired,
+  openReport: PropTypes.number.isRequired,
+  handleReportClick: PropTypes.func.isRequired
 };
 
 export default ReviewList;

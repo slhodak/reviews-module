@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import Report from './Report.jsx';
 
 function Review(props) {
   const { review } = props;
+  const { openReport } = props;
+  const { handleReportClick } = props;
   const stars = [];
   for (let i = 0; i < 5; i++) {
     if (review.overall >= i + 1) {
@@ -53,13 +56,16 @@ function Review(props) {
         </div>
         <p className="text">{review.text}</p>
         <div className="report-helpful">
-          <div className="report">
+          <div className="report" onClick={handleReportClick} data-id={review.id}>
+            {openReport
+              ? <Report />
+              : null}
             <i className="report-icon" />
-            <button type="button">Report</button>
+            <p>Report</p>
           </div>
           <div className="helpful">
             <i className="helpful-icon" />
-            <button type="button">Helpful</button>
+            <p>Helpful</p>
           </div>
         </div>
       </div>
@@ -68,7 +74,9 @@ function Review(props) {
 }
 
 Review.propTypes = {
-  review: PropTypes.object.isRequired
+  review: PropTypes.object.isRequired,
+  openReport: PropTypes.bool.isRequired,
+  handleReportClick: PropTypes.func.isRequired
 };
 
 export default Review;

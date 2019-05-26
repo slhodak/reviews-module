@@ -319,11 +319,13 @@ body {
 .review-details .report-helpful {
   display: flex;
   justify-content: flex-end;
+  cursor: pointer;
 }
 
-.report-helpful button {
+.report-helpful p {
   background: none;
   border: none;
+  font-weight: 700;
   font-size: 0.875rem;
   line-height: 1.43;
   margin: 0px 0px 0px 4px;
@@ -549,3 +551,4 @@ body {
   border: 1px solid #d8d9db !important;
   cursor: default;
 }
+

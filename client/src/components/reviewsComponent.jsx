@@ -28,7 +28,8 @@ export default class Reviews extends React.Component {
       filters: new Models.FilterSet(),
       ratingFilter: null,
       choosingSort: false,
-      sortBy: 'Newest'
+      sortBy: 'Newest',
+      openReport: null
     };
 
     this.componentWillMount = this.componentWillMount.bind(this);
@@ -51,6 +52,9 @@ export default class Reviews extends React.Component {
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.unFilterByRating = this.unFilterByRating.bind(this);
+
+    this.handleReportClick = this.handleReportClick.bind(this);
+    this.handleReportClear = this.handleReportClear.bind(this);
   }
 
   componentWillMount() {
@@ -249,9 +253,22 @@ export default class Reviews extends React.Component {
     }, this.filterReviews);
   }
 
+  handleReportClick(event) {
+    this.setState({
+      openReport: +event.currentTarget.dataset.id
+    });
+  }
+
+  handleReportClear() {
+    this.setState({
+      openReport: null
+    });
+  }
+
   render() {
     const { summary } = this.state;
     const { reviews } = this.state;
+    const { openReport } = this.state;
     const { pages } = this.state;
     const { currentPage } = this.state;
     const { pageButtonList } = this.state;
@@ -292,6 +309,8 @@ export default class Reviews extends React.Component {
           ? (
             <ReviewList
               reviews={showing}
+              openReport={openReport}
+              handleReportClick={this.handleReportClick}
               pages={pages}
               currentPage={currentPage}
               pageButtonList={pageButtonList}
