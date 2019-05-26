@@ -3,9 +3,9 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 import SortOptions from './SortOptions.jsx';
 
-function Sorting(props, ref) {
+function Sorting(props) {
   const { tags } = props;
-  const { selectedTags } = props;
+  const { filters } = props;
   const { choosingSort } = props;
   const { sortBy } = props;
   const { options } = props;
@@ -14,8 +14,8 @@ function Sorting(props, ref) {
   const { handleFilterClick } = props;
 
   //  this could use a refactor
-  const filterTags = tags.map((tag) => {
-    if (_.includes(selectedTags, tag)) {
+  const filterTags = Object.keys(tags).map((tag) => {
+    if (filters.storage[tag]) {
       return (
         <div className="filter-button selected" key={tag} data-tag={tag} onClick={handleFilterClick}>
           <input type="checkbox" className="filter-checkbox" />
@@ -53,8 +53,8 @@ function Sorting(props, ref) {
 }
 
 Sorting.propTypes = {
-  tags: PropTypes.array.isRequired,
-  selectedTags: PropTypes.array.isRequired,
+  tags: PropTypes.object.isRequired,
+  filters: PropTypes.object.isRequired,
   choosingSort: PropTypes.bool.isRequired,
   sortBy: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,

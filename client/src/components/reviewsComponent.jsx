@@ -25,8 +25,8 @@ export default class Reviews extends React.Component {
       currentPage: 0,
       pageButtonList: null,
       starPercentages: [0, 0, 0, 0, 0],
-      allTags: [],
-      selectedTags: [],
+      tags: {},
+      filters: new Models.FilterSet(),
       choosingSort: false,
       sortBy: 'Newest'
     };
@@ -87,15 +87,18 @@ export default class Reviews extends React.Component {
   }
 
   getTags() {
-    let tags = [];
+    const tags = {};
     const { showing } = this.state;
     showing.forEach((review) => {
-      if (review.tags) {
-        tags = tags.concat(...review.tags.split(','));
+      const reviewTags = review.tags.split(',');
+      if (reviewTags[0]) {
+        for (let i = 0; i < reviewTags.length; i++) {
+          tags[reviewTags[i]] = reviewTags[i];
+        }
       }
     });
     this.setState({
-      allTags: _.uniq(tags)
+      tags
     }, this.createPages);
   }
 
@@ -119,9 +122,9 @@ export default class Reviews extends React.Component {
     const pages = [];
     let page = [];
     showing.forEach((review, index) => {
-      if (index % 3 < 2) {
+      if (index % 5 < 4) {
         page.push(review);
-      } else if (index % 3 === 2) {
+      } else if (index % 5 === 4) {
         page.push(review);
         pages.push(page);
         page = [];
@@ -186,33 +189,22 @@ export default class Reviews extends React.Component {
 
   filterReviews() {
     const { reviews } = this.state;
-    const { selectedTags } = this.state;
+    const { filters } = this.state;
     let filtered = null;
-    if (selectedTags.length) {
-      //  will need to update this to handle star ratings as if they were tags
+    if (filters.size) {
       filtered = reviews.filter((review) => {
         const reviewTags = review.tags.split(',');
-        for (let i = 0; i < reviewTags.length; i++) {
-          if (_.includes(selectedTags, reviewTags[i])) {
-            return true;
-          }
+        if (reviewTags[0]) {
+          return filters.isContainedBy(reviewTags);
         }
         return false;
       });
     }
+    console.log('filtered' + JSON.stringify(filtered));
     this.setState({
       showing: filtered || reviews,
       currentPage: 0
     }, this.getTags);
-  }
-
-  handleRatingClick(event) {
-    const { reviews } = this.state;
-    reviews.forEach((review) => {
-      if (review.overall.toString() === event.currentTarget.id.slice(3)) {
-        console.log(review);
-      }
-    });
   }
 
   handleSortClick() {
@@ -229,16 +221,26 @@ export default class Reviews extends React.Component {
     }, this.sortReviews);
   }
 
+  handleRatingClick(event) {
+    //  add filter: star rating from event
+    const { reviews } = this.state;
+    reviews.forEach((review) => {
+      if (review.overall.toString() === event.currentTarget.id.slice(3)) {
+        console.log(review);
+      }
+    });
+  }
+
   handleFilterClick(event) {
-    let { selectedTags } = this.state;
-    const indexCheck = selectedTags.indexOf(event.currentTarget.dataset.tag);
-    if (indexCheck >= 0) {
-      selectedTags.splice(indexCheck, 1);
+    const { filters } = this.state;
+    if (filters.storage[event.currentTarget.dataset.tag]) {
+      filters.remove(event.currentTarget.dataset.tag);
     } else {
-      selectedTags = selectedTags.concat(event.currentTarget.dataset.tag);
+      filters.add(event.currentTarget.dataset.tag);
     }
+    console.log('filters' + JSON.stringify(filters));
     this.setState({
-      selectedTags
+      filters
     }, this.filterReviews);
   }
 
@@ -249,9 +251,9 @@ export default class Reviews extends React.Component {
     const { currentPage } = this.state;
     const { pageButtonList } = this.state;
     const { showing } = this.state;
-    const { allTags } = this.state;
+    const { tags } = this.state;
     const { sortBy } = this.state;
-    const { selectedTags } = this.state;
+    const { filters } = this.state;
     const { choosingSort } = this.state;
     const { starPercentages } = this.state;
     return (
@@ -268,8 +270,8 @@ export default class Reviews extends React.Component {
           : null}
         <div ref={(node) => { this.sortingPanel = node; }}>
           <Sorting
-            tags={allTags}
-            selectedTags={selectedTags}
+            tags={tags}
+            filters={filters}
             options={this.options}
             sortBy={sortBy}
             choosingSort={choosingSort}

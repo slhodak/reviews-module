@@ -8,6 +8,6 @@ import logo from './styles/logo.jsx';
 ReactDOM.render(
   <div>
     {logo}
-    <Reviews restaurantId={4} />
+    <Reviews restaurantId={3} />
   </div>, document.getElementById('main')
 );

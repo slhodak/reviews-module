@@ -500,6 +500,10 @@ body {
   cursor: pointer;
 }
 
+.page-buttons .button.current {
+  border: 2px solid #da3743;
+}
+
 .page-buttons .button:hover {
   border: 2px solid #da3743;
 }

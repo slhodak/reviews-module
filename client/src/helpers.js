@@ -37,13 +37,11 @@ const Models = {
 
     setButtonDisplays(inputButton = this.head, currentPage) {
       const button = inputButton;
-      if (button === this.tail) {
+      if (button.page === currentPage) {
+        button.display = 'button current';
+      } else if (button === this.tail) {
         button.display = 'button';
-        return;
-      }
-      if (button === this.head) {
-        button.display = 'button';
-      } else if (button.page === currentPage) {
+      } else if (button === this.head) {
         button.display = 'button';
       } else if (button.previous.page === currentPage) {
         button.display = 'button';
@@ -58,7 +56,9 @@ const Models = {
       } else {
         button.display = null;
       }
-      this.setButtonDisplays(button.next, currentPage);
+      if (button.next) {
+        this.setButtonDisplays(button.next, currentPage);
+      }
     }
 
     getArray() {
@@ -80,21 +80,34 @@ const Models = {
     }
   },
   FilterSet: class {
-    constructor(tag) {
+    constructor() {
       this.storage = {};
-      this.storage[tag] = tag;
+      this.size = 0;
     }
 
     add(tag) {
       if (!this.storage[tag]) {
         this.storage[tag] = tag;
+        this.size += 1;
       }
     }
 
     remove(tag) {
       if (this.storage[tag]) {
         delete this.storage[tag];
+        this.size -= 1;
       }
+    }
+
+    //  expect array
+    //  check if every element in the set is contained in the array
+    isContainedBy(tags) {
+      for (let i = 0; i < tags.length; i++) {
+        if (!this.storage[tags[i]]) {
+          return false;
+        }
+      }
+      return true;
     }
   }
 };
