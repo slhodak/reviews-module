@@ -287,7 +287,7 @@ export default class Reviews extends React.Component {
             unFilterByRating={this.unFilterByRating}
           />
         </div>
-        {pageButtonList
+        {pageButtonList && showing.length
           ? (
             <ReviewList
               reviews={showing}
@@ -299,7 +299,7 @@ export default class Reviews extends React.Component {
               goToPreviousPage={this.goToPreviousPage}
             />
           )
-          : null}
+          : <span>No matching reviews</span>}
       </div>
     );
   }
