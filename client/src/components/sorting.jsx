@@ -6,6 +6,7 @@ import SortOptions from './SortOptions.jsx';
 function Sorting(props) {
   const { tags } = props;
   const { filters } = props;
+  const { ratingFilter } = props;
   const { choosingSort } = props;
   const { sortBy } = props;
   const { options } = props;
@@ -13,7 +14,7 @@ function Sorting(props) {
   const { handleSortOptionClick } = props;
   const { handleFilterClick } = props;
 
-  //  this could use a refactor
+  //  this could use a refactor... to another subcomponent
   const filterTags = Object.keys(tags).map((tag) => {
     if (filters.storage[tag]) {
       return (
@@ -55,6 +56,7 @@ function Sorting(props) {
 Sorting.propTypes = {
   tags: PropTypes.object.isRequired,
   filters: PropTypes.object.isRequired,
+  ratingFilter: PropTypes.number.isRequired,
   choosingSort: PropTypes.bool.isRequired,
   sortBy: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,

@@ -27,6 +27,8 @@ export default class Reviews extends React.Component {
       starPercentages: [0, 0, 0, 0, 0],
       tags: {},
       filters: new Models.FilterSet(),
+      //  If there is a rating filter, insert a rating tag before all others
+      ratingFilter: null,
       choosingSort: false,
       sortBy: 'Newest'
     };
@@ -190,17 +192,20 @@ export default class Reviews extends React.Component {
   filterReviews() {
     const { reviews } = this.state;
     const { filters } = this.state;
+    const { ratingFilter } = this.state;
     let filtered = null;
+    //  filter by star rating first
+    if (ratingFilter) {
+      filtered = reviews.filter(review => review.overall === ratingFilter);
+    }
     if (filters.size) {
-      filtered = reviews.filter((review) => {
+      //  then filter by tags
+      filtered = (filtered || reviews).filter((review) => {
         const reviewTags = review.tags.split(',');
-        if (reviewTags[0]) {
-          return filters.isContainedBy(reviewTags);
-        }
-        return false;
+        return filters.isContainedBy(reviewTags);
       });
     }
-    console.log('filtered' + JSON.stringify(filtered));
+    this.sortingPanel.scrollIntoView({ behavior: 'smooth' });
     this.setState({
       showing: filtered || reviews,
       currentPage: 0
@@ -216,19 +221,17 @@ export default class Reviews extends React.Component {
 
   handleSortOptionClick(event) {
     this.setState({
-      sortBy: event.currentTarget.dataset.option,
+      sortBy: +event.currentTarget.dataset.option,
       choosingSort: false
     }, this.sortReviews);
   }
 
   handleRatingClick(event) {
     //  add filter: star rating from event
-    const { reviews } = this.state;
-    reviews.forEach((review) => {
-      if (review.overall.toString() === event.currentTarget.id.slice(3)) {
-        console.log(review);
-      }
-    });
+
+    this.setState({
+      ratingFilter: +event.currentTarget.dataset.rating
+    }, this.filterReviews);
   }
 
   handleFilterClick(event) {
@@ -238,7 +241,6 @@ export default class Reviews extends React.Component {
     } else {
       filters.add(event.currentTarget.dataset.tag);
     }
-    console.log('filters' + JSON.stringify(filters));
     this.setState({
       filters
     }, this.filterReviews);
@@ -254,6 +256,7 @@ export default class Reviews extends React.Component {
     const { tags } = this.state;
     const { sortBy } = this.state;
     const { filters } = this.state;
+    const { ratingFilter } = this.state;
     const { choosingSort } = this.state;
     const { starPercentages } = this.state;
     return (
@@ -272,6 +275,7 @@ export default class Reviews extends React.Component {
           <Sorting
             tags={tags}
             filters={filters}
+            ratingFilter={ratingFilter}
             options={this.options}
             sortBy={sortBy}
             choosingSort={choosingSort}

@@ -102,7 +102,6 @@ const Models = {
     }
 
     //  expect array
-    //  check if every element in the set is contained in the array
     isContainedBy(tags) {
       const filters = Object.keys(this.storage);
       for (let i = 0; i < filters.length; i++) {
