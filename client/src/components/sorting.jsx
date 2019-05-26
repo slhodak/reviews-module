@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import PropTypes from 'prop-types';
 import SortOptions from './SortOptions.jsx';
 import FilterButton from './FilterButton.jsx';

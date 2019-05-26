@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import request from 'superagent';
 import Summary from './Summary.jsx';
 import Sorting from './Sorting.jsx';
@@ -27,7 +26,6 @@ export default class Reviews extends React.Component {
       starPercentages: [0, 0, 0, 0, 0],
       tags: {},
       filters: new Models.FilterSet(),
-      //  If there is a rating filter, insert a rating tag before all others
       ratingFilter: null,
       choosingSort: false,
       sortBy: 'Newest'
@@ -220,7 +218,7 @@ export default class Reviews extends React.Component {
 
   handleSortOptionClick(event) {
     this.setState({
-      sortBy: +event.currentTarget.dataset.option,
+      sortBy: event.currentTarget.dataset.option,
       choosingSort: false
     }, this.sortReviews);
   }
