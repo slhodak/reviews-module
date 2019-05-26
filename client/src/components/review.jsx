@@ -15,7 +15,7 @@ function Review(props) {
   return (
     <div className="single-review">
       <div className="reviewer">
-        <div className="initials-icon">
+        <div className="initials-icon" style={{ backgroundColor: review.avatarcolor }}>
           <div>{review.firstname[0]}</div>
         </div>
         <p className="name">{review.firstname}</p>
