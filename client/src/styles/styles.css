@@ -224,6 +224,18 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.reviewer .vip-label {
+  position: absolute;
+  background-color: #fdaf08;
+  padding: 2px 0.5rem;
+  font-size: 12px;
+  border-radius: 1rem;
+  font-weight: 700;
+  top: -2px;
+  color: #fff;
+  left: 0;
+}
+
 .reviewer p {
   font-size: 0.875rem;
   margin: 0px;

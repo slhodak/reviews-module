@@ -12,13 +12,17 @@ function Review(props) {
       stars[i] = <span className="review-star-blank" />;
     }
   }
+  const initials = review.firstname[0].toUpperCase() + review.lastname[0].toUpperCase();
   return (
     <div className="single-review">
       <div className="reviewer">
         <div className="initials-icon" style={{ backgroundColor: review.avatarcolor }}>
-          <div>{review.firstname[0]}</div>
+          {review.isvip
+            ? <div className="vip-label">VIP</div>
+            : null}
+          <div>{initials}</div>
         </div>
-        <p className="name">{review.firstname}</p>
+        <p className="name">{review.firstname + review.lastname[0]}</p>
         <p className="city">{review.city}</p>
         <div className="reviewer-stat">
           <span className="review-icon" /><p className="reviews-count">{review.totalreviews} reviews</p>
