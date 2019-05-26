@@ -16,9 +16,7 @@ exports[`Sorting renders the component 1`] = `
     >
       <span
         className="sorter-name"
-      >
-        Newest
-      </span>
+      />
       <i
         className="sorter-icon"
       />
@@ -35,6 +33,7 @@ exports[`Sorting renders the component 1`] = `
   >
     <div
       className="filter-button"
+      data-tag="a"
     >
       <input
         className="filter-checkbox"
@@ -48,6 +47,7 @@ exports[`Sorting renders the component 1`] = `
     </div>
     <div
       className="filter-button"
+      data-tag="b"
     >
       <input
         className="filter-checkbox"

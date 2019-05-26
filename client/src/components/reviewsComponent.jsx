@@ -5,7 +5,7 @@ import request from 'superagent';
 import Summary from './Summary.jsx';
 import Sorting from './Sorting.jsx';
 import ReviewList from './ReviewList.jsx';
-import comparisons from '../helpers';
+import { comparisons, Models } from '../helpers';
 
 export default class Reviews extends React.Component {
   constructor(props) {
@@ -21,6 +21,9 @@ export default class Reviews extends React.Component {
       summary: null,
       reviews: [],
       showing: [],
+      pages: [],
+      currentPage: 0,
+      pageButtonList: null,
       starPercentages: [0, 0, 0, 0, 0],
       allTags: [],
       selectedTags: [],
@@ -31,14 +34,22 @@ export default class Reviews extends React.Component {
     this.componentWillMount = this.componentWillMount.bind(this);
     this.getSummaryData = this.getSummaryData.bind(this);
     this.getReviewsData = this.getReviewsData.bind(this);
-    this.handleRatingClick = this.handleRatingClick.bind(this);
     this.parseStarPercentages = this.parseStarPercentages.bind(this);
     this.getTags = this.getTags.bind(this);
+
+    this.createPages = this.createPages.bind(this);
+    this.createPageButtonList = this.createPageButtonList.bind(this);
+    this.updatePageButtonList = this.updatePageButtonList.bind(this);
+    this.goToPage = this.goToPage.bind(this);
+    this.goToNextPage = this.goToNextPage.bind(this);
+    this.goToPreviousPage = this.goToPreviousPage.bind(this);
+
+    this.sortReviews = this.sortReviews.bind(this);
+    this.filterReviews = this.filterReviews.bind(this);
+    this.handleRatingClick = this.handleRatingClick.bind(this);
     this.handleSortClick = this.handleSortClick.bind(this);
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
-    this.sortReviews = this.sortReviews.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
-    this.filterReviews = this.filterReviews.bind(this);
   }
 
   componentWillMount() {
@@ -85,7 +96,7 @@ export default class Reviews extends React.Component {
     });
     this.setState({
       allTags: _.uniq(tags)
-    });
+    }, this.createPages);
   }
 
   parseStarPercentages() {
@@ -101,6 +112,98 @@ export default class Reviews extends React.Component {
     this.setState({
       starPercentages: reversed
     });
+  }
+
+  createPages() {
+    const { showing } = this.state;
+    const pages = [];
+    let page = [];
+    showing.forEach((review, index) => {
+      if (index % 3 < 2) {
+        page.push(review);
+      } else if (index % 3 === 2) {
+        page.push(review);
+        pages.push(page);
+        page = [];
+      }
+      if (index === showing.length - 1) {
+        pages.push(page);
+      }
+    });
+    this.setState({
+      pages
+    }, this.createPageButtonList);
+  }
+
+  createPageButtonList() {
+    const { pages } = this.state;
+    const PageButtonList = new Models.ButtonLinkedList(0);
+    for (let i = 1; i < pages.length; i++) {
+      PageButtonList.addButtonToTail(i);
+    }
+    this.updatePageButtonList(PageButtonList);
+  }
+
+  updatePageButtonList(buttonList = this.state.pageButtonList) {
+    const { currentPage } = this.state;
+    buttonList.setButtonDisplays(buttonList.head, currentPage);
+    this.setState({
+      pageButtonList: buttonList
+    });
+  }
+
+  goToPage(event) {
+    this.sortingPanel.scrollIntoView({ behavior: 'smooth' });
+    this.setState({
+      currentPage: +event.target.dataset.page
+    }, this.updatePageButtonList);
+  }
+
+  goToNextPage() {
+    this.sortingPanel.scrollIntoView({ behavior: 'smooth' });
+    const { currentPage } = this.state;
+    this.setState({
+      currentPage: currentPage + 1
+    }, this.updatePageButtonList);
+  }
+
+  goToPreviousPage() {
+    this.sortingPanel.scrollIntoView({ behavior: 'smooth' });
+    const { currentPage } = this.state;
+    this.setState({
+      currentPage: currentPage - 1
+    }, this.updatePageButtonList);
+  }
+
+  sortReviews() {
+    const { showing } = this.state;
+    const { sortBy } = this.state;
+    showing.sort(comparisons[sortBy]);
+    this.setState({
+      showing
+    }, this.createPages);
+  }
+
+  filterReviews() {
+    const { reviews } = this.state;
+    const { selectedTags } = this.state;
+    let filtered = null;
+    if (selectedTags.length) {
+      //  will need to update this to handle star ratings as if they were tags
+      filtered = reviews.filter((review) => {
+        const reviewTags = review.tags.split(',');
+        for (let i = 0; i < reviewTags.length; i++) {
+          if (_.includes(selectedTags, reviewTags[i])) {
+            return true;
+          }
+        }
+        return false;
+      });
+    }
+    this.setState({
+      showing: filtered || reviews,
+      currentPage: 0
+    }, this.getTags);
   }
 
   handleRatingClick(event) {
@@ -126,35 +229,6 @@ export default class Reviews extends React.Component {
     }, this.sortReviews);
   }
 
-  sortReviews() {
-    const { reviews } = this.state;
-    const { sortBy } = this.state;
-    reviews.sort(comparisons[sortBy]);
-    this.setState({
-      showing: reviews
-    });
-  }
-
-  filterReviews() {
-    const { reviews } = this.state;
-    const { selectedTags } = this.state;
-    let filtered = null;
-    if (selectedTags.length) {
-      filtered = reviews.filter((review) => {
-        const reviewTags = review.tags.split(',');
-        for (let i = 0; i < reviewTags.length; i++) {
-          if (_.includes(selectedTags, reviewTags[i])) {
-            return true;
-          }
-        }
-        return false;
-      });
-    }
-    this.setState({
-      showing: filtered || reviews
-    }, this.getTags);
-  }
-
   handleFilterClick(event) {
     let { selectedTags } = this.state;
     const indexCheck = selectedTags.indexOf(event.currentTarget.dataset.tag);
@@ -171,6 +245,9 @@ export default class Reviews extends React.Component {
   render() {
     const { summary } = this.state;
     const { reviews } = this.state;
+    const { pages } = this.state;
+    const { currentPage } = this.state;
+    const { pageButtonList } = this.state;
     const { showing } = this.state;
     const { allTags } = this.state;
     const { sortBy } = this.state;
@@ -189,19 +266,31 @@ export default class Reviews extends React.Component {
             />
           )
           : null}
-        <Sorting
-          tags={allTags}
-          selectedTags={selectedTags}
-          options={this.options}
-          sortBy={sortBy}
-          choosingSort={choosingSort}
-          handleSortClick={this.handleSortClick}
-          handleSortOptionClick={this.handleSortOptionClick}
-          handleFilterClick={this.handleFilterClick}
-        />
-        <ReviewList
-          reviews={showing}
-        />
+        <div ref={(node) => { this.sortingPanel = node; }}>
+          <Sorting
+            tags={allTags}
+            selectedTags={selectedTags}
+            options={this.options}
+            sortBy={sortBy}
+            choosingSort={choosingSort}
+            handleSortClick={this.handleSortClick}
+            handleSortOptionClick={this.handleSortOptionClick}
+            handleFilterClick={this.handleFilterClick}
+          />
+        </div>
+        {pageButtonList
+          ? (
+            <ReviewList
+              reviews={showing}
+              pages={pages}
+              currentPage={currentPage}
+              pageButtonList={pageButtonList}
+              goToPage={this.goToPage}
+              goToNextPage={this.goToNextPage}
+              goToPreviousPage={this.goToPreviousPage}
+            />
+          )
+          : null}
       </div>
     );
   }
