@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const comparisons = {
   'Highest Rating': (reviewA, reviewB) => {
     const diff = reviewB.overall - reviewA.overall;
@@ -102,8 +104,9 @@ const Models = {
     //  expect array
     //  check if every element in the set is contained in the array
     isContainedBy(tags) {
-      for (let i = 0; i < tags.length; i++) {
-        if (!this.storage[tags[i]]) {
+      const filters = Object.keys(this.storage);
+      for (let i = 0; i < filters.length; i++) {
+        if (!_.includes(tags, filters[i])) {
           return false;
         }
       }
