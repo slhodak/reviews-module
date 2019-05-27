@@ -21,6 +21,33 @@ const filterBox = (
   </svg>
 );
 
+const filterBoxFill = (
+  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ background: '#fff' }}>
+    <title>icon/ic_checkbox_filled</title>
+    <g fill="none" fillRule="evenodd">
+      <path d="M0 0h24v24H0z" />
+      <rect fill="#DA3743" x="3" y="3" width="16" height="16" rx="2" />
+      <g transform="rotate(45 -1.066 19.62)" />
+    </g>
+  </svg>
+);
+
+const filterBoxCheckmark = (
+  <svg mlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="10px" height="10px" viewBox="0 0 500 500" style={{ enableBackground: '0 0 10 10' }}>
+    <g>
+      <path
+        stroke="white"
+        fill="white"
+        d="M434.539,98.499l-38.828-38.828c-5.324-5.328-11.799-7.993-19.41-7.993c-7.618,0-14.093,2.665-19.417,7.993L169.59,247.248
+        l-83.939-84.225c-5.33-5.33-11.801-7.992-19.412-7.992c-7.616,0-14.087,2.662-19.417,7.992L7.994,201.852
+        C2.664,207.181,0,213.654,0,221.269c0,7.609,2.664,14.088,7.994,19.416l103.351,103.349l38.831,38.828
+        c5.327,5.332,11.8,7.994,19.414,7.994c7.611,0,14.084-2.669,19.414-7.994l38.83-38.828L434.539,137.33
+        c5.325-5.33,7.994-11.802,7.994-19.417C442.537,110.302,439.864,103.829,434.539,98.499z"
+      />
+    </g>
+  </svg>
+);
+
 const sortRadio = (
   <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <title>icon/ic_radio_default</title>
@@ -42,7 +69,7 @@ const sortRadioFilled = (
 );
 
 const sortCaretDown = (
-  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="8px" viewBox="0 0 284.929 284.929" style={{ enableBackground: '0 0 284.929 284.929' }}>
+  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="8px" viewBox="0 0 24 8" style={{ enableBackground: '0 0 24 8' }}>
     <g transform="scale(1.2 1.2)">
       <path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441
         L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082
@@ -59,14 +86,24 @@ const sortCaretUp = (
       <path d="M302.445,205.788L164.63,67.959c-6.136-6.13-16.074-6.13-22.203,0L4.597,205.788c-6.129,6.132-6.129,16.069,0,22.201
       l11.101,11.101c6.129,6.136,16.076,6.136,22.209,0l115.62-115.626L269.151,239.09c6.128,6.136,16.07,6.136,22.201,0
       l11.101-11.101C308.589,221.85,308.589,211.92,302.445,205.788z"
-    />
+      />
     </g>
   </svg>
+);
+
+const filterBoxChecked = (
+  <div className="filter-checked">
+    {filterBoxFill}
+    <div className="checkmark">
+      {filterBoxCheckmark}
+    </div>
+  </div>
 );
 
 export {
   helpful,
   filterBox,
+  filterBoxChecked,
   sortRadio,
   sortRadioFilled,
   sortCaretDown,

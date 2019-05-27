@@ -279,6 +279,7 @@ export default class Reviews extends React.Component {
     const { ratingFilter } = this.state;
     const { choosingSort } = this.state;
     const { starPercentages } = this.state;
+
     return (
       <div className="reviews">
         {summary

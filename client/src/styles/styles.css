@@ -523,7 +523,7 @@ body {
   align-items: center;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  padding: 8px;
+  padding: 0.5rem;
   border: 1px solid #d8d9db;
   border-radius: 0.125rem;
   padding: 0.5rem;
@@ -552,6 +552,17 @@ body {
   line-height: 1.43;
   font-size: 0.875rem;
   color: #6f737b;
+}
+
+.filter-checked {
+  position: relative;
+  height: 1.5rem;
+}
+
+.filter-checked .checkmark {
+  position: absolute;
+  bottom: 0.15rem;
+  left: 0.45rem;
 }
 
 .footer-credits {
