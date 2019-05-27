@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { sortRadio, sortRadioFilled } from '../styles/svgs/svgs.jsx';
 
-function SortOptions(props) {
+const SortOptions = (props) => {
   const { options } = props;
+  const { sortBy } = props;
   const { handleSortOptionClick } = props;
   return (
     <div className="sort-options">
       {options.map(option => (
         <div className="option" key={option} onClick={handleSortOptionClick} data-option={option}>
-          <input type="radio" />
-          <span className="radio-button">
-            <span className="inner-dot" />
-          </span>
+          {sortBy === option
+            ? sortRadioFilled
+            : sortRadio}
           <span className="option-name">{option}</span>
         </div>
       ))}
@@ -20,6 +21,7 @@ function SortOptions(props) {
 }
 
 SortOptions.propTypes = {
+  sortBy: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
   handleSortOptionClick: PropTypes.func.isRequired
 };

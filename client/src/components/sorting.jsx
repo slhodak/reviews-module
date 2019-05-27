@@ -28,11 +28,10 @@ function Sorting(props) {
       <div className="sort-area">
         <div className="sort-dropdown" onClick={handleSortClick}>
           <span className="sorter-name">{sortBy}</span>
-          <i className="sorter-icon" />
         </div>
         <div className="options-container">
           {choosingSort
-            ? <SortOptions options={options} handleSortOptionClick={handleSortOptionClick} />
+            ? <SortOptions options={options} sortBy={sortBy} handleSortOptionClick={handleSortOptionClick} />
             : null}
         </div>
       </div>

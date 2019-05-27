@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { filterBox } from '../styles/svgs/svgs.jsx';
 
 const FilterButton = (props) => {
   const { tag } = props;
@@ -8,7 +9,7 @@ const FilterButton = (props) => {
 
   return (
     <div className={classString} key={tag} data-tag={tag} onClick={handleFilterClick}>
-      <input type="checkbox" className="filter-checkbox" />
+      {filterBox}
       <span className="filter-name">{tag}</span>
     </div>
   );

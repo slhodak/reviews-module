@@ -6,7 +6,6 @@ html {
 
 body {
   font-family: 'PT Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
 }
 
 .reviews {
@@ -485,14 +484,6 @@ body {
   line-height: 1.43;
 }
 
-.sort-dropdown .sorter-icon {
-  height: 1.5rem;
-  width: 1.5rem;
-  font-size: 0.875rem;
-  background-repeat: no-repeat;
-  background-position: 50%;
-}
-
 .options-container {
   position: absolute;
 }
@@ -516,22 +507,6 @@ body {
 
 .sort-options .option:hover {
   background-color: #f7f7f7;
-}
-
-.option input {
-  position: absolute;
-  opacity: 0;
-}
-
-.option .radio-button {
-  height: calc(1.5rem - 2px);
-  width: calc(1.5rem - 2px);
-  border: 2px solid black;
-  border-radius: 50%;
-}
-
-.sort-options input:checked ~ .radio-button {
-  background-color: #da3743;
 }
 
 .sort-options .option-name {
