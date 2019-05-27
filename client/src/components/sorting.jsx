@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SortOptions from './SortOptions.jsx';
 import FilterButton from './FilterButton.jsx';
+import { sortCaretDown, sortCaretUp } from '../styles/svgs/svgs.jsx';
 
 function Sorting(props) {
   const { tags } = props;
@@ -28,6 +29,9 @@ function Sorting(props) {
       <div className="sort-area">
         <div className="sort-dropdown" onClick={handleSortClick}>
           <span className="sorter-name">{sortBy}</span>
+          {choosingSort
+            ? sortCaretUp
+            : sortCaretDown}
         </div>
         <div className="options-container">
           {choosingSort
@@ -49,7 +53,7 @@ function Sorting(props) {
 Sorting.propTypes = {
   tags: PropTypes.object.isRequired,
   filters: PropTypes.object.isRequired,
-  ratingFilter: PropTypes.number.isRequired,
+  ratingFilter: PropTypes.number,
   choosingSort: PropTypes.bool.isRequired,
   sortBy: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
@@ -57,6 +61,10 @@ Sorting.propTypes = {
   handleSortOptionClick: PropTypes.func.isRequired,
   handleFilterClick: PropTypes.func.isRequired,
   unFilterByRating: PropTypes.func.isRequired
+};
+
+Sorting.defaultProps = {
+  ratingFilter: null
 };
 
 export default Sorting;

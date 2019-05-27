@@ -63,7 +63,7 @@ function Summary(props) {
             {starPercentages.map(ratingAndPercent => (
               <div className="bar" key={ratingAndPercent[0]}>
                 <span>{(ratingAndPercent[0] + 1).toString()}</span>
-                <div className="bar-container" id={`bar${ratingAndPercent[0] + 1}`} data-rating={ratingAndPercent[0] + 1} onClick={handleRatingClick}>
+                <div className="bar-container" id={`bar${ratingAndPercent[0] + 1}`} data-rating={+ratingAndPercent[0] + 1} onClick={handleRatingClick}>
                   <div className="progress" style={{ width: `${ratingAndPercent[1]}%` }} />
                 </div>
               </div>

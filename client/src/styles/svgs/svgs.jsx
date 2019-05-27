@@ -40,9 +40,31 @@ const sortRadioFilled = (
   </svg>
 );
 
+const sortCaretDown = (
+  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ background: '#fff' }}>
+    <title>icon/ic_down</title>
+    <g fill="none" fillRule="evenodd">
+      <path d="M0 0h24v24H0z" />
+      <g transform="scale(1 -1)" width="2" height="6" rx=".5" />
+    </g>
+  </svg>
+);
+
+const sortCaretUp = (
+  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style={{ background: '#fff' }}>
+    <title>icon/ic_up</title>
+    <g fill="none" fillRule="evenodd">
+      <path d="M0 24h24V0H0z" />
+      <g transform="rotate(45 -4.571 18.864)" width="2" height="6" rx=".5" />
+    </g>
+  </svg>
+);
+
 export {
   helpful,
   filterBox,
   sortRadio,
-  sortRadioFilled
+  sortRadioFilled,
+  sortCaretDown,
+  sortCaretUp
 };

@@ -76,9 +76,13 @@ function Review(props) {
 
 Review.propTypes = {
   review: PropTypes.object.isRequired,
-  openReport: PropTypes.bool.isRequired,
+  openReport: PropTypes.bool,
   handleReportClick: PropTypes.func.isRequired,
   handleReportClear: PropTypes.func.isRequired
+};
+
+Review.defaultProps = {
+  openReport: null
 };
 
 export default Review;

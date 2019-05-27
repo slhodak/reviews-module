@@ -55,9 +55,13 @@ ReviewList.propTypes = {
   pages: PropTypes.array.isRequired,
   currentPage: PropTypes.number.isRequired,
   pageButtonList: PropTypes.object.isRequired,
-  openReport: PropTypes.number.isRequired,
+  openReport: PropTypes.number,
   handleReportClick: PropTypes.func.isRequired,
   handleReportClear: PropTypes.func.isRequired
+};
+
+ReviewList.defaultProps = {
+  openReport: null
 };
 
 export default ReviewList;
