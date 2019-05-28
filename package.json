@@ -18,6 +18,8 @@
   "scripts": {
     "server-dev": "nodemon ./server/server.js",
     "react-dev": "webpack -d -w",
+    "build": "webpack -d",
+    "start": "node ./server/server.js",
     "add": "eslint '*/**' --ignore-path .lintignore && git add -A",
     "pg-setup": "brew install postgres && brew services start postgres && createdb reviews && psql reviews",
     "seed": "node database/seed.js",
