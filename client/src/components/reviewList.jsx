@@ -24,12 +24,19 @@ function ReviewList(props) {
       })}
       <div className={styles.pageButtons}>
         {currentPage > 0
-          ? <div className={styles.pageRight} onClick={goToPreviousPage} />
-          : <div className="button left dead" />}
+          ? <div className={styles.pageLeft} onClick={goToPreviousPage} />
+          : <div className={styles.deadLeft} />}
         {buttonArray.map((button) => {
-          if (button.display === 'button' || button.display === 'button current') {
+          if (button.display === 'button') {
             return (
-              <div className={button.display} data-page={button.page} onClick={goToPage}>
+              <div className={styles.button} data-page={button.page} onClick={goToPage}>
+                <p>{button.page + 1}</p>
+              </div>
+            );
+          }
+          if (button.display === 'button current') {
+            return (
+              <div className={styles.current} data-page={button.page} onClick={goToPage}>
                 <p>{button.page + 1}</p>
               </div>
             );
@@ -42,8 +49,8 @@ function ReviewList(props) {
           return null;
         })}
         {currentPage < pages.length - 1
-          ? <div className="button right" onClick={goToNextPage} />
-          : <div className="button right dead" />}
+          ? <div className={styles.pageRight} onClick={goToNextPage} />
+          : <div className={styles.deadRight} />}
       </div>
     </div>
   );
