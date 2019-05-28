@@ -43,7 +43,7 @@ function Sorting(props) {
       <h4>Filters</h4>
       <div className={styles.filters}>
         {ratingFilter
-          ? <FilterButton tag={`${ratingFilter} stars`} classString={styles.filterSelected} handleFilterClick={unFilterByRating} />
+          ? <FilterButton tag={`${ratingFilter} stars`} classString={styles.filterSelected} checked handleFilterClick={unFilterByRating} />
           : null}
         {filterTags}
       </div>
