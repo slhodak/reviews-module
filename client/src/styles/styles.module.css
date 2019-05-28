@@ -279,11 +279,11 @@ body {
   width: 100%;
 }
 
-.reviewDetails .header {
+.reviewDetails .reviewHeader {
   display: flex;
 }
 
-.reviewDetails .header .date {
+.reviewDetails .reviewHeader .date {
   font-size: 0.875rem;
   font-weight: bold;
   margin: 0px 4px;

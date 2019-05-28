@@ -34,7 +34,7 @@ function Review(props) {
         </div>
       </div>
       <div className={styles.reviewDetails}>
-        <div className={styles.header}>
+        <div className={styles.reviewHeader}>
           <div className={styles.stars}>
             {stars}
           </div>

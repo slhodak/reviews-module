@@ -128,9 +128,9 @@ export default class Reviews extends React.Component {
     const pages = [];
     let page = [];
     showing.forEach((review, index) => {
-      if (index % 5 < 4) {
+      if (index % 10 < 9) {
         page.push(review);
-      } else if (index % 5 === 4) {
+      } else if (index % 10 === 9) {
         page.push(review);
         pages.push(page);
         page = [];
