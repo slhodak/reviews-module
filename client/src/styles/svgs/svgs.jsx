@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles.module.css';
 
 //  still broken
 const helpful = (
@@ -92,9 +93,9 @@ const sortCaretUp = (
 );
 
 const filterBoxChecked = (
-  <div className="filter-checked">
+  <div className={styles.filterChecked}>
     {filterBoxFill}
-    <div className="checkmark">
+    <div className={styles.checkmark}>
       {filterBoxCheckmark}
     </div>
   </div>

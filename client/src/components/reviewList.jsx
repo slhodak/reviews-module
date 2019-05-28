@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Review from './Review.jsx';
+import styles from '../styles/styles.module.css';
 
 function ReviewList(props) {
   const { pages } = props;
@@ -14,16 +15,16 @@ function ReviewList(props) {
   const { handleReportClear } = props;
   const buttonArray = pageButtonList.getArray();
   return (
-    <div className="review-list">
+    <div className={styles.reviewList}>
       {pages[currentPage].map((review) => {
         if (openReport === review.id) {
           return <Review key={review.id} review={review} openReport handleReportClick={handleReportClick} handleReportClear={handleReportClear} />;
         }
         return <Review key={review.id} review={review} handleReportClick={handleReportClick} handleReportClear={handleReportClear} />;
       })}
-      <div className="page-buttons">
+      <div className={styles.pageButtons}>
         {currentPage > 0
-          ? <div className="button left" onClick={goToPreviousPage} />
+          ? <div className={styles.pageRight} onClick={goToPreviousPage} />
           : <div className="button left dead" />}
         {buttonArray.map((button) => {
           if (button.display === 'button' || button.display === 'button current') {

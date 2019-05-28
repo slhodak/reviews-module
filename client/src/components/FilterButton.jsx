@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { filterBox, filterBoxChecked } from '../styles/svgs/svgs.jsx';
+import styles from '../styles/styles.module.css';
 
 const FilterButton = (props) => {
   const { tag } = props;
@@ -13,7 +14,7 @@ const FilterButton = (props) => {
       {checked
         ? filterBoxChecked
         : filterBox}
-      <span className="filter-name">{tag}</span>
+      <span className={styles.filterName}>{tag}</span>
     </div>
   );
 };

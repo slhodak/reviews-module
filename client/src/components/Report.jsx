@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styles from '../styles/styles.module.css';
 
 class Report extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Report extends React.Component {
 
   handleClick(event) {
     const { handleReportClear } = this.props;
-    if (event.target.className === 'cancel') {
+    if (event.target.className === styles.cancel) {
       handleReportClear();
       return;
     }
@@ -32,16 +33,16 @@ class Report extends React.Component {
 
   render() {
     return (
-      <div ref={(node) => { this.reportPopup = node; }} className="report-popup-container">
-        <div className="report-popup">
+      <div ref={(node) => { this.reportPopup = node; }} className={styles.reportPopupContainer}>
+        <div className={styles.reportPopup}>
           <h3>Report this review as inappropriate?</h3>
-          <div className="report-center">
+          <div className={styles.reportCenter}>
             <p>If you believe this review should be removed from FreeSeats, please let us know and someone will investigate.</p>
             <textarea placeholder="Tell us why you find the review inappropriate." />
           </div>
-          <div className="report-buttons">
-            <button type="submit" className="report-button">Report</button>
-            <button type="button" className="cancel">Cancel</button>
+          <div className={styles.reportButtons}>
+            <button type="submit" className={styles.reportButton}>Report</button>
+            <button type="button" className={styles.cancel}>Cancel</button>
           </div>
         </div>
       </div>
