@@ -61,19 +61,19 @@ class Review extends React.Component {
             <p className={styles.date}>&nbsp;&middot;&nbsp;&nbsp;Dined on {moment(review.date).format('MMMM Do, YYYY')}</p>
           </div>
           <div className={styles.ratings}>
-            <span className={styles.ratingName}>Overall</span>
+            <span className={styles.ratingName}>Overall&nbsp;</span>
             <span className={styles.rating}>{review.overall}
               <span className={styles.dot}>&middot;</span>
             </span>
-            <span className={styles.ratingName}>Food</span>
+            <span className={styles.ratingName}>Food&nbsp;</span>
             <span className={styles.rating}>{review.food}
               <span className={styles.dot}>&middot;</span>
             </span>
-            <span className={styles.ratingName}>Service</span>
+            <span className={styles.ratingName}>Service&nbsp;</span>
             <span className={styles.rating}>{review.service}
               <span className={styles.dot}>&middot;</span>
             </span>
-            <span className={styles.ratingName}>Ambience</span>
+            <span className={styles.ratingName}>Ambience&nbsp;</span>
             <span className={styles.rating}>{review.ambience}</span>
           </div>
           <p ref={(node) => { this.text = node; }} className={styles.reviewTextPartial}>{review.text}</p>

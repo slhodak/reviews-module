@@ -46,6 +46,8 @@ npm install
 
 ### PostgreSQL
 
+! If re-seeding, run: dropdb reviews
+
 0) Homebrew is required
   - https://brew.sh
 1) Install postgres
