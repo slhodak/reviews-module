@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const comparisons = {
   'Highest Rating': (reviewA, reviewB) => {
     const diff = reviewB.overall - reviewA.overall;
@@ -37,13 +39,11 @@ const Models = {
 
     setButtonDisplays(inputButton = this.head, currentPage) {
       const button = inputButton;
-      if (button === this.tail) {
+      if (button.page === currentPage) {
+        button.display = 'button current';
+      } else if (button === this.tail) {
         button.display = 'button';
-        return;
-      }
-      if (button === this.head) {
-        button.display = 'button';
-      } else if (button.page === currentPage) {
+      } else if (button === this.head) {
         button.display = 'button';
       } else if (button.previous.page === currentPage) {
         button.display = 'button';
@@ -58,7 +58,9 @@ const Models = {
       } else {
         button.display = null;
       }
-      this.setButtonDisplays(button.next, currentPage);
+      if (button.next) {
+        this.setButtonDisplays(button.next, currentPage);
+      }
     }
 
     getArray() {
@@ -76,8 +78,38 @@ const Models = {
       this.page = page;
       this.next = null;
       this.previous = null;
-      //  Options are 'Button', 'Ellipse', and null
       this.display = null;
+    }
+  },
+  FilterSet: class {
+    constructor() {
+      this.storage = {};
+      this.size = 0;
+    }
+
+    add(tag) {
+      if (!this.storage[tag]) {
+        this.storage[tag] = tag;
+        this.size += 1;
+      }
+    }
+
+    remove(tag) {
+      if (this.storage[tag]) {
+        delete this.storage[tag];
+        this.size -= 1;
+      }
+    }
+
+    //  expect array
+    isContainedBy(tags) {
+      const filters = Object.keys(this.storage);
+      for (let i = 0; i < filters.length; i++) {
+        if (!_.includes(tags, filters[i])) {
+          return false;
+        }
+      }
+      return true;
     }
   }
 };

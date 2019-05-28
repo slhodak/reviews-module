@@ -20,7 +20,7 @@ function ReviewList(props) {
           ? <div className="button left" onClick={goToPreviousPage} />
           : <div className="button left dead" />}
         {buttonArray.map((button) => {
-          if (button.display === 'button') {
+          if (button.display === 'button' || button.display === 'button current') {
             return (
               <div className={button.display} data-page={button.page} onClick={goToPage}>
                 <p>{button.page + 1}</p>

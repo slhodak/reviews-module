@@ -44,6 +44,8 @@ module.exports.getAllReviews = (restaurantId, callback) => {
     diners.firstname,
     diners.lastname,
     diners.city,
+    diners.avatarcolor,
+    diners.isvip,
     diners.totalreviews
     from reviews INNER JOIN diners 
     on (reviews.diner = diners.id) 
