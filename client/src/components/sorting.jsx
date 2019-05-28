@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SortOptions from './SortOptions.jsx';
 import FilterButton from './FilterButton.jsx';
+import { sortCaretDown, sortCaretUp } from '../styles/svgs/svgs.jsx';
+import styles from '../styles/styles.module.css';
 
 function Sorting(props) {
   const { tags } = props;
@@ -17,29 +19,31 @@ function Sorting(props) {
 
   const filterTags = Object.keys(tags).map((tag) => {
     if (filters.storage[tag]) {
-      return <FilterButton tag={tag} classString="filter-button selected" handleFilterClick={handleFilterClick} />;
+      return <FilterButton tag={tag} count={tags[tag][1]} classString={styles.filterSelected} checked handleFilterClick={handleFilterClick} />;
     }
-    return <FilterButton tag={tag} classString="filter-button" handleFilterClick={handleFilterClick} />;
+    return <FilterButton tag={tag} count={tags[tag][1]} classString={styles.filterButton} handleFilterClick={handleFilterClick} />;
   });
 
   return (
-    <div className="sorting-panel">
+    <div className={styles.sortingPanel}>
       <h4>Sort by</h4>
-      <div className="sort-area">
-        <div className="sort-dropdown" onClick={handleSortClick}>
-          <span className="sorter-name">{sortBy}</span>
-          <i className="sorter-icon" />
-        </div>
-        <div className="options-container">
+      <div className={styles.sortArea}>
+        <div className={styles.sortDropdown} onClick={handleSortClick}>
+          <span className={styles.sorterName}>{sortBy}</span>
           {choosingSort
-            ? <SortOptions options={options} handleSortOptionClick={handleSortOptionClick} />
+            ? sortCaretUp
+            : sortCaretDown}
+        </div>
+        <div className={styles.optionsContainer}>
+          {choosingSort
+            ? <SortOptions options={options} sortBy={sortBy} handleSortOptionClick={handleSortOptionClick} />
             : null}
         </div>
       </div>
       <h4>Filters</h4>
-      <div className="filters">
+      <div className={styles.filters}>
         {ratingFilter
-          ? <FilterButton tag={`${ratingFilter} stars`} classString="filter-button selected" handleFilterClick={unFilterByRating} />
+          ? <FilterButton tag={`${ratingFilter} stars`} classString={styles.filterSelected} checked handleFilterClick={unFilterByRating} />
           : null}
         {filterTags}
       </div>
@@ -50,7 +54,7 @@ function Sorting(props) {
 Sorting.propTypes = {
   tags: PropTypes.object.isRequired,
   filters: PropTypes.object.isRequired,
-  ratingFilter: PropTypes.number.isRequired,
+  ratingFilter: PropTypes.number,
   choosingSort: PropTypes.bool.isRequired,
   sortBy: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
@@ -58,6 +62,10 @@ Sorting.propTypes = {
   handleSortOptionClick: PropTypes.func.isRequired,
   handleFilterClick: PropTypes.func.isRequired,
   unFilterByRating: PropTypes.func.isRequired
+};
+
+Sorting.defaultProps = {
+  ratingFilter: null
 };
 
 export default Sorting;

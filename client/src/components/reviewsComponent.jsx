@@ -4,7 +4,9 @@ import request from 'superagent';
 import Summary from './Summary.jsx';
 import Sorting from './Sorting.jsx';
 import ReviewList from './ReviewList.jsx';
+import IconCredits from './IconCredits.jsx';
 import { comparisons, Models } from '../helpers';
+import styles from '../styles/styles.module.css';
 
 export default class Reviews extends React.Component {
   constructor(props) {
@@ -28,7 +30,8 @@ export default class Reviews extends React.Component {
       filters: new Models.FilterSet(),
       ratingFilter: null,
       choosingSort: false,
-      sortBy: 'Newest'
+      sortBy: 'Newest',
+      openReport: null
     };
 
     this.componentWillMount = this.componentWillMount.bind(this);
@@ -51,6 +54,9 @@ export default class Reviews extends React.Component {
     this.handleSortOptionClick = this.handleSortOptionClick.bind(this);
     this.handleFilterClick = this.handleFilterClick.bind(this);
     this.unFilterByRating = this.unFilterByRating.bind(this);
+
+    this.handleReportClick = this.handleReportClick.bind(this);
+    this.handleReportClear = this.handleReportClear.bind(this);
   }
 
   componentWillMount() {
@@ -94,7 +100,11 @@ export default class Reviews extends React.Component {
       const reviewTags = review.tags.split(',');
       if (reviewTags[0]) {
         for (let i = 0; i < reviewTags.length; i++) {
-          tags[reviewTags[i]] = reviewTags[i];
+          if (tags[reviewTags[i]]) {
+            tags[reviewTags[i]][1] += 1;
+          } else {
+            tags[reviewTags[i]] = [reviewTags[i], 1];
+          }
         }
       }
     });
@@ -123,9 +133,9 @@ export default class Reviews extends React.Component {
     const pages = [];
     let page = [];
     showing.forEach((review, index) => {
-      if (index % 5 < 4) {
+      if (index % 10 < 9) {
         page.push(review);
-      } else if (index % 5 === 4) {
+      } else if (index % 10 === 9) {
         page.push(review);
         pages.push(page);
         page = [];
@@ -249,9 +259,22 @@ export default class Reviews extends React.Component {
     }, this.filterReviews);
   }
 
+  handleReportClick(event) {
+    this.setState({
+      openReport: +event.currentTarget.dataset.id
+    });
+  }
+
+  handleReportClear() {
+    this.setState({
+      openReport: null
+    });
+  }
+
   render() {
     const { summary } = this.state;
     const { reviews } = this.state;
+    const { openReport } = this.state;
     const { pages } = this.state;
     const { currentPage } = this.state;
     const { pageButtonList } = this.state;
@@ -262,8 +285,9 @@ export default class Reviews extends React.Component {
     const { ratingFilter } = this.state;
     const { choosingSort } = this.state;
     const { starPercentages } = this.state;
+
     return (
-      <div className="reviews">
+      <div className={styles.reviews}>
         {summary
           ? (
             <Summary
@@ -292,6 +316,9 @@ export default class Reviews extends React.Component {
           ? (
             <ReviewList
               reviews={showing}
+              openReport={openReport}
+              handleReportClick={this.handleReportClick}
+              handleReportClear={this.handleReportClear}
               pages={pages}
               currentPage={currentPage}
               pageButtonList={pageButtonList}
@@ -301,6 +328,7 @@ export default class Reviews extends React.Component {
             />
           )
           : <span>No matching reviews</span>}
+        <IconCredits />
       </div>
     );
   }

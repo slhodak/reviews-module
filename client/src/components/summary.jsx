@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import styles from '../styles/styles.module.css';
 
 function Summary(props) {
   const { totalReviews } = props;
@@ -9,71 +10,71 @@ function Summary(props) {
   const stars = [];
   for (let i = 0; i < 5; i++) {
     if (summary.averageOverall >= i + 1) {
-      stars[i] = <span className="review-star" />;
+      stars[i] = <span className={styles.reviewStar} />;
     } else {
-      stars[i] = <span className="review-star-blank" />;
+      stars[i] = <span className={styles.reviewStarBlank} />;
     }
   }
   return (
-    <div className="summary">
-      <div className="header">
-        <h4>What {totalReviews} People Are Saying</h4>
+    <div className={styles.summary}>
+      <div>
+        <h4 className={styles.header}>What {totalReviews} People Are Saying</h4>
       </div>
-      <div className="sub-header">
-        <p>Overall ratings and reviews</p>
+      <div>
+        <p className={styles.subHeader}>Overall ratings and reviews</p>
       </div>
-      <div className="center">
-        <div className="left">
-          <p className="disclaimer">Reviews can only be made by diners who have eaten at this restaurant</p>
-          <div className="overallStars">
-            <div className="summary-stars">
+      <div className={styles.center}>
+        <div className={styles.left}>
+          <p>Reviews can only be made by diners who have eaten at this restaurant</p>
+          <div className={styles.overallStars}>
+            <div>
               {stars}
             </div>
             <p>{summary.averageOverall} based on recent ratings</p>
           </div>
-          <div className="overallRatings">
-            <div className="food">
-              <p className="rating">{summary.averageFood}</p>
+          <div className={styles.overallRatings}>
+            <div className={styles.food}>
+              <p className={styles.rating}>{summary.averageFood}</p>
               <p>Food</p>
             </div>
-            <div className="service">
-              <p className="rating">{summary.averageService}</p>
+            <div className={styles.service}>
+              <p className={styles.rating}>{summary.averageService}</p>
               <p>Service</p>
             </div>
-            <div className="ambience">
-              <p className="rating">{summary.averageAmbience}</p>
+            <div className={styles.ambience}>
+              <p className={styles.rating}>{summary.averageAmbience}</p>
               <p>Ambience</p>
             </div>
-            <div className="value">
-              <p className="rating">{summary.valueRating}</p>
+            <div className={styles.value}>
+              <p className={styles.rating}>{summary.valueRating}</p>
               <p>Value</p>
             </div>
           </div>
-          <div className="noise">
-            <div className="noise-icon" />
+          <div className={styles.noise}>
+            <div className={styles.noiseIcon} />
             <span>Noise &middot; {summary.noise}</span>
           </div>
-          <div className="recommend">
-            <div className="recommend-icon" />
+          <div className={styles.recommend}>
+            <div className={styles.recommendIcon} />
             <span><strong>{summary.recommendPercent}% of people</strong> would recommend it to a friend</span>
           </div>
         </div>
-        <div className="right">
-          <div className="bars">
+        <div className={styles.right}>
+          <div className={styles.bars}>
             {starPercentages.map(ratingAndPercent => (
-              <div className="bar" key={ratingAndPercent[0]}>
+              <div className={styles.bar} key={ratingAndPercent[0]}>
                 <span>{(ratingAndPercent[0] + 1).toString()}</span>
-                <div className="bar-container" id={`bar${ratingAndPercent[0] + 1}`} data-rating={ratingAndPercent[0] + 1} onClick={handleRatingClick}>
-                  <div className="progress" style={{ width: `${ratingAndPercent[1]}%` }} />
+                <div className={styles.barContainer} id={`bar${ratingAndPercent[0] + 1}`} data-rating={+ratingAndPercent[0] + 1} onClick={handleRatingClick}>
+                  <div className={styles.progress} style={{ width: `${ratingAndPercent[1]}%` }} />
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <div className="summary-bottom">
-        <div className="link">
-          <a>Best Restaurants in {summary.location} ›</a>
+      <div className={styles.summaryBottom}>
+        <div>
+          <a className={styles.link}>Best Restaurants in {summary.location} ›</a>
         </div>
       </div>
     </div>

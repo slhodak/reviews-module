@@ -31,6 +31,14 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 - Node 6.13.0
 - PostgreSQL 11.2
 
+## Deployment
+
+- When ready to deploy, run webpack without watch mode:
+> npm run build
+- Start the server:
+> npm run start
+
+
 ## Development
 
 ### Installing Dependencies
@@ -45,6 +53,8 @@ npm install -g webpack-cli
 npm install
 
 ### PostgreSQL
+
+! If re-seeding, run: dropdb reviews
 
 0) Homebrew is required
   - https://brew.sh

@@ -22,6 +22,12 @@ const comparisons = {
   }
 };
 
+const displayUtils = {
+  isOverflown: (element) => {
+    return element.scrollHeight > element.clientHeight;
+  }
+};
+
 const Models = {
   ButtonLinkedList: class {
     constructor(page) {
@@ -114,4 +120,4 @@ const Models = {
   }
 };
 
-export { comparisons, Models };
+export { comparisons, Models, displayUtils };

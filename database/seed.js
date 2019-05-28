@@ -108,14 +108,17 @@ const Seed = {
     return diners;
   },
   createReviews() {
-    //  create 100 reviews
+    //  create 600 reviews
     const reviews = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 600; i++) {
       const review = {};
       review.restaurant = Faker.random.number({ min: 1, max: 5 });
       review.diner = Faker.random.number({ min: 1, max: 50 });
       review.text = Faker.lorem.sentences();
-      review.date = moment(Faker.date.recent(100)).format('YYYY-MM-DD');
+      if (Math.random() > 0.7) {
+        review.text += ` ${Faker.lorem.sentences()}`;
+      }
+      review.date = moment(Faker.date.recent(365)).format('YYYY-MM-DD');
       review.overall = Faker.random.number({ min: 1, max: 5 });
       review.food = Faker.random.number({ min: 1, max: 5 });
       review.service = Faker.random.number({ min: 1, max: 5 });
