@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import styles from '../styles/styles.module.css';
 
 function Summary(props) {
   const { totalReviews } = props;
@@ -15,12 +16,12 @@ function Summary(props) {
     }
   }
   return (
-    <div className="summary">
-      <div className="header">
-        <h4>What {totalReviews} People Are Saying</h4>
+    <div className={styles.summary}>
+      <div>
+        <h4 className={styles.header}>What {totalReviews} People Are Saying</h4>
       </div>
-      <div className="sub-header">
-        <p>Overall ratings and reviews</p>
+      <div>
+        <p className={styles.subHeader}>Overall ratings and reviews</p>
       </div>
       <div className="center">
         <div className="left">

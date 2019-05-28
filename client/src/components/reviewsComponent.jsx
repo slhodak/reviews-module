@@ -5,6 +5,7 @@ import Summary from './Summary.jsx';
 import Sorting from './Sorting.jsx';
 import ReviewList from './ReviewList.jsx';
 import { comparisons, Models } from '../helpers';
+import styles from '../styles/styles.module.css';
 
 export default class Reviews extends React.Component {
   constructor(props) {
@@ -281,7 +282,7 @@ export default class Reviews extends React.Component {
     const { starPercentages } = this.state;
 
     return (
-      <div className="reviews">
+      <div className={styles.reviews}>
         {summary
           ? (
             <Summary
