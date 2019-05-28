@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import Report from './Report.jsx';
 import styles from '../styles/styles.module.css';
+import { helpful } from '../styles/svgs/svgs.jsx';
 import { displayUtils } from '../helpers';
 
 class Review extends React.Component {
@@ -89,7 +90,7 @@ class Review extends React.Component {
                 <p className={styles.reportHelpfulText}>Report</p>
               </div>
               <div className={styles.helpful}>
-                <i className={styles.helpfulIcon} />
+                {helpful}
                 <p className={styles.reportHelpfulText}>Helpful</p>
               </div>
             </div>

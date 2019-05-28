@@ -19,9 +19,9 @@ function Sorting(props) {
 
   const filterTags = Object.keys(tags).map((tag) => {
     if (filters.storage[tag]) {
-      return <FilterButton tag={tag} classString={styles.filterSelected} checked handleFilterClick={handleFilterClick} />;
+      return <FilterButton tag={tag} count={tags[tag][1]} classString={styles.filterSelected} checked handleFilterClick={handleFilterClick} />;
     }
-    return <FilterButton tag={tag} classString={styles.filterButton} handleFilterClick={handleFilterClick} />;
+    return <FilterButton tag={tag} count={tags[tag][1]} classString={styles.filterButton} handleFilterClick={handleFilterClick} />;
   });
 
   return (

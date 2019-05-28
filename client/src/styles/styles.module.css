@@ -543,7 +543,7 @@ body {
   padding-bottom: 1rem;
 }
 
-.filters .filterButton {
+.filterButton {
   display: inline-flex;
   align-items: center;
   margin-right: 1rem;

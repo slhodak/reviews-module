@@ -99,7 +99,11 @@ export default class Reviews extends React.Component {
       const reviewTags = review.tags.split(',');
       if (reviewTags[0]) {
         for (let i = 0; i < reviewTags.length; i++) {
-          tags[reviewTags[i]] = reviewTags[i];
+          if (tags[reviewTags[i]]) {
+            tags[reviewTags[i]][1] += 1;
+          } else {
+            tags[reviewTags[i]] = [reviewTags[i], 1];
+          }
         }
       }
     });
