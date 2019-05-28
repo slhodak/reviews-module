@@ -115,6 +115,9 @@ const Seed = {
       review.restaurant = Faker.random.number({ min: 1, max: 5 });
       review.diner = Faker.random.number({ min: 1, max: 50 });
       review.text = Faker.lorem.sentences();
+      if (Math.random() > 0.7) {
+        review.text += ` ${Faker.lorem.sentences()}`;
+      }
       review.date = moment(Faker.date.recent(365)).format('YYYY-MM-DD');
       review.overall = Faker.random.number({ min: 1, max: 5 });
       review.food = Faker.random.number({ min: 1, max: 5 });

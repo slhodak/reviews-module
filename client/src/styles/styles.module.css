@@ -308,7 +308,7 @@ body {
   color: #2d333f;
 }
 
-.reviewDetails .text {
+.reviewText {
   color: #2d333f;
   line-height: 1.5rem;
   font-size: 1rem;
@@ -317,13 +317,21 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.reviewDetails .reportHelpful {
-  display: flex;
-  justify-content: flex-end;
-  cursor: pointer;
+.reviewTextPartial {
+  composes: reviewText;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
-.reportHelpful p {
+.reportHelpful {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reportHelpfulText {
   background: none;
   border: none;
   font-weight: 700;
@@ -336,6 +344,23 @@ body {
 
 .reportHelpful p:hover {
   color: #da3743;
+}
+
+.readMore {
+  color: #2d333f;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #da3743;
+}
+
+.readMore:hover {
+  text-decoration: underline;
+}
+
+.reportHelpfulButtons {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
 }
 
 .reportHelpful .report {
