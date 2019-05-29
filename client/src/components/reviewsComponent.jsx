@@ -122,7 +122,6 @@ export default class Reviews extends React.Component {
     for (let i = 4; i > -1; i--) {
       reversed.push([i, ratingPercents[i]]);
     }
-    console.log('reversed' + JSON.stringify(reversed));
     this.setState({
       starPercentages: reversed
     });
