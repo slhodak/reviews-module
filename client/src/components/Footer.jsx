@@ -13,58 +13,50 @@ const Footer = (props) => {
           <div className={styles.footerEmail}>
             <input type="text" className={styles.enterEmail} /><button className={styles.signUp} type="button">Sign Up</button>
           </div>
-          <p className={styles.footerSeparator}>See Full Restaurant List - Make a Reservation at {restaurantName}</p>
         </div>
+        <p className={styles.footerSeparator}>See Full Restaurant List - Make a Reservation at {restaurantName}</p>
         <div className={styles.footerCenter}>
           <div className={styles.footerColumn}>
             <h5>DISCOVER</h5>
-            <ul>
-              <li>Dining Rewards</li>
-              <li>Private Dining</li>
-              <li>Top 100 Restaurants</li>
-              <li>Reserve for Others</li>
-              <li>Cuisines Near Me</li>
-            </ul>
+            <p>Dining Rewards</p>
+            <p>Private Dining</p>
+            <p>Top 100 Restaurants</p>
+            <p>Reserve for Others</p>
+            <p>Cuisines Near Me</p>
           </div>
           <div className={styles.footerColumn}>
             <h5>OPENTABLE</h5>
-            <ul>
-              <li>About Us</li>
-              <li>Blog</li>
-              <li>Careers</li>
-              <li>Press</li>
-            </ul>
+            <p>About Us</p>
+            <p>Blog</p>
+            <p>Careers</p>
+            <p>Press</p>
           </div>
           <div className={styles.footerColumn}>
             <h5>MORE</h5>
-            <ul>
-              <li>OpenTable for iOS</li>
-              <li>OpenTable for Android</li>
-              <li>Affiliate Program</li>
-              <li>Contact Us</li>
-            </ul>
+            <p>OpenTable for iOS</p>
+            <p>OpenTable for Android</p>
+            <p>Affiliate Program</p>
+            <p>Contact Us</p>
           </div>
           <div className={styles.footerColumn}>
             <h5>OUR SITES</h5>
-            <ul>
-              <li>OpenTable.ip</li>
-              <li>OpenTable.de</li>
-              <li>OpenTable.es</li>
-              <li>OpenTable.com.mx</li>
-              <li>OpenTable.ca</li>
-              <li>OpenTable.hk</li>
-              <li>OpenTable.ie</li>
-              <li>OpenTable.sg</li>
-              <li>OpenTable.nl</li>
-              <li>OpenTable.co.uk</li>
-              <li>OpenTable.com.au</li>
-              <li>OpenTable.ae</li>
-              <li>OpenTable.co.th</li>
-              <li>OpenTable.it</li>
-            </ul>
+            <p>OpenTable.ip</p>
+            <p>OpenTable.de</p>
+            <p>OpenTable.es</p>
+            <p>OpenTable.com.mx</p>
+            <p>OpenTable.ca</p>
+            <p>OpenTable.hk</p>
+            <p>OpenTable.ie</p>
+            <p>OpenTable.sg</p>
+            <p>OpenTable.nl</p>
+            <p>OpenTable.co.uk</p>
+            <p>OpenTable.com.au</p>
+            <p>OpenTable.ae</p>
+            <p>OpenTable.co.th</p>
+            <p>OpenTable.it</p>
           </div>
-          <div className={styles.footerColumnRight}>
-            <h5>RESTAURATEURS</h5>
+          <div className={styles.footerColumn}>
+            <h5>RESTAURANTEURS</h5>
             <button type="button" className={styles.rightColumnButton}>
               <p>Delight more diners</p>
               <span>&rsaquo;</span>
