@@ -329,8 +329,8 @@ export default class Reviews extends React.Component {
               />
             )
             : <span>No matching reviews</span>}
-          <Footer />
         </div>
+        <Footer />
       </div>
     );
   }
