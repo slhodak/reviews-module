@@ -4,7 +4,7 @@ import request from 'superagent';
 import Summary from './Summary.jsx';
 import Sorting from './Sorting.jsx';
 import ReviewList from './ReviewList.jsx';
-import IconCredits from './IconCredits.jsx';
+import Footer from './Footer.jsx';
 import { comparisons, Models } from '../helpers';
 import styles from '../styles/styles.module.css';
 
@@ -328,7 +328,7 @@ export default class Reviews extends React.Component {
             />
           )
           : <span>No matching reviews</span>}
-        <IconCredits />
+        <Footer />
       </div>
     );
   }
