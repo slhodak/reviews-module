@@ -287,47 +287,49 @@ export default class Reviews extends React.Component {
     const { starPercentages } = this.state;
 
     return (
-      <div className={styles.reviews}>
-        {summary
-          ? (
-            <Summary
-              summary={summary}
-              totalReviews={reviews.length}
-              starPercentages={starPercentages}
-              handleRatingClick={this.handleRatingClick}
+      <div className={styles.appBody}>
+        <div className={styles.reviews}>
+          {summary
+            ? (
+              <Summary
+                summary={summary}
+                totalReviews={reviews.length}
+                starPercentages={starPercentages}
+                handleRatingClick={this.handleRatingClick}
+              />
+            )
+            : null}
+          <div ref={(node) => { this.sortingPanel = node; }}>
+            <Sorting
+              tags={tags}
+              filters={filters}
+              ratingFilter={ratingFilter}
+              options={this.options}
+              sortBy={sortBy}
+              choosingSort={choosingSort}
+              handleSortClick={this.handleSortClick}
+              handleSortOptionClick={this.handleSortOptionClick}
+              handleFilterClick={this.handleFilterClick}
+              unFilterByRating={this.unFilterByRating}
             />
-          )
-          : null}
-        <div ref={(node) => { this.sortingPanel = node; }}>
-          <Sorting
-            tags={tags}
-            filters={filters}
-            ratingFilter={ratingFilter}
-            options={this.options}
-            sortBy={sortBy}
-            choosingSort={choosingSort}
-            handleSortClick={this.handleSortClick}
-            handleSortOptionClick={this.handleSortOptionClick}
-            handleFilterClick={this.handleFilterClick}
-            unFilterByRating={this.unFilterByRating}
-          />
+          </div>
+          {pageButtonList && showing.length
+            ? (
+              <ReviewList
+                reviews={showing}
+                openReport={openReport}
+                handleReportClick={this.handleReportClick}
+                handleReportClear={this.handleReportClear}
+                pages={pages}
+                currentPage={currentPage}
+                pageButtonList={pageButtonList}
+                goToPage={this.goToPage}
+                goToNextPage={this.goToNextPage}
+                goToPreviousPage={this.goToPreviousPage}
+              />
+            )
+            : <span>No matching reviews</span>}
         </div>
-        {pageButtonList && showing.length
-          ? (
-            <ReviewList
-              reviews={showing}
-              openReport={openReport}
-              handleReportClick={this.handleReportClick}
-              handleReportClear={this.handleReportClear}
-              pages={pages}
-              currentPage={currentPage}
-              pageButtonList={pageButtonList}
-              goToPage={this.goToPage}
-              goToNextPage={this.goToNextPage}
-              goToPreviousPage={this.goToPreviousPage}
-            />
-          )
-          : <span>No matching reviews</span>}
         <Footer />
       </div>
     );
