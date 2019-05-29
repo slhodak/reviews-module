@@ -61,11 +61,12 @@ function Summary(props) {
         </div>
         <div className={styles.right}>
           <div className={styles.bars}>
-            {starPercentages.map(ratings => (
-              <div className={styles.bar} key={ratings}>
-                <span>{(ratings + 1).toString()}</span>
-                <div className={styles.barContainer} id={`bar${ratings + 1}`} data-rating={ratings + 1} onClick={handleRatingClick}>
-                  <div className={styles.progress} style={{ width: `${ratings}%` }} />
+            {/* [[0, 23], [1, 42], ...] */}
+            {starPercentages.map(ratingAndPercent => (
+              <div className={styles.bar} key={ratingAndPercent[0]}>
+                <span>{(ratingAndPercent[0] + 1).toString()}</span>
+                <div className={styles.barContainer} id={`bar${ratingAndPercent[0] + 1}`} data-rating={ratingAndPercent[0] + 1} onClick={handleRatingClick}>
+                  <div className={styles.progress} style={{ width: `${ratingAndPercent[1]}%` }} />
                 </div>
               </div>
             ))}
