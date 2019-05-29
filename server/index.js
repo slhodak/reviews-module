@@ -13,9 +13,7 @@ app.get('/:id', (req, res) => {
     res.status(400);
     res.end();
   } else {
-    //  pass id to component...? to webpack? too late! hmm
-    // const urlPath = req.params[0] ? req.params[0] : 'index.html';
-    res.sendfile('index.html', { root: path.resolve(__dirname, '../public') });
+    res.sendFile('index.html', { root: path.resolve(__dirname, '../public') });
   }
 });
 
