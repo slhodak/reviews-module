@@ -8,6 +8,17 @@ const app = express();
 app.use(cors());
 app.use(express.static(path.resolve(__dirname, '../public')));
 
+app.get('/:id', (req, res) => {
+  if (!req.params.id) {
+    res.status(400);
+    res.end();
+  } else {
+    //  pass id to component...? to webpack? too late! hmm
+    // const urlPath = req.params[0] ? req.params[0] : 'index.html';
+    res.sendfile('index.html', { root: path.resolve(__dirname, '../public') });
+  }
+});
+
 app.get('/:id/summary', (req, res) => {
   db.getSummary(req.params.id, (err, result) => {
     if (err) {
