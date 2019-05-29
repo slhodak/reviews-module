@@ -46,12 +46,6 @@ body {
   font-family: 'PT Sans', sans-serif;
 }
 
-.appBody {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .reviews {
   padding: 0 0 4rem;
   margin: 0px;
@@ -699,74 +693,4 @@ body {
 .deadLeft:hover {
   border: 1px solid #d8d9db !important;
   cursor: default;
-}
-
-.footerOuterContainer {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  padding-top: 2rem;
-  background-color: #333;
-}
-
-.footerContainer {
-  display: flex;
-  flex-direction: column;
-  color: #acacac;
-}
-
-.footerContainer p {
-  font-size: 0.875rem;
-  margin: 0.125rem;
-}
-
-.footerContainer h5 {
-  color: #fff;
-}
-
-.footerUpper {
-  border-bottom: 1px solid #d8d9db;
-  padding-bottom: 1rem;
-}
-
-.footerSeparator {
-  border-bottom: 1px solid #d8d9db;
-  padding-bottom: 1rem;
-}
-
-.footerCenter {
-  display: flex;
-}
-
-.footerColumn {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.rightColumnButton {
-  background-color: #666;
-  margin-bottom: 2rem;
-  border: 1px solid #666;
-  border-radius: 2px;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  padding: .6rem .8rem;
-}
-
-.rightColumnButton p {
-  padding-right: 1.7rem;
-}
-
-.footerCredits {
-  margin-top: 3rem;
-  font-size: 0.875rem;
-  text-decoration: none;
-  color: #fff;
-}
-
-.footerCredits a {
-  text-decoration: none;
-  color: #cacaca;
 }
