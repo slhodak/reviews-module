@@ -17,11 +17,11 @@ function Sorting(props) {
   const { handleFilterClick } = props;
   const { unFilterByRating } = props;
 
-  const filterTags = Object.keys(tags).map((tag) => {
+  const filterTags = Object.keys(tags).map((tag, index) => {
     if (filters.storage[tag]) {
-      return <FilterButton tag={tag} count={tags[tag][1]} classString={styles.filterSelected} checked handleFilterClick={handleFilterClick} />;
+      return <FilterButton tag={tag} key={index} count={tags[tag][1]} classString={styles.filterSelected} checked handleFilterClick={handleFilterClick} />;
     }
-    return <FilterButton tag={tag} count={tags[tag][1]} classString={styles.filterButton} handleFilterClick={handleFilterClick} />;
+    return <FilterButton tag={tag} key={index} count={tags[tag][1]} classString={styles.filterButton} handleFilterClick={handleFilterClick} />;
   });
 
   return (
