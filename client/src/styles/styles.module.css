@@ -46,6 +46,12 @@ body {
   font-family: 'PT Sans', sans-serif;
 }
 
+.appBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .reviews {
   padding: 0 0 4rem;
   margin: 0px;
