@@ -28,6 +28,7 @@
   "dependencies": {
     "babel-plugin-react-css-modules": "^5.2.6",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "faker": "^4.1.0",
     "jquery": "^3.4.1",
@@ -41,7 +42,9 @@
     "squel": "^5.12.2",
     "superagent": "^5.0.5",
     "supertest": "^4.0.2",
-    "svg-url-loader": "^2.3.2"
+    "svg-url-loader": "^2.3.2",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
