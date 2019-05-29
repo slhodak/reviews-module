@@ -107,8 +107,12 @@ const Footer = (props) => {
       </div>
       <div className={styles.footerLower}>
         <div className={styles.footerLowerTop}>
+          <p>Privacy Policy&nbsp;&middot;&nbsp;Terms of Use&nbsp;&middot;&nbsp;Cookies and Interest-Based Ads</p>
+          <p>Copyright © 2019 OpenTable, Inc. 1 Montgomery St Ste 700, San Francisco CA 94104 - All rights reserved.</p>
         </div>
         <div className={styles.footerLowerBottom}>
+          <p>OpenTable is part of Booking Holdings, the world leader in online travel and related services.</p>
+          <IconCredits />
         </div>
       </div>
     </div>
