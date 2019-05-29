@@ -32,9 +32,9 @@ class Review extends React.Component {
     const stars = [];
     for (let i = 0; i < 5; i++) {
       if (review.overall >= i + 1) {
-        stars[i] = <span className={styles.reviewStar} />;
+        stars[i] = <span key={i} className={styles.reviewStar} />;
       } else {
-        stars[i] = <span className={styles.reviewStarBlank} />;
+        stars[i] = <span key={i} className={styles.reviewStarBlank} />;
       }
     }
     const initials = review.firstname[0].toUpperCase() + review.lastname[0].toUpperCase();

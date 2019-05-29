@@ -10,9 +10,9 @@ function Summary(props) {
   const stars = [];
   for (let i = 0; i < 5; i++) {
     if (summary.averageOverall >= i + 1) {
-      stars[i] = <span className={styles.reviewStar} />;
+      stars[i] = <span key={i} className={styles.reviewStar} />;
     } else {
-      stars[i] = <span className={styles.reviewStarBlank} />;
+      stars[i] = <span key={i} className={styles.reviewStarBlank} />;
     }
   }
   return (
@@ -61,10 +61,11 @@ function Summary(props) {
         </div>
         <div className={styles.right}>
           <div className={styles.bars}>
+            {/* [[0, 23], [1, 42], ...] */}
             {starPercentages.map(ratingAndPercent => (
               <div className={styles.bar} key={ratingAndPercent[0]}>
                 <span>{(ratingAndPercent[0] + 1).toString()}</span>
-                <div className={styles.barContainer} id={`bar${ratingAndPercent[0] + 1}`} data-rating={+ratingAndPercent[0] + 1} onClick={handleRatingClick}>
+                <div className={styles.barContainer} id={`bar${ratingAndPercent[0] + 1}`} data-rating={ratingAndPercent[0] + 1} onClick={handleRatingClick}>
                   <div className={styles.progress} style={{ width: `${ratingAndPercent[1]}%` }} />
                 </div>
               </div>

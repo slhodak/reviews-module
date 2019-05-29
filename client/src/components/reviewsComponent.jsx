@@ -24,7 +24,7 @@ export default class Reviews extends React.Component {
       pages: [],
       currentPage: 0,
       pageButtonList: null,
-      starPercentages: [0, 0, 0, 0, 0],
+      starPercentages: null,
       tags: {},
       filters: new Models.FilterSet(),
       ratingFilter: null,
@@ -114,13 +114,13 @@ export default class Reviews extends React.Component {
 
   parseStarPercentages() {
     const { reviews } = this.state;
-    const { starPercentages } = this.state;
+    const ratingPercents = [0, 0, 0, 0, 0];
     reviews.forEach((review) => {
-      starPercentages[review.overall - 1] += 1 / reviews.length * 100;
+      ratingPercents[review.overall - 1] += Math.round((1 / reviews.length) * 100);
     });
     const reversed = [];
     for (let i = 4; i > -1; i--) {
-      reversed.push([i, starPercentages[i]]);
+      reversed.push([i, ratingPercents[i]]);
     }
     this.setState({
       starPercentages: reversed
@@ -287,7 +287,7 @@ export default class Reviews extends React.Component {
 
     return (
       <div className={styles.reviews}>
-        {summary
+        {summary && starPercentages
           ? (
             <Summary
               summary={summary}
@@ -333,5 +333,5 @@ export default class Reviews extends React.Component {
 }
 
 Reviews.propTypes = {
-  restaurantId: PropTypes.number.isRequired
+  restaurantId: PropTypes.string.isRequired
 };

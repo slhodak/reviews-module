@@ -26,24 +26,24 @@ function ReviewList(props) {
         {currentPage > 0
           ? <div className={styles.pageLeft} onClick={goToPreviousPage} />
           : <div className={styles.deadLeft} />}
-        {buttonArray.map((button) => {
+        {buttonArray.map((button, index) => {
           if (button.display === 'button') {
             return (
-              <div className={styles.button} data-page={button.page} onClick={goToPage}>
+              <div key={index} className={styles.button} data-page={button.page} onClick={goToPage}>
                 <p>{button.page + 1}</p>
               </div>
             );
           }
           if (button.display === 'button current') {
             return (
-              <div className={styles.current} data-page={button.page} onClick={goToPage}>
+              <div key={index} className={styles.current} data-page={button.page} onClick={goToPage}>
                 <p>{button.page + 1}</p>
               </div>
             );
           }
           if (button.display === 'ellipse') {
             return (
-              <span className={button.display}>...</span>
+              <span key={index} className={button.display}>...</span>
             );
           }
           return null;
