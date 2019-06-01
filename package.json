@@ -23,7 +23,8 @@
     "add": "eslint '*/**' --ignore-path .lintignore && git add -A",
     "pg-setup": "brew install postgres && brew services start postgres && createdb reviews && psql reviews",
     "seed": "node database/seed.js",
-    "test": "jest"
+    "test": "jest",
+    "dockerstart": "node ./database/seed.js && node ./server/server.js"
   },
   "dependencies": {
     "babel-plugin-react-css-modules": "^5.2.6",

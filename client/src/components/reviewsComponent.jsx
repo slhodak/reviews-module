@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import request from 'superagent';
-import Summary from './Summary.jsx';
-import Sorting from './Sorting.jsx';
-import ReviewList from './ReviewList.jsx';
+import Summary from './summary.jsx';
+import Sorting from './sorting.jsx';
+import ReviewList from './reviewList.jsx';
 import { comparisons, Models } from '../helpers';
 import styles from '../styles/styles.module.css';
 

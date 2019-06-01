@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  postgres:
+    build: ./database/
+    image: db:new
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: reviews
+      POSTGRES_USER: postgres
+  reviews:
+    build: .
+    image: module:new
+    depends_on:
+      - 'postgres'
+    ports:
+      - '3010:3010'

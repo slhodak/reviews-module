@@ -24,9 +24,10 @@ const makeQuery = (client, sql, callback) => {
 
 module.exports.getAllReviews = (restaurantId, callback) => {
   const client = new Client({
-    user: localRole,
-    host: 'localhost',
+    user: localRole.role,
+    host: 'postgres',
     database: 'reviews',
+    password: localRole.password,
     port: 5432
   });
 
@@ -57,9 +58,10 @@ module.exports.getAllReviews = (restaurantId, callback) => {
 module.exports.getSummary = (restaurantId, callback) => {
   // get restaurant summary info from restaurant table
   const client = new Client({
-    user: localRole,
-    host: 'localhost',
+    user: localRole.role,
+    host: 'postgres',
     database: 'reviews',
+    password: localRole.password,
     port: 5432
   });
   const sql = squel.select()
