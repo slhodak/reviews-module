@@ -21,7 +21,7 @@ coverage
 .grunt
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
-public/bundle.js
+# public/bundle.js
 
 # Local Postgres Role Name
 config/localRole.js
