@@ -1,6 +1,12 @@
 ## MAC files ##
 .DS_Store
 
+## PEM ##
+PEM
+pem
+./pem
+pem/
+
 ## NPM ##
 npm
 npm-debug.log
