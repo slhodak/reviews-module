@@ -29,9 +29,10 @@ const Seed = {
     const diners = Seed.createDiners();
     const reviews = Seed.createReviews();
     const client = new Client({
-      user: localRole,
-      host: 'localhost',
+      user: localRole.role,
+      host: 'postgres',
       database: 'reviews',
+      password: localRole.password,
       port: 5432
     });
     client.connect();
@@ -143,9 +144,10 @@ const Seed = {
   insertRestaurants(restaurants, callback) {
     //  insert 5 restaurants
     const client = new Client({
-      user: localRole,
-      host: 'localhost',
+      user: localRole.role,
+      host: 'postgres',
       database: 'reviews',
+      password: localRole.password,
       port: 5432
     });
     const sql = squel.insert()
@@ -166,9 +168,10 @@ const Seed = {
   insertDiners(diners, callback) {
     //  insert 50 diners 
     const client = new Client({
-      user: localRole,
-      host: 'localhost',
+      user: localRole.role,
+      host: 'postgres',
       database: 'reviews',
+      password: localRole.password,
       port: 5432
     });
     const sql = squel.insert()
@@ -189,9 +192,10 @@ const Seed = {
   insertReviews(reviews, callback) {
     //  insert 100 reviews
     const client = new Client({
-      user: localRole,
-      host: 'localhost',
+      user: localRole.role,
+      host: 'postgres',
       database: 'reviews',
+      password: localRole.password,
       port: 5432
     });
     const sql = squel.insert()

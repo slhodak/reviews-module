@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Review from './Review.jsx';
+import Review from './review.jsx';
 import styles from '../styles/styles.module.css';
 
 function ReviewList(props) {
