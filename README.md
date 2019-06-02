@@ -18,6 +18,15 @@
 
 ## Usage
 
+### Docker
+
+> Make sure no images with the names "rdbimg" or "rfeimg", or containers with the names "rdb" or "rfe" exist on the host
+> call 'bash compose'
+> visit port 3010 on the host IP
+
+
+### Plain Node
+
 > Install the necessary dependencies for this module (npm install)
 > Transpile and bundle all the components (webpack)
 > If it's your first time downloading the repo, [seed the database](#postgresql)

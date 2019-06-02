@@ -1,6 +1,6 @@
 const { Client } = require('pg');
 const squel = require('squel');
-const localRole = require('../config/localRole.js');
+const dbconf = require('../config/db_config.js');
 
 
 const makeQuery = (client, sql, callback) => {
@@ -24,10 +24,10 @@ const makeQuery = (client, sql, callback) => {
 
 module.exports.getAllReviews = (restaurantId, callback) => {
   const client = new Client({
-    user: localRole.role,
-    host: 'postgres',
+    user: dbconf.role,
+    host: dbconf.host,
     database: 'reviews',
-    password: localRole.password,
+    password: dbconf.password,
     port: 5432
   });
 
@@ -58,10 +58,10 @@ module.exports.getAllReviews = (restaurantId, callback) => {
 module.exports.getSummary = (restaurantId, callback) => {
   // get restaurant summary info from restaurant table
   const client = new Client({
-    user: localRole.role,
-    host: 'postgres',
+    user: dbconf.role,
+    host: dbconf.host,
     database: 'reviews',
-    password: localRole.password,
+    password: dbconf.password,
     port: 5432
   });
   const sql = squel.select()
