@@ -18,19 +18,21 @@
 
 ## Usage
 
-### Docker
+### Deploy with Docker
 
 - Make sure no images with the names "rdbimg" or "rfeimg", or containers with the names "rdb" or "rfe" exist on the host
 - call 'bash compose'
 - visit port 3010 on the host IP
+- to compose down, use 'bash decompose'... but beware, it will prune any other dangling images and volumes as well.
 
 
 ### Plain Node
 
 - Install the necessary dependencies for this module (npm install)
 - Transpile and bundle all the components (webpack)
+-   npm run react-dev if you want to watch for changes
 - If it's your first time downloading the repo, [seed the database](#postgresql)
-- Start the server (npm run sever-dev)
+- Start the server (npm run server-dev)
 - The public folder will be available at localhost port 3010
 
 ## Requirements
@@ -39,27 +41,6 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 - Node 6.13.0
 - PostgreSQL 11.2
-
-## Deployment
-
-- When ready to deploy, run webpack without watch mode:
-> npm run build
-- Start the server:
-> npm run start
-
-
-## Development
-
-### Installing Dependencies
-
- - Globally:
-
-npm install -g webpack
-npm install -g webpack-cli
-
- - In this repo:
-
-npm install
 
 ### PostgreSQL
 
@@ -80,9 +61,10 @@ npm install
   - reviews=# \dt
 6) Exit the psql shell
   - reviews=# \q
-7) Go to the config/localRole.example.js file
-  - rename to 'localRole.js'
-  - make the key equal to your local username or whatever is the username of the postgres role that created the database (run 'select * from pg_roles;' in the psql shell [psql reviews to enter the shell again] to see a list of possibilities)
+7) Go to the config/db_config.js file
+  - make the role equal to your local username or whatever is the username of the postgres role that created the database (run 'select * from pg_roles;' in the psql shell [psql reviews to enter the shell again] to see a list of possibilities)
+  - if you are running via docker, make the password the POSTGRES_PASSWORD specified as an environment variable in /compose & the host to 'rdb' (whatever will be the name of the container on the netowrk)
+  - else, make the password your local postgres password & the host to 'localhost'
 8) Run the seed script (don't forget npm install)
   - npm run seed
 9) Check if the tables populated
