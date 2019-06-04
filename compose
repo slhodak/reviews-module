@@ -7,3 +7,4 @@ docker run -d -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=example -e POSTGRES
 echo "waiting for pg database before starting front end"
 sleep 5
 docker run -d -p 3010:3010 --name rfe --network revnet rfeimg
+
