@@ -1,7 +1,5 @@
-const { Client } = require('pg');
+const { createClient } = require('./pg_client.js');
 const squel = require('squel');
-const dbconf = require('../config/db_config.js');
-
 
 const makeQuery = (client, sql, callback) => {
   client.connect()
@@ -23,13 +21,7 @@ const makeQuery = (client, sql, callback) => {
 };
 
 module.exports.getAllReviews = (restaurantId, callback) => {
-  const client = new Client({
-    user: dbconf.role,
-    host: dbconf.host,
-    database: 'reviews',
-    password: dbconf.password,
-    port: 5432
-  });
+  const client = createClient();
 
   const sql = `SELECT 
     reviews.id, 
@@ -57,13 +49,7 @@ module.exports.getAllReviews = (restaurantId, callback) => {
 
 module.exports.getSummary = (restaurantId, callback) => {
   // get restaurant summary info from restaurant table
-  const client = new Client({
-    user: dbconf.role,
-    host: dbconf.host,
-    database: 'reviews',
-    password: dbconf.password,
-    port: 5432
-  });
+
   const sql = squel.select()
     .from('restaurants')
     .field('restaurants.location')

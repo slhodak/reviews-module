@@ -1,8 +1,7 @@
 const Faker = require('faker');
-const { Client } = require('pg');
+const createClient = require('./pg_client.js');
 const squel = require('squel');
 const moment = require('moment');
-const dbconf = require('../config/db_config.js');
 
 const Seed = {
   foodWords: ['pot roast', 'chicken', 'sushi', 'marshmallows', 'pumpkin pie', 'wine'],
@@ -28,14 +27,11 @@ const Seed = {
     const restaurants = Seed.createRestaurants();
     const diners = Seed.createDiners();
     const reviews = Seed.createReviews();
-    const client = new Client({
-      user: dbconf.role,
-      host: dbconf.host,
-      database: 'reviews',
-      password: dbconf.password,
-      port: 5432
-    });
-    client.connect();
+    const client = createClient();
+    client.connect()
+      .catch(err => {
+        console.error("Error connecting to postgres database: ", err);
+      });
     Seed.insertRestaurants(restaurants, (err, res) => {
       console.log('inserting restaurants...');
       if (err) {
@@ -143,13 +139,7 @@ const Seed = {
   },
   insertRestaurants(restaurants, callback) {
     //  insert 5 restaurants
-    const client = new Client({
-      user: dbconf.role,
-      host: dbconf.host,
-      database: 'reviews',
-      password: dbconf.password,
-      port: 5432
-    });
+    const client = createClient();
     const sql = squel.insert()
       .into('restaurants')
       .setFieldsRows(restaurants)
@@ -167,13 +157,7 @@ const Seed = {
   },
   insertDiners(diners, callback) {
     //  insert 50 diners 
-    const client = new Client({
-      user: dbconf.role,
-      host: dbconf.host,
-      database: 'reviews',
-      password: dbconf.password,
-      port: 5432
-    });
+    const client = createClient();
     const sql = squel.insert()
       .into('diners')
       .setFieldsRows(diners)
@@ -191,13 +175,7 @@ const Seed = {
   },
   insertReviews(reviews, callback) {
     //  insert 100 reviews
-    const client = new Client({
-      user: dbconf.role,
-      host: dbconf.host,
-      database: 'reviews',
-      password: dbconf.password,
-      port: 5432
-    });
+    const client = createClient();
     const sql = squel.insert()
       .into('reviews')
       .setFieldsRows(reviews)
