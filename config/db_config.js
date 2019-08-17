@@ -1,3 +1,3 @@
 module.exports.role = 'postgres';
-module.exports.password = 'password';
+module.exports.password = 'example';
 module.exports.host = 'rdb';

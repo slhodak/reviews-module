@@ -1,4 +1,4 @@
-const { createClient } = require('./pg_client.js');
+const createClient = require('./pg_client.js');
 const squel = require('squel');
 
 const makeQuery = (client, sql, callback) => {
@@ -49,7 +49,7 @@ module.exports.getAllReviews = (restaurantId, callback) => {
 
 module.exports.getSummary = (restaurantId, callback) => {
   // get restaurant summary info from restaurant table
-
+  const client = createClient();
   const sql = squel.select()
     .from('restaurants')
     .field('restaurants.location')
